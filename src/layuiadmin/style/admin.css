@@ -449,6 +449,18 @@ html{background-color: #f2f2f2; color: #666;}
   .layui-layout-admin .layui-body .layadmin-tabsbody-item{-webkit-overflow-scrolling: touch; overflow: auto;}
 }
 
-
+/*2019年1月11日调整*/
+#tabBody .tab-content-item{
+  display: none;
+}
+#tabBody .layui-show{
+  display: block;
+}
+.total-info{
+  padding:5px 10px;
+  margin-bottom:10px;
+  background:#fef4f1;
+}
+.total-info span{color:#FF5722}
 
 

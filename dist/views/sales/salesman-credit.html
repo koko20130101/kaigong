@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>现金单管理</title>
+    <title>业务员授信</title>
     <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
 </head>
@@ -15,10 +15,19 @@
                     <form class="layui-form" action="" lay-filter="component-form-group">
                         <div class="layui-form-item">
                             <div class="layui-inline">
-                                <input type="text" name="contractNumber" size="28"  placeholder="请输入工程名称进行查询" lay-verify="required" class="layui-input">
+                                <!--<label class="layui-form-label">状态</label>-->
+                                <select name="modules"  lay-search="">
+                                    <option value="">选择状态</option>
+                                    <option value="1">正供</option>
+                                    <option value="2">停供</option>
+                                </select>
                             </div>
                             <div class="layui-inline">
-                                <button class="layui-btn" lay-submit><i class="layui-icon layui-icon-search"></i>查询</button>
+                                <input type="text" name="contractNumber" size="28"  placeholder="请输入业务员称进行查询" lay-verify="required" class="layui-input">
+                            </div>
+                            <div class="layui-inline">
+                                <button class="layui-btn" lay-submit>查询</button>
+                                <button type="reset" class="layui-btn layui-btn-normal"><i class="layui-icon">&#xe608;</i>新增</button>
                             </div>
                         </div>
                     </form>
@@ -42,26 +51,22 @@
             page:true,
             cols: [[
                 {field:'count', title: '',type:'number', width:40,align:'center'}
-                ,{field:'customerName', title: '客户名称',sort: true}
-                ,{field:'projectName', title: '工程名称', sort: true}
-                ,{field:'address', title: '工程地址',minWidth:300,sort: true}
                 ,{field:'salesmen', title: '业务员',width:100, sort: true}
-                ,{field:'contacts', title: '联系人',width:100, sort: true}
-                ,{field:'tel', title: '联系电话',width:130}
-                ,{field:'creationTime', title: '创建时间',width:160, sort: true}
+                ,{field:'tel', title: '电话号码',sort: true}
+                ,{field:'cardID', title: '身份证号码',sort: true}
+                ,{field:'prepay', title: '预付款',type:'number',sort: true}
+                ,{field:'station', title: '供料站点',sort: true}
+                ,{field:'creationTime', title: '创建时间',sort: true}
                 ,{field:'operation', title: '操作',toolbar: '#barDemo'}
             ]],
             data: [
                 {
                     "count": 1,
-                    "id": 20181219001,
-                    "customerName": "广州***公司",
-                    "projectName": "碧桂园山水天下",
-                    "address": "广东省广州市越秀区都土地巷12号",
                     "salesmen": "姚**",
-                    "contacts": "王勇",
                     "tel": "13888888888",
-                    "payType": "固定价",
+                    "cardID": "-",
+                    "prepay": 1000.40,
+                    "station": "创富混凝土",
                     "creationTime": "2018-12-19 10:38:42",
                     "operation": ""
                 }
@@ -71,7 +76,7 @@
 </script>
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">转为合同</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">正供</a>
     <!--<a class="layui-btn layui-btn-xs" lay-event="check">审核</a>-->
 </script>
 </body>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>业务员授信</title>
+    <title>合同单管理</title>
     <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
 </head>
@@ -15,18 +15,28 @@
                     <form class="layui-form" action="" lay-filter="component-form-group">
                         <div class="layui-form-item">
                             <div class="layui-inline">
+                                <!--<label class="layui-form-label">结算方式</label>-->
+                                <select name="quiz">
+                                    <option value="">选择结算方式</option>
+                                    <option value="固定价">固定价</option>
+                                    <option value="信息价">信息价</option>
+                                </select>
+                            </div>
+                            <div class="layui-inline">
                                 <!--<label class="layui-form-label">状态</label>-->
                                 <select name="modules"  lay-search="">
                                     <option value="">选择状态</option>
                                     <option value="1">正供</option>
                                     <option value="2">停供</option>
+                                    <option value="3">供毕</option>
+                                    <option value="4">未供</option>
                                 </select>
                             </div>
                             <div class="layui-inline">
-                                <input type="text" name="contractNumber" size="28"  placeholder="请输入业务员称进行查询" lay-verify="required" class="layui-input">
+                                <input type="text" name="contractNumber" size="28"  placeholder="请输入合同编号/工程名称进行查询" lay-verify="required" class="layui-input">
                             </div>
                             <div class="layui-inline">
-                                <button class="layui-btn" lay-submit><i class="layui-icon layui-icon-search"></i>查询</button>
+                                <button class="layui-btn" lay-submit>查询</button>
                                 <button type="reset" class="layui-btn layui-btn-normal"><i class="layui-icon">&#xe608;</i>新增</button>
                             </div>
                         </div>
@@ -51,22 +61,41 @@
             page:true,
             cols: [[
                 {field:'count', title: '',type:'number', width:40,align:'center'}
+                ,{field:'id', title: '合同编号', width:120, sort: true}
+                ,{field:'customerName', title: '客户名称', sort: true}
+                ,{field:'projectName', title: '工程名称', minWidth:150,sort: true}
+                ,{field:'controlNumber', title: '监督号',width:100}
                 ,{field:'salesmen', title: '业务员',width:100, sort: true}
-                ,{field:'tel', title: '电话号码',sort: true}
-                ,{field:'cardID', title: '身份证号码',sort: true}
-                ,{field:'prepay', title: '预付款',type:'number',sort: true}
-                ,{field:'station', title: '供料站点',sort: true}
-                ,{field:'creationTime', title: '创建时间',sort: true}
+                ,{field:'contacts', title: '联系人',width:100, sort: true}
+                ,{field:'tel', title: '联系电话'}
+                ,{field:'payType', title: '结算类型',width:100, sort: true}
+                ,{field:'creationTime', title: '创建时间',width:160, sort: true}
                 ,{field:'operation', title: '操作',toolbar: '#barDemo'}
             ]],
             data: [
                 {
                     "count": 1,
+                    "id": 20181219001,
+                    "customerName": "广州***公司",
+                    "projectName": "碧桂园山水天下",
+                    "controlNumber": "",
                     "salesmen": "姚**",
+                    "contacts": "王勇",
                     "tel": "13888888888",
-                    "cardID": "-",
-                    "prepay": 1000.40,
-                    "station": "创富混凝土",
+                    "payType": "固定价",
+                    "creationTime": "2018-12-19 10:38:42",
+                    "operation": ""
+                },
+                {
+                    "count": 1,
+                    "id": 20181219001,
+                    "customerName": "广州***公司",
+                    "projectName": "碧桂园山水天下",
+                    "controlNumber": "",
+                    "salesmen": "姚**",
+                    "contacts": "王勇",
+                    "tel": "13888888888",
+                    "payType": "固定价",
                     "creationTime": "2018-12-19 10:38:42",
                     "operation": ""
                 }
