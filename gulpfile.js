@@ -70,6 +70,9 @@ var argv = require('minimist')(process.argv.slice(2), {
   ,mv: function(){    
     gulp.src('./src/layuiadmin/json/**/*')
     .pipe(gulp.dest(destDir + '/layuiadmin/json'));
+
+    gulp.src('./src/layuiadmin/layui/**/*')
+        .pipe(gulp.dest(destDir + '/layuiadmin/layui'));
     
     gulp.src('./src/layuiadmin/lib/extend/echarts.js')
     .pipe(gulp.dest(destDir + '/layuiadmin/lib/extend'));

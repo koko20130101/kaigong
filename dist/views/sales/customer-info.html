@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>客户信息管理</title>
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <form class="layui-form" action="" lay-filter="component-form-group">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <input type="text" name="contractNumber" size="28"  placeholder="请输入客户名称进行查询" lay-verify="required" class="layui-input">
+                            </div>
+                            <div class="layui-inline">
+                                <button class="layui-btn" lay-submit><i class="layui-icon layui-icon-search"></i>查询</button>
+                            </div>
+                        </div>
+                    </form>
+                    <table class="layui-hide" id="table-height"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base:'../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'table'],function () {
+        var table = layui.table;
+        table.render({
+            elem:'#table-height',
+            height:'full-100',
+            page:true,
+            cols: [[
+                {field:'count', title: '',type:'number', width:40,align:'center'}
+                ,{field:'customerName', title: '客户名称',sort: true}
+                ,{field:'contacts', title: '联系人',width:80, sort: true}
+                ,{field:'tel', title: '电话',width:120}
+                ,{field:'grade', title: '客户等级',width:100}
+                ,{field:'email', title: '邮箱'}
+                ,{field:'businessLicence', title: '营业执照号'}
+                ,{field:'address', title: '地址',minWidth:250}
+                ,{field:'remarks', title: '备注'}
+                ,{field:'creationTime', title: '创建时间',width:160, sort: true}
+                ,{field:'operation', title: '操作',toolbar: '#barDemo'}
+            ]],
+            data: [
+                {
+                    "count": 1,
+                    "id": 20181219001,
+                    "customerName": "广州***公司",
+                    "contacts": "王勇",
+                    "tel": "13888888888",
+                    "grade": "",
+                    "email": "5153746@qq.com",
+                    "businessLicence": "gz4535564434343",
+                    "address": "广东省广州市越秀区都土地巷12号",
+                    "remarks": "新增订单时，添加的用户",
+                    "creationTime": "2018-12-19 10:38:42",
+                    "operation": ""
+                }
+            ]
+        })
+    })
+</script>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    <!--<a class="layui-btn layui-btn-xs" lay-event="check">审核</a>-->
+</script>
+</body>
+</html>
