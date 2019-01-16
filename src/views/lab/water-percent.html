@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>开盘管理</title>
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <form class="layui-form" action="" lay-filter="component-form-group">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                                    <ul class="layui-tab-title" id="tabHeader">
+                                        <li class="layui-this">昨天</li>
+                                        <li>今天</li>
+                                        <li>本月</li>
+                                        <li>自定义</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <div id="tabBody">
+                                    <div class="tab-content-item"></div>
+                                    <div class="tab-content-item"></div>
+                                    <div class="tab-content-item"></div>
+                                    <div class="tab-content-item">
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="startDate" id="Start-date" lay-verify="date"
+                                                   placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                                        </div>
+                                        <div class="layui-form-mid">-</div>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="endDate" id="End-date" lay-verify="date"
+                                                   placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <!--<label class="layui-form-label">结算方式</label>-->
+                                <select name="quiz">
+                                    <option value="待审核">实际含水量</option>
+                                    <option value="已审核">标准含水量</option>
+                                </select>
+                            </div>
+                            <div class="layui-inline">
+                                <!--<label class="layui-form-label">结算方式</label>-->
+                                <select name="quiz">
+                                    <option value="">全部</option>
+                                    <option value="待审核">待审核</option>
+                                    <option value="已审核">已审核</option>
+                                </select>
+                            </div>
+                            <div class="layui-inline">
+                                <input type="text" name="contractNumber" size="28"  placeholder="请输入材料类型、材料名称进行查询" lay-verify="required" class="layui-input">
+                            </div>
+                            <div class="layui-inline">
+                                <button class="layui-btn" lay-submit><i class="layui-icon layui-icon-search"></i>查询</button>
+                                <button class="layui-btn" lay-submit><i class="layui-icon">&#xe654;</i>新增</button>
+                                <button type="reset" class="layui-btn layui-btn-normal"><i class="layui-icon">&#xe656</i>批量审核
+                                </button>
+                                <button type="reset" class="layui-btn layui-btn-normal"><i class="layui-icon layui-icon-search"></i>查看日志
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <table class="layui-hide" id="table-height"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['element','index', 'table', 'laydate'], function () {
+        var table = layui.table
+                ,element = layui.element
+                ,laydate = layui.laydate;
+        table.render({
+            elem: '#table-height',
+            height: 'full-100',
+            page: true,
+            cols: [[
+                {field: 'count', title: '', type: 'number', width: 40}
+                ,{field:'materialType', title: '材料种类',minWidth:150,sort: true}
+                , {field: 'materialName', title: '材料名称',sort: true}
+                , {field: 'waterPercent', title: '含水率(%)', sort: true}
+                , {field: 'startTime', title: '启用时间'}
+                , {field: 'operator', title: '操作员'}
+                , {field: 'operationTime', title: '操作时间'}
+                , {field: 'state', title: '状态'}
+                , {field: 'operation', title: '操作',minWidth:280,toolbar: '#barDemo'}
+            ]],
+            data: [
+                {
+                    "count": 1,
+                    "materialType": "5435434",
+                    "materialName": "2019-01-14 15:20:00",
+                    "waterPercent": "JA25-9903",
+                    "startTime": "JA25",
+                    "operator": "广东碧桂园",
+                    "operationTime": "一层楼",
+                    "state": "C25",
+                    "operation": 0
+                }
+            ]
+        });
+        laydate.render({
+            elem: '#Start-date'
+        });
+        laydate.render({
+            elem: '#End-date'
+        });
+        element.tab({
+            headerElem: '#tabHeader>li' //指定tab头元素项
+            ,bodyElem: '#tabBody>.tab-content-item' //指定tab主体元素项
+        });
+        element.on('tab(docDemoTabBrief)', function(data){
+            console.log(data)
+        });
+    })
+</script>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="edit">修改日志</a>
+    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="edit">删除</a>
+</script>
+</body>
+</html>
