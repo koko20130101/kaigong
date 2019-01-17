@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>开盘管理</title>
+    <title>配比调整记录</title>
     <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
 </head>
@@ -43,39 +43,31 @@
                                 </div>
                             </div>
                             <div class="layui-inline">
-                                <!--<label class="layui-form-label">结算方式</label>-->
-                                <select name="quiz">
-                                    <option value="">请选择强度等级</option>
+                                <!--<label class="layui-form-label">状态</label>-->
+                                <select name="modules" lay-search="">
+                                    <option value="">选择强度等级</option>
                                     <option value="C10">C10</option>
                                     <option value="C15">C15</option>
+                                    <option value="C20">C20</option>
+                                    <option value="C25">C25</option>
                                 </select>
                             </div>
                             <div class="layui-inline">
-                                <!--<label class="layui-form-label">结算方式</label>-->
-                                <select name="quiz">
-                                    <option value="">请选择状态</option>
-                                    <option value="待生产">待生产</option>
-                                    <option value="生产中">生产中</option>
-                                    <option value="生产完成">生产完成</option>
+                                <!--<label class="layui-form-label">状态</label>-->
+                                <select name="modules" lay-search="">
+                                    <option value="">选择坍落度</option>
+                                    <option value="100-120">100-120</option>
+                                    <option value="120-140">120-140</option>
                                 </select>
                             </div>
                             <div class="layui-inline">
-                                <input type="text" name="contractNumber" size="28"  placeholder="输入送货单号、客户名称、工程名称进行查询！" lay-verify="required" class="layui-input">
+                                <input type="text" name="contractNumber" size="28"  placeholder="请输入工程名称、施工部位、强度等级、坍落度进行查询" lay-verify="required" class="layui-input">
                             </div>
                             <div class="layui-inline">
                                 <button class="layui-btn" lay-submit><i class="layui-icon layui-icon-search"></i>查询</button>
-                                <button type="reset" class="layui-btn layui-btn-normal"><i class="layui-icon layui-icon-download-circle"></i>导出
-                                </button>
-                            </div>
-
-                            <div class="layui-inline">
-                                <input type="checkbox" name="like[write]" title="自动刷新">
                             </div>
                         </div>
                     </form>
-                    <div class="total-info">
-                        合计：方量<span>8225.0 m³</span>；已送：方量<span>334.0 m³</span>
-                    </div>
                     <table class="layui-hide" id="table-height"></table>
                 </div>
             </div>
@@ -98,41 +90,35 @@
             page: true,
             cols: [[
                 {field: 'count', title: '', type: 'number', width: 40}
-                ,{field:'order', title: '送货单号',minWidth:150,sort: true}
-                , {field: 'materialName', title: '客户名称',minWidth:150,sort: true}
+                ,{field:'order', title: '订单号',minWidth:150,sort: true}
+                , {field: 'adjustmentTime', title: '调整时间',width:88}
+                , {field: 'proRatioNumber', title: '生产配比编号',minWidth:150,sort: true}
                 , {field: 'projectName', title: '工程名称', minWidth:150,sort: true}
-                , {field: 'planCube', title: '计划方量'}
-                , {field: 'carCube', title: '本车方量'}
-                , {field: 'projectPart', title: '施工部位'}
-                , {field: 'strong', title: '强度等级'}
-                , {field: 'special', title: '特殊要求'}
-                , {field: 'slumps', title: '坍落度'}
-                , {field: 'unloadType', title: '卸料方式'}
-                , {field: 'proLine', title: '生产线'}
-                , {field: 'proTime', title: '生产时间'}
-                , {field: 'carNumber', title: '车号'}
-                , {field: 'state', title: '状态'}
-                , {field: 'batch', title: '第几批'}
-                , {field: 'operation', title: '操作',width:120,toolbar: '#barDemo'}
+                , {field: 'projectPart', title: '施工部位',width:88}
+                , {field: 'strong', title: '强度等级',width:88}
+                , {field: 'special', title: '特殊要求',width:88}
+                , {field: 'slumps', title: '坍落度',width:88}
+                , {field: 'unloadType', title: '卸料方式',width:88}
+                , {field: 'planCube', title: '计划方量',width:88}
+                , {field: 'carNumber', title: '已送车号'}
+                , {field: 'proLine', title: '生产线',width:88}
+                , {field: 'operation', title: '操作',toolbar: '#barDemo'}
             ]],
             data: [
                 {
                     "count": 1,
-                    "order": "5435434",
-                    "materialName": "广东碧桂园",
-                    "projectName": "广东碧桂园",
-                    "planCube": "JA25",
-                    "carCube": 10,
-                    "projectPart": "一层楼",
-                    "strong": "C25",
+                    "order": "",
+                    "adjustmentTime": "",
+                    "proRatioNumber": "",
+                    "projectName": "",
+                    "projectPart": "",
+                    "strong": "",
                     "special": "",
                     "slumps": "",
                     "unloadType": "",
-                    "proLine": "",
-                    "proTime": "",
+                    "planCube": "",
                     "carNumber": "",
-                    "state": "",
-                    "batch": "",
+                    "proLine": "",
                     "operation": ""
                 }
             ]

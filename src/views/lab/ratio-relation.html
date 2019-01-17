@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>配比关系管理</title>
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <form class="layui-form" action="" lay-filter="component-form-group">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <!--<label class="layui-form-label">结算方式</label>-->
+                                <select name="quiz">
+                                    <option value="">全部</option>
+                                    <option value="金合成泵送">金合成泵送</option>
+                                    <option value="金合成路面">金合成路面</option>
+                                    <option value="金合成瓜米">金合成瓜米</option>
+                                    <option value="金合成膨胀8%">金合成膨胀8%</option>
+                                    <option value="金合成膨胀12%">金合成膨胀12%</option>
+                                    <option value="金合成对外">金合成对外</option>
+                                </select>
+                            </div>
+                            <div class="layui-inline">
+                                <!--<label class="layui-form-label">状态</label>-->
+                                <select name="modules" lay-search="">
+                                    <option value="">选择强度等级</option>
+                                    <option value="C10">C10</option>
+                                    <option value="C15">C15</option>
+                                    <option value="C20">C20</option>
+                                    <option value="C25">C25</option>
+                                </select>
+                            </div>
+                            <div class="layui-inline">
+                                <!--<label class="layui-form-label">状态</label>-->
+                                <select name="modules" lay-search="">
+                                    <option value="">选择坍落度</option>
+                                    <option value="100-120">100-120</option>
+                                    <option value="120-140">120-140</option>
+                                </select>
+                            </div>
+                            <div class="layui-inline">
+                                <input type="text" name="contractNumber" size="28"
+                                       placeholder="请输入配比编号、配比种类、强度等级、坍落度进行查询" lay-verify="required"
+                                       class="layui-input">
+                            </div>
+                            <div class="layui-inline">
+                                <button class="layui-btn" lay-submit><i class="layui-icon layui-icon-search"></i>查询
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <table class="layui-hide" id="table-height"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'table'], function () {
+        var table = layui.table;
+        table.render({
+            elem: '#table-height',
+            height: 'full-100',
+            page: true,
+            cols: [[
+                {field: 'count', title: '', type: 'number', width: 40, align: 'center'}
+                , {field: 'ratioBaseNumber', title: '基准配比编号', sort: true}
+                , {field: 'ratioStandardNumber', title: '标准配比编号', sort: true}
+                , {field: 'strong', title: '强度等级', sort: true}
+                , {field: 'slumps', title: '坍落度', sort: true}
+                , {field: 'ratioType', title: '配比种类', sort: true}
+                , {field: 'mixingTime', title: '搅拌时间', sort: true}
+                , {field: 'initialSettingTime', title: '初凝时间',width:88}
+                , {field: 'density', title: '密度',width:88}
+                , {field: 'waterBinderRatio', title: '水胶比',width:88}
+                , {field: 'sandRate', title: '砂率(%)',width:88}
+                , {field: 'operation', title: '操作',width:120,toolbar: '#barDemo'}
+            ]],
+            data: [
+                {
+                    "count": 1,
+                    "ratioBaseNumber": 20181219001,
+                    "ratioStandardNumber": 20181219001,
+                    "strong": "C35",
+                    "slumps": "120-140",
+                    "ratioType": "",
+                    "mixingTime": "",
+                    "initialSettingTime": "",
+                    "density": "",
+                    "waterBinderRatio": "",
+                    "sandRate": "",
+                    "operation": ""
+                }
+            ]
+        });
+    })
+</script>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">设置关系</a>
+    <!--<a class="layui-btn layui-btn-xs" lay-event="check">审核</a>-->
+</script>
+</body>
+</html>
