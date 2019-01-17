@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>订单录入</title>
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                    <ul class="layui-tab-title" id="tabHeader">
+                        <li class="layui-this">混凝土</li>
+                        <li>砂浆</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="layui-card grid-demo">
+                <div class="layui-card-header">
+                    工程
+                </div>
+                <div class="layui-card-body">
+                    <a class="layui-btn">选择合同单</a>
+                    <a class="layui-btn">
+                        选择/新增现金单
+                    </a>
+                </div>
+            </div>
+            <div class="layui-card grid-demo">
+                <div class="layui-card-header">
+                    产品信息
+                </div>
+                <div class="layui-card-body">
+                    <form class="layui-form" action="" lay-filter="component-form-group">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label"><span>*</span>施工部位：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label"><span>*</span>强度等级：</label>
+                            <div class="layui-input-block">
+                                <select name="modules" lay-search="">
+                                    <option value="">选择强度等级</option>
+                                    <option value="C10">C10</option>
+                                    <option value="C15">C15</option>
+                                    <option value="C20">C20</option>
+                                    <option value="C25">C25</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">随车资料：</label>
+                                <div class="layui-input-inline">
+                                    <input type="checkbox" name="" value="" title="需要" lay-skin="primary">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">特殊要求：</label>
+                                <div class="layui-input-inline">
+                                    <input type="checkbox" name="" title="需要" lay-skin="primary">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label"><span>*</span>计划方量：</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">m³</div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label"><span>*</span>生产时间：</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="endDate" id="End-date" lay-verify="date"
+                                           placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">m³</div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['element', 'index', 'table', 'laydate'], function () {
+        var table = layui.table
+                , element = layui.element
+                , laydate = layui.laydate;
+        table.render({
+            elem: '#table-height',
+            height: 'full-100',
+            page: true,
+            cols: [[
+                {field: 'count', title: '', type: 'number', width: 40}
+                , {field: 'order', title: '订单号', minWidth: 150, sort: true}
+                , {field: 'adjustmentTime', title: '调整时间', width: 88}
+                , {field: 'proRatioNumber', title: '生产配比编号', minWidth: 150, sort: true}
+                , {field: 'projectName', title: '工程名称', minWidth: 150, sort: true}
+                , {field: 'projectPart', title: '施工部位', width: 88}
+                , {field: 'strong', title: '强度等级', width: 88}
+                , {field: 'special', title: '特殊要求', width: 88}
+                , {field: 'slumps', title: '坍落度', width: 88}
+                , {field: 'unloadType', title: '卸料方式', width: 88}
+                , {field: 'planCube', title: '计划方量', width: 88}
+                , {field: 'carNumber', title: '已送车号'}
+                , {field: 'proLine', title: '生产线', width: 88}
+                , {field: 'operation', title: '操作', toolbar: '#barDemo'}
+            ]],
+            data: [
+                {
+                    "count": 1,
+                    "order": "",
+                    "adjustmentTime": "",
+                    "proRatioNumber": "",
+                    "projectName": "",
+                    "projectPart": "",
+                    "strong": "",
+                    "special": "",
+                    "slumps": "",
+                    "unloadType": "",
+                    "planCube": "",
+                    "carNumber": "",
+                    "proLine": "",
+                    "operation": ""
+                }
+            ]
+        });
+        laydate.render({
+            elem: '#Start-date'
+        });
+        laydate.render({
+            elem: '#End-date'
+        });
+    })
+</script>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">明细</a>
+</script>
+</body>
+</html>
