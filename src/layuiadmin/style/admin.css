@@ -463,4 +463,16 @@ html{background-color: #f2f2f2; color: #666;}
 }
 .total-info span{color:#FF5722}
 
+.layui-form-dw{
+  position: absolute;
+  right:10px;
+  top:1px;
+  padding: 7px 0!important;
+  line-height: 20px;
+  margin-right: 10px;
+  background: #fff;
+}
 
+.my-row{
+  text-align: center;
+}

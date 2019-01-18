@@ -35,21 +35,23 @@
     }).extend({
         index: 'lib/index' //主入口模块
     }).use(['index', 'table'],function () {
-        var table = layui.table;
+        var $ = layui.$,
+                table = layui.table,
+                layer=layui.layer;
         table.render({
-            elem:'#table-height',
-            height:'full-100',
-            page:true,
+            elem: '#table-height',
+            height: 'full-100',
+            page: true,
             cols: [[
-                {field:'count', title: '',type:'number', width:40,align:'center'}
-                ,{field:'customerName', title: '客户名称',sort: true}
-                ,{field:'projectName', title: '工程名称', sort: true}
-                ,{field:'address', title: '工程地址',minWidth:300,sort: true}
-                ,{field:'salesmen', title: '业务员',width:100, sort: true}
-                ,{field:'contacts', title: '联系人',width:100, sort: true}
-                ,{field:'tel', title: '联系电话',width:130}
-                ,{field:'creationTime', title: '创建时间',width:160, sort: true}
-                ,{field:'operation', title: '操作',toolbar: '#barDemo'}
+                {field: 'count', title: '', type: 'number', width: 40, align: 'center'}
+                , {field: 'customerName', title: '客户名称', sort: true}
+                , {field: 'projectName', title: '工程名称', sort: true}
+                , {field: 'address', title: '工程地址', minWidth: 300, sort: true}
+                , {field: 'salesmen', title: '业务员', width: 100, sort: true}
+                , {field: 'contacts', title: '联系人', width: 100, sort: true}
+                , {field: 'tel', title: '联系电话', width: 130}
+                , {field: 'creationTime', title: '创建时间', width: 160, sort: true}
+                , {field: 'operation', title: '操作', toolbar: '#barDemo'}
             ]],
             data: [
                 {
@@ -66,11 +68,29 @@
                     "operation": ""
                 }
             ]
-        })
+        });
+
+        var active = {
+            layer1: function(){
+                layer.open({
+                    type: 2
+                    ,title:'现金单管理'
+                    ,content: ['../edit/cash-edit.html','no']
+                    ,shadeClose: true
+                    ,area: ['80%', '80%']
+                    ,maxmin: true
+                });
+            }
+        };
+
+        $('.layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] && active[type].call(this);
+        });
     })
 </script>
 <script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
+    <a class="layui-btn layui-btn-xs" data-type="layer1">修改</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">转为合同</a>
     <!--<a class="layui-btn layui-btn-xs" lay-event="check">审核</a>-->
 </script>
