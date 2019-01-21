@@ -42,8 +42,9 @@ layui.define(function(exports){
   });
 
   //数据概览
-  layui.use(['carousel', 'echarts'], function(){
+  layui.use(['admin', 'carousel', 'echarts'], function(){
     var $ = layui.$
+    ,admin = layui.admin
     ,carousel = layui.carousel
     ,echarts = layui.echarts;
     
@@ -149,7 +150,10 @@ layui.define(function(exports){
     ,renderDataView = function(index){
       echartsApp[index] = echarts.init(elemDataView[index], layui.echartsTheme);
       echartsApp[index].setOption(options[index]);
-      window.onresize = echartsApp[index].resize;
+      //window.onresize = echartsApp[index].resize;
+      admin.resize(function(){
+        echartsApp[index].resize();
+      });
     };
     
     

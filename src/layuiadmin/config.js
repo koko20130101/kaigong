@@ -14,7 +14,7 @@ layui.define(['laytpl', 'layer', 'element', 'util'], function(exports){
     ,views: layui.cache.base + 'tpl/' //动态模板所在目录
     ,entry: 'index' //默认视图文件名
     ,engine: '.html' //视图文件后缀名
-    ,pageTabs: true //是否开启页面选项卡功能。iframe 常规版推荐开启
+    ,pageTabs: true //是否开启页面选项卡功能。iframe版推荐开启
     
     ,name: 'layuiAdmin'
     ,tableName: 'layuiAdmin' //本地存储表名
@@ -46,7 +46,7 @@ layui.define(['laytpl', 'layer', 'element', 'util'], function(exports){
     
     //主题配置
     ,theme: {
-      //配色方案，如果用户未设置主题，第一个将作为默认
+      //内置主题配色方案
       color: [{
         main: '#20222A' //主题色
         ,selected: '#009688' //选中色
@@ -88,7 +88,42 @@ layui.define(['laytpl', 'layer', 'element', 'util'], function(exports){
         ,logo: '#3A3D49'
         ,selected: '#009688'
         ,alias: 'classic-black' //经典黑
+      },{
+        logo: '#226A62'
+        ,header: '#2F9688'
+        ,alias: 'green-header' //墨绿头
+      },{
+        main: '#344058'
+        ,logo: '#0085E8'
+        ,selected: '#1E9FFF'
+        ,header: '#1E9FFF'
+        ,alias: 'ocean-header' //海洋头
+      },{
+        header: '#393D49'
+        ,alias: 'classic-black-header' //经典黑头
+      },{
+        main: '#50314F'
+        ,logo: '#50314F'
+        ,selected: '#7A4D7B'
+        ,header: '#50314F'
+        ,alias: 'purple-red-header' //紫红头
+      },{
+        main: '#28333E'
+        ,logo: '#28333E'
+        ,selected: '#AA3130'
+        ,header: '#AA3130'
+        ,alias: 'fashion-red-header' //时尚红头
+      },{
+        main: '#28333E'
+        ,logo: '#009688'
+        ,selected: '#009688'
+        ,header: '#009688'
+        ,alias: 'green-header' //墨绿头
       }]
+      
+      //初始的颜色索引，对应上面的配色方案数组索引
+      //如果本地已经有主题色记录，则以本地记录为优先，除非请求本地数据（localStorage）
+      ,initColorIndex: 0
     }
   });
 });

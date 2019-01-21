@@ -27,10 +27,25 @@ layui.define('view', function(exports){
 
   //通用方法
   ,admin = {
-    v: '1.0.0-beta9 std'
+    v: '1.2.1 std'
     
     //数据的异步请求
     ,req: view.req
+    
+    //清除本地 token，并跳转到登入页
+    ,exit: view.exit
+    
+    //xss 转义
+    ,escape: function(html){
+      return String(html || '').replace(/&(?!#?[a-zA-Z0-9]+;)/g, '&amp;')
+      .replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/'/g, '&#39;').replace(/"/g, '&quot;');
+    }
+    
+    //事件监听
+    ,on: function(events, callback){
+      return layui.onevent.call(this, setter.MOD_NAME, events, callback);
+    }
     
     //发送验证码
     ,sendAuthCode: function(options){
@@ -101,19 +116,16 @@ layui.define('view', function(exports){
     //屏幕类型
     ,screen: function(){
       var width = $win.width()
-      if(width >= 1200){
+      if(width > 1200){
         return 3; //大屏幕
-      } else if(width >= 992){
+      } else if(width > 992){
         return 2; //中屏幕
-      } else if(width >= 768){
+      } else if(width > 768){
         return 1; //小屏幕
       } else {
         return 0; //超小屏幕
       }
     }
-    
-    //清除本地 token，并跳转到登入页
-    ,exit: view.exit
     
     //侧边伸缩
     ,sideFlexible: function(status){
@@ -151,11 +163,6 @@ layui.define('view', function(exports){
       layui.event.call(this, setter.MOD_NAME, 'side({*})', {
         status: status
       });
-    }
-    
-    //事件监听
-    ,on: function(events, callback){
-      return layui.onevent.call(this, setter.MOD_NAME, events, callback);
     }
     
     //弹出面板
@@ -201,7 +208,19 @@ layui.define('view', function(exports){
         ,'{background-color:{{d.color.selected}} !important;}'
         
         //logo
-        ,'.layui-layout-admin .layui-logo{background-color:{{d.color.logo || d.color.main}} !important;}}'
+        ,'.layui-layout-admin .layui-logo{background-color:{{d.color.logo || d.color.main}} !important;}'
+        
+        //头部色
+        ,'{{# if(d.color.header){ }}'
+          ,'.layui-layout-admin .layui-header{background-color:{{ d.color.header }};}'
+          ,'.layui-layout-admin .layui-header a,'
+          ,'.layui-layout-admin .layui-header a cite{color: #f8f8f8;}'
+          ,'.layui-layout-admin .layui-header a:hover{color: #fff;}'
+          ,'.layui-layout-admin .layui-header .layui-nav .layui-nav-more{border-top-color: #fbfbfb;}'
+          ,'.layui-layout-admin .layui-header .layui-nav .layui-nav-mored{border-color: transparent; border-bottom-color: #fbfbfb;}'
+          ,'.layui-layout-admin .layui-header .layui-nav .layui-this:after, .layui-layout-admin .layui-header .layui-nav-bar{background-color: #fff; background-color: rgba(255,255,255,.5);}'
+          ,'.layadmin-pagetabs .layui-tab-title li:after{display: none;}'
+        ,'{{# } }}'
       ].join('')).render(options = $.extend({}, local.theme, options))
       ,styleElem = document.getElementById(id);
       
@@ -227,6 +246,18 @@ layui.define('view', function(exports){
         key: 'theme'
         ,value: local.theme
       }); 
+    }
+    
+    //初始化主题
+    ,initTheme: function(index){
+      var theme = setter.theme;
+      index = index || 0;
+      if(theme.color[index]){
+        theme.color[index].index = index;
+        admin.theme({
+          color: theme.color[index]
+        });
+      }
     }
     
     //记录最近一次点击的页面标签数据
@@ -255,7 +286,14 @@ layui.define('view', function(exports){
     ,resize: function(fn){
       var router = layui.router()
       ,key = router.path.join('-');
-      $win.off('resize', admin.resizeFn[key]);
+      
+      if(admin.resizeFn[key]){
+        $win.off('resize', admin.resizeFn[key]);
+        delete admin.resizeFn[key];
+      }
+      
+      if(fn === 'off') return; //如果是清除 resize 事件，则终止往下执行
+      
       fn(), admin.resizeFn[key] = fn;
       $win.on('resize', admin.resizeFn[key]);
     }
@@ -266,16 +304,37 @@ layui.define('view', function(exports){
       admin.resizeFn[key] && admin.resizeFn[key]();
     }
     ,delResize: function(){
-      var router = layui.router()
-      ,key = router.path.join('-');
-      $win.off('resize', admin.resizeFn[key])
-      delete admin.resizeFn[key];
+      this.resize('off');
     }
     
     //关闭当前 pageTabs
     ,closeThisTabs: function(){
       if(!admin.tabsPage.index) return;
       $(TABS_HEADER).eq(admin.tabsPage.index).find('.layui-tab-close').trigger('click');
+    }
+    
+    //全屏
+    ,fullScreen: function(){
+      var ele = document.documentElement
+      ,reqFullScreen = ele.requestFullScreen || ele.webkitRequestFullScreen 
+      || ele.mozRequestFullScreen || ele.msRequestFullscreen;      
+      if(typeof reqFullScreen !== 'undefined' && reqFullScreen) {
+        reqFullScreen.call(ele);
+      };
+    }
+    
+    //退出全屏
+    ,exitScreen: function(){
+      var ele = document.documentElement
+      if (document.exitFullscreen) {  
+        document.exitFullscreen();  
+      } else if (document.mozCancelFullScreen) {  
+        document.mozCancelFullScreen();  
+      } else if (document.webkitCancelFullScreen) {  
+        document.webkitCancelFullScreen();  
+      } else if (document.msExitFullscreen) {  
+        document.msExitFullscreen();  
+      }
     }
     
     //……
@@ -292,8 +351,43 @@ layui.define('view', function(exports){
     
     //刷新
     ,refresh: function(){
-      var iframe = admin.tabsBody(admin.tabsPage.index).find('.layadmin-iframe');
+      var ELEM_IFRAME = '.layadmin-iframe'
+      ,length = $('.'+ TABS_BODY).length;
+      
+      if(admin.tabsPage.index >= length){
+        admin.tabsPage.index = length - 1;
+      }
+      
+      var iframe = admin.tabsBody(admin.tabsPage.index).find(ELEM_IFRAME);
       iframe[0].contentWindow.location.reload(true);
+    }
+
+    //输入框搜索
+    ,serach: function(othis){
+      othis.off('keypress').on('keypress',function(e){
+        if(!this.value.replace(/\s/g, '')) return;
+        //回车跳转
+        if(e.keyCode === 13){
+          var href = othis.attr('lay-action')
+          ,text = othis.attr('lay-text') || '搜索';
+          
+          href = href + this.value;
+          text = text + ' <span style="color: #FF5722;">'+ admin.escape(this.value) +'</span>';
+          
+          //打开标签页
+          layui.index.openTabsPage(href, text);
+          
+          //如果搜索关键词已经打开，则刷新页面即可
+          events.serach.keys || (events.serach.keys = {});
+          events.serach.keys[admin.tabsPage.index] = this.value;
+          if(this.value === events.serach.keys[admin.tabsPage.index]){
+            events.refresh(othis);
+          }
+          
+          //清空输入框
+          this.value = '';
+        }       
+      });
     }
     
     //点击消息
@@ -341,13 +435,28 @@ layui.define('view', function(exports){
         }
       })
     }
-    
+
+    //全屏
+    ,fullscreen: function(othis){
+      var SCREEN_FULL = 'layui-icon-screen-full'
+      ,SCREEN_REST = 'layui-icon-screen-restore'
+      ,iconElem = othis.children("i");
+      
+      if(iconElem.hasClass(SCREEN_FULL)){
+        admin.fullScreen();
+        iconElem.addClass(SCREEN_REST).removeClass(SCREEN_FULL);
+      } else {
+        admin.exitScreen();
+        iconElem.addClass(SCREEN_FULL).removeClass(SCREEN_REST);
+      }
+    }
+
     //弹出关于面板
     ,about: function(){
       admin.popupRight({
         id: 'LAY_adminPopupAbout'
         ,success: function(){
-          view(this.id).render('system/about')
+          view(this.id).render('system/about');
         }
       });
     }
@@ -357,7 +466,7 @@ layui.define('view', function(exports){
       admin.popupRight({
         id: 'LAY_adminPopupMore'
         ,success: function(){
-          view(this.id).render('system/more')
+          view(this.id).render('system/more');
         }
       });
     }
@@ -369,20 +478,13 @@ layui.define('view', function(exports){
     
     //主题设置
     ,setTheme: function(othis){
-      var theme = setter.theme
-      ,index = othis.data('index')
+      var index = othis.data('index')
       ,nextIndex = othis.siblings('.layui-this').data('index');
       
       if(othis.hasClass(THIS)) return;
       
       othis.addClass(THIS).siblings('.layui-this').removeClass(THIS);
-      
-      if(theme.color[index]){
-        theme.color[index].index = index
-        admin.theme({
-          color: theme.color[index]
-        });
-      }
+      admin.initTheme(index);
     }
     
     //左右滚动页面标签
@@ -464,7 +566,8 @@ layui.define('view', function(exports){
     
     //关闭当前标签页
     ,closeThisTabs: function(){
-      admin.closeThisTabs();
+      var topAdmin = parent === self ? admin : parent.layui.admin;
+      topAdmin.closeThisTabs();
     }
     
     //关闭其它标签页
@@ -517,9 +620,13 @@ layui.define('view', function(exports){
   
   //初始
   !function(){
-    //主题初始化
+    //主题初始化，本地主题记录优先，其次为 initColorIndex
     var local = layui.data(setter.tableName);
-    local.theme && admin.theme(local.theme);
+    if(local.theme){
+      admin.theme(local.theme);
+    } else if(setter.theme){
+      admin.initTheme(setter.theme.initColorIndex);
+    }
     
     //常规版默认开启多标签页
     if(!('pageTabs' in layui.setter)) layui.setter.pageTabs = true;
@@ -634,8 +741,10 @@ layui.define('view', function(exports){
     ,attr = othis.attr('lay-attr')
     ,index = othis.index();
     
-    admin.tabsBodyChange(index);
-    location.hash = layid === setter.entry ? '/' : attr;
+    admin.tabsBodyChange(index, {
+      url: attr
+    });
+    //location.hash = layid === setter.entry ? '/' : attr;
   }
   ,TABS_HEADER = '#LAY_app_tabsheader>li';
   
@@ -647,7 +756,6 @@ layui.define('view', function(exports){
     admin.tabsPage.type = 'tab';
     admin.tabsPage.index = index;
 
-    //单页标签页
     setThisRouter(othis);
   });
   

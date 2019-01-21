@@ -3,7 +3,7 @@
  @Name：layuiAdmin
  @Author：贤心
  @Site：http://www.layui.com/admin/
- @License：GPL-2
+ @License：LPPL
  
  */
  
@@ -53,7 +53,7 @@ html{background-color: #f2f2f2; color: #666;}
 .layui-layout-admin .layui-footer{left: 220px;}
 .layadmin-pagetabs{position: fixed; top: 50px; right: 0; z-index: 999;}
 .layadmin-pagetabs .layui-breadcrumb{padding: 0 15px;}
-.layui-layout-admin .layui-body{top: 90px; bottom: 0;}
+.layui-layout-admin .layui-body{position: fixed; top: 90px; bottom: 0;}
 .layui-layout-admin .layui-body .layadmin-tabsbody-item{position: absolute; top: 0; bottom: 0; left: 0; right: 0; overflow: hidden;}
 .layui-layout-admin .layui-header .layui-nav-img{width: 26px; height: 26px;}
 .layui-layout-admin .layui-header .layui-nav-child{top: 55px;}
@@ -134,6 +134,7 @@ html{background-color: #f2f2f2; color: #666;}
 /* 头部导航 */
 .layui-layout-admin .layui-layout-left{padding: 0 10px;}
 .layui-layout-admin .layui-layout-left .layui-nav-item{margin: 0 20px;}
+.layui-layout-admin .layui-input-search{display: inline-block; vertical-align: middle; height: 32px; border: none; cursor: text;}
 .layui-layout-admin .layui-layout-left a{padding: 0;}
 .layui-layout-admin .layui-layout-right{padding: 0;}
 .layui-header .layui-nav-item .layui-icon{position: relative; top: 1px; font-size: 16px;}
@@ -262,8 +263,10 @@ html{background-color: #f2f2f2; color: #666;}
 .layui-fluid{padding: 15px;}
 .layadmin-header{display: none; height: 50px; line-height: 50px; margin-bottom: 0; border-radius: 0;}
 .layadmin-header .layui-breadcrumb{padding: 0 15px;}
+.layui-card-header{position: relative;}
 .layui-card-header .layui-icon{line-height: initial; position: absolute; right: 15px; top: 50%; margin-top: -7px;}
 .layadmin-iframe{position: absolute; width: 100%; height: 100%; left: 0; top: 0; right: 0; bottom: 0;}
+
 
 /*
  
@@ -331,32 +334,88 @@ html{background-color: #f2f2f2; color: #666;}
 /* 文本区域 */
 .layadmin-text p{margin-bottom: 10px; text-indent: 2em;}
 .layadmin-text p:last-child{margin: 0;}
+.layadmin-font-em{font-size: 13px; color: #758697;}
+
+
+
+
+/********************************
+ 
+  其它主页开始 By star1029
+ 
+*******************************/
+
+/* 主页示例一 by star1029 */
+/* 进行中的项目 */
+.layui-card-header .layui-a-tips{position: absolute; right: 15px; color: #01AAED;}
+.layuiadmin-card-text{background-color: #f8f8f8; color: #777; padding: 24px;}
+.layuiadmin-card-text .layui-text-top{padding-bottom: 10px;}
+.layuiadmin-card-text .layui-text-top i{margin-right: 10px; font-size: 24px; color: #009688;}
+.layuiadmin-card-text .layui-text-top a{line-height: 24px; font-size: 16px; vertical-align: top;}
+.layuiadmin-card-text .layui-text-center{height: 44px; line-height: 22px; margin-bottom: 10px; overflow: hidden;}
+.layuiadmin-card-text .layui-text-bottom{position: relative;}
+.layuiadmin-card-text .layui-text-bottom a{color: #777; font-size: 12px; text-overflow: ellipsis; word-break: break-all;}
+.layuiadmin-card-text .layui-text-bottom span{color: #CCC; font-size: 12px; position: absolute; right: 0;}
+.layuiadmin-card-text a:hover,
+.layuiadmin-card-link a:hover,
+.layuiadmin-card-team li a:hover{color: #01AAED; transition: all 300ms;}
+
+/* 动态 */
+.layuiadmin-card-status{padding: 0 10px 10px 10px;}
+.layuiadmin-card-status dd{padding: 15px 0; border-bottom: 1px solid #EEE; display: -webkit-flex; display: flex;}
+.layuiadmin-card-status dd:last-child{border: none;}
+.layuiadmin-card-status dd div.layui-status-img,
+.layuiadmin-card-team .layui-team-img{width: 32px; height: 32px; border-radius: 50%; background-color: #009688; margin-right: 15px;}
+.layuiadmin-card-status dd div.layui-status-img a{width: 100%; height: 100%; display: inline-block; text-align: center; line-height: 32px;}
+.layuiadmin-card-status dd div.layui-status-img img,
+.layuiadmin-card-team .layui-team-img img{width: 50%; height: 50%;}
+.layuiadmin-card-status dd div a{color: #01AAED;}
+.layuiadmin-card-status dd div span{color: #BBB;}
+
+/* 便捷导航 */
+.layuiadmin-card-link{padding-left: 10px; font-size: 0}
+.layuiadmin-card-link a{display: inline-block; width: 25%; color: #666; font-size: 14px; margin-bottom: 12px;}
+.layuiadmin-card-link button{vertical-align: top;}
+.layuiadmin-card-link button:hover{color: #009688;}
+
+/* 团队 */
+.layuiadmin-card-team li{padding: 10px 0 10px 10px;}
+.layuiadmin-card-team .layui-team-img{display: inline-block; margin-right: 8px; width: 24px; height: 24px; text-align: center; line-height: 24px;}
+.layuiadmin-card-team span{color: #777;}
+
+
+/* 主页示例二 by star1029 */
+.layuiadmin-badge{position: absolute; top: 50%; margin-top: -9px; right: 15px; color: #01AAED; }
+.layuiadmin-card-list{padding: 15px;}
+.layuiadmin-card-list p.layuiadmin-big-font{font-size: 36px; color: #666; line-height: 36px; padding: 5px 0 10px; overflow: hidden; text-overflow: ellipsis; word-break: break-all; white-space: nowrap;}
+.layuiadmin-card-list p.layuiadmin-normal-font{padding-bottom: 10px; font-size: 20px; color: #666; line-height: 24px;}
+.layuiadmin-span-color{font-size: 14px; position: absolute; right: 15px;}
+.layuiadmin-span-color i{padding-left: 5px;}
+.layuiadmin-btn-group{position: absolute; right: 15px;}
+
+.layuiadmin-card-status li{position: relative; padding: 10px 0; border-bottom: 1px solid #EEE;}
+.layuiadmin-card-status li h3{padding-bottom: 5px; font-weight: 700;}
+.layuiadmin-card-status li p{padding-bottom: 10px;}
+.layuiadmin-card-status li>span{color: #999;}
+.layuiadmin-home2-usernote .layuiadmin-reply{display: none; position: absolute; right: 0; bottom: 12px;}
+.layuiadmin-home2-usernote li:hover .layuiadmin-reply{display: block;}
+
+.layuiadmin-page-table td span{color: #2F4056;}
+.layuiadmin-page-table td span.first{color: #FF5722;}
+.layuiadmin-page-table td span.second{color: #FFB800;}
+.layuiadmin-page-table td span.third{color: #5FB878;}
+
+
+/******  其它主页结束 By star1029  ******/
+
 
 
 
 /*
- 
- 模板
- 
-*/
 
-
-
-/* 产品版本选择面板 */
-.layadmin-panel-selection{width: 768px; margin: 30px auto;}
-.layadmin-panel-selection .layui-panel-window{padding: 30px 50px; border-top-color: #ddd; text-align: center;}
-.layadmin-panel-selection .layui-panel-window h2{padding-bottom: 15px; font-size: 18px;}
-.layadmin-panel-selection .layui-panel-window ul{margin-top: 15px; text-align: left;}
-.layadmin-panel-selection .layui-btn-container{margin-top: 30px;}
-.layadmin-panel-selection .layui-btn-container .layui-btn{width: 100%;}
-
-
-/*
- 
  应用
  
 */
-
 
 
 /* 消息中心 */
@@ -366,6 +425,13 @@ html{background-color: #f2f2f2; color: #666;}
 .layuiAdmin-msg-detail .layui-card-header span:first-child{padding-left: 0;}
 .layuiAdmin-msg-detail .layui-card-body{padding: 15px;}
 
+/* 文章列表 */
+.layuiadmin-content-bread{padding-bottom: 20px;}
+
+/* 进度条样式 */
+.layuiadmin-order-progress{position: relative; top: 12px;}
+
+
 
 
 /*
@@ -373,6 +439,12 @@ html{background-color: #f2f2f2; color: #666;}
  系统
  
 */
+
+
+/* 头部图标重置 */
+.layui-card-header.layuiadmin-card-header-auto{padding-top: 15px; padding-bottom: 15px; height: auto;}
+.layuiadmin-card-header-auto i.layuiadmin-button-btn{position: relative; right: 0; top: 0; vertical-align: middle;}
+.layuiadmin-card-header-auto .layui-form-item:last-child{margin-bottom: 0;}
 
 
 /* 主题设置 */
@@ -412,7 +484,7 @@ html{background-color: #f2f2f2; color: #666;}
 .layui-anim-rl{-webkit-animation-name: layui-rl; animation-name: layui-rl;}
 
 @-webkit-keyframes layui-lr{ /* 从右往左滑入 */
-  from {-webkit-transform: translate3d(0,0, 0); opacity: 1;}
+  from {-webkit-transform: translate3d(0 0, 0); opacity: 1;}
   to {-webkit-transform: translate3d(100%, 0, 0); opacity: 1;}
 }
 @keyframes layui-lr{
@@ -433,6 +505,7 @@ html{background-color: #f2f2f2; color: #666;}
 
 
 /*
+
   响应式补充
 
 */
@@ -449,30 +522,5 @@ html{background-color: #f2f2f2; color: #666;}
   .layui-layout-admin .layui-body .layadmin-tabsbody-item{-webkit-overflow-scrolling: touch; overflow: auto;}
 }
 
-/*2019年1月11日调整*/
-#tabBody .tab-content-item{
-  display: none;
-}
-#tabBody .layui-show{
-  display: block;
-}
-.total-info{
-  padding:5px 10px;
-  margin-bottom:10px;
-  background:#fef4f1;
-}
-.total-info span{color:#FF5722}
 
-.layui-form-dw{
-  position: absolute;
-  right:10px;
-  top:1px;
-  padding: 7px 0!important;
-  line-height: 20px;
-  margin-right: 10px;
-  background: #fff;
-}
 
-.my-row{
-  text-align: center;
-}
