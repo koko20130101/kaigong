@@ -260,7 +260,7 @@ html{background-color: #f2f2f2; color: #666;}
  
 */
 
-.layui-fluid{padding: 15px;}
+.layui-fluid{padding: 8px;}
 .layadmin-header{display: none; height: 50px; line-height: 50px; margin-bottom: 0; border-radius: 0;}
 .layadmin-header .layui-breadcrumb{padding: 0 15px;}
 .layui-card-header{position: relative;}
@@ -288,7 +288,7 @@ html{background-color: #f2f2f2; color: #666;}
 
 /* 重置tab样式 */
 .layui-card .layui-tab-brief .layui-tab-title{height: 42px; border-bottom-color: #f6f6f6;}
-.layui-card .layui-tab-brief .layui-tab-title li{margin: 0 15px; padding: 0; line-height: 42px;}
+.layui-card .layui-tab-brief .layui-tab-title li{margin: 0 10px; padding: 0; line-height: 42px;}
 .layui-card .layui-tab-brief .layui-tab-title li.layui-this{color: #333;}
 .layui-card .layui-tab-brief .layui-tab-title .layui-this:after{height: 43px;}
 .layui-card .layui-tab-brief .layui-tab-content{padding: 15px;}
@@ -522,5 +522,35 @@ html{background-color: #f2f2f2; color: #666;}
   .layui-layout-admin .layui-body .layadmin-tabsbody-item{-webkit-overflow-scrolling: touch; overflow: auto;}
 }
 
+/*2019-01-22*/
+.layui-form .no-margin{
+  margin:0;
+}
+.select-date{
+  display: none;
+}
+.select-date .layui-input-inline{
+  width:102px;
+}
+.layui-card{
+  margin-bottom:8px;
+}
 
-
+.my-table-1{
+  width:100%;
+  border-right:1px solid #e6e6e6;
+  border-top:1px solid #e6e6e6;
+}
+.my-table-1 th,.my-table-1 td{
+  padding:8px;
+  border-left:1px solid #e6e6e6;
+  border-bottom:1px solid #e6e6e6;
+}
+.my-table-1 th{
+  background:#f2f2f2;
+  font-weight:400;
+  width:15%;
+}
+.my-table-1 td{
+  background:#fff;
+}
