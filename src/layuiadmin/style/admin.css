@@ -554,10 +554,16 @@ html{background-color: #f2f2f2; color: #666;}
 .my-table-1 td{
   background:#fff;
 }
-.layui-form-label{
+/*.layui-form-label{
   width:98px;
   padding:9px 15px 9px 0
 }
+.layui-input-block{
+  margin-left:120px;
+}
+.layui-form-item .layui-input-inline{
+  margin-left:20px;
+}*/
 .footer-buttons{
   text-align: center;
   padding-top:20px;
@@ -570,7 +576,25 @@ html{background-color: #f2f2f2; color: #666;}
 .layui-card-header .layui-input{
   height:30px;
 }
+.footer-buttons-fixed{
+  position: fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  padding:10px 0;
+  text-align: center;
+  background: #f2f2f2;
+}
+.has-footer{
+  padding-bottom:50px;
+}
 
+/*表格行选中*/
+.layui-table .current td{
+  background:#f0f9ff;
+  /*border-bottom:1px solid #09f;*/
+  /*border-top:1px solid #09f;*/
+}
 
 .w100{
   width:100px;

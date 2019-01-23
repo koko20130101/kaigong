@@ -66,8 +66,23 @@
                     "payType": "固定价",
                     "creationTime": "2018-12-19 10:38:42",
                     "operation": ""
+                },{
+                    "count": 1,
+                    "id": 20181219001,
+                    "customerName": "广州***公司",
+                    "projectName": "碧桂园山水天下",
+                    "address": "广东省广州市越秀区都土地巷12号",
+                    "salesmen": "姚**",
+                    "contacts": "王勇",
+                    "tel": "13888888888",
+                    "payType": "固定价",
+                    "creationTime": "2018-12-19 10:38:42",
+                    "operation": ""
                 }
-            ]
+            ],
+            onClickRow:function (index, o) {
+                console.log(index,o,"单击！");
+            }
         });
 
         var active = {
@@ -75,7 +90,7 @@
                 layer.open({
                     type: 2
                     ,title:'现金单管理'
-                    ,content: ['../edit/cash-edit.html','no']
+                    ,content: ['../edit/cash-edit.html']
                     ,shadeClose: true
                     ,area: ['80%', '80%']
                     ,maxmin: true
