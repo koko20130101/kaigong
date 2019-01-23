@@ -13,19 +13,27 @@
         <div class="layui-card-body">
             <form class="layui-form" action="" lay-filter="component-form-group">
                 <div class="layui-form-item no-margin">
-                    <div class="layui-inline" style="width:142px">
-                        <!--<label class="layui-form-label">结算方式</label>-->
+                    <div class="layui-inline w120">
+                          
                         <select name="quiz">
-                            <option value="">全部</option>
-                            <option value="金合成泵送">金合成泵送</option>
-                            <option value="金合成路面">金合成路面</option>
-                            <option value="金合成瓜米">金合成瓜米</option>
-                            <option value="金合成膨胀8%">金合成膨胀8%</option>
-                            <option value="金合成膨胀12%">金合成膨胀12%</option>
-                            <option value="金合成对外">金合成对外</option>
+                            <option value="0">全部</option>
+                            <option value="6">泵送柱墙</option>
+                            <option value="7">普通直卸砼</option>
+                            <option value="8">普通泵送砼</option>
+                            <option value="11">泵送高层板</option>
+                            <option value="12">泵送高层柱</option>
+                            <option value="13">泵送细石砼</option>
+                            <option value="14">润管砂浆</option>
+                            <option value="17">路面砼</option>
+                            <option value="19">普通（飘板等）</option>
+                            <option value="20">细石二次结构</option>
+                            <option value="21">抗渗砼</option>
+                            <option value="22">微膨胀</option>
+                            <option value="25">抹灰砂浆</option>
+                            <option value="26">防水砂浆</option>
                         </select>
                     </div>
-                    <div class="layui-inline" style="width:126px;">
+                    <div class="layui-inline w130">
                         <!--<label class="layui-form-label">状态</label>-->
                         <select name="modules" lay-search="">
                             <option value="">选择强度等级</option>
@@ -35,7 +43,7 @@
                             <option value="C25">C25</option>
                         </select>
                     </div>
-                    <div class="layui-inline" style="width:116px;">
+                    <div class="layui-inline w120">
                         <!--<label class="layui-form-label">状态</label>-->
                         <select name="modules" lay-search="" >
                             <option value="">选择坍落度</option>
@@ -44,7 +52,7 @@
                         </select>
                     </div>
                     <div class="layui-inline">
-                        <input type="text" name="contractNumber" size="40"
+                        <input type="text" name="contractNumber" size="30"
                                placeholder="请输入配比编号、配比种类、强度等级、坍落度进行查询" lay-verify="required"
                                class="layui-input">
                     </div>
@@ -83,7 +91,7 @@
                         <div class="layui-col-md5">配比详情</div>
                         <div class="layui-col-md7" align="right">
                             <a class="layui-btn layui-btn-xs" lay-event="edit">复制</a>
-                            <a class="layui-btn layui-btn-xs layui-btn-normal">修改</a>
+                            <a lay-href="../views/edit/ratio-library-base-edit.html" class="layui-btn layui-btn-xs layui-btn-normal">修改</a>
                             <a class="layui-btn layui-btn-xs layui-btn-danger">删除</a>
                         </div>
                     </div>

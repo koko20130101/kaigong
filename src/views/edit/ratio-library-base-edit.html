@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>合同单管理</title>
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <form class="layui-form" action="" lay-filter="component-form-group">
+                <div class="layui-form-item no-margin">
+                    <div class="layui-inline">
+                        <label class="layui-form-label"><span class="necessary">*</span>工程名称</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="contractNumber" lay-verify="required" value="322332"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label"><span class="necessary">*</span>强度等级</label>
+                        <div class="layui-input-inline">
+                            <select name="modules">
+                                <option value="C10">C10</option>
+                                <option value="C15">C15</option>
+                                <option value="C20">C20</option>
+                                <option value="C25">C25</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label"><span class="necessary">*</span>坍落度</label>
+                        <div class="layui-input-inline">
+                            <select name="modules">
+                                <option value="100-120">100-120</option>
+                                <option value="120-140">120-140</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label"><span class="necessary">*</span>配比种类</label>
+                        <div class="layui-input-inline">
+                            <select name="quiz">
+                                <option value="0">全部</option>
+                                <option value="6">泵送柱墙</option>
+                                <option value="7">普通直卸砼</option>
+                                <option value="8">普通泵送砼</option>
+                                <option value="11">泵送高层板</option>
+                                <option value="12">泵送高层柱</option>
+                                <option value="13">泵送细石砼</option>
+                                <option value="14">润管砂浆</option>
+                                <option value="17">路面砼</option>
+                                <option value="19">普通（飘板等）</option>
+                                <option value="20">细石二次结构</option>
+                                <option value="21">抗渗砼</option>
+                                <option value="22">微膨胀</option>
+                                <option value="25">抹灰砂浆</option>
+                                <option value="26">防水砂浆</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label"><span class="necessary">*</span>搅拌时间(秒)</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="contractNumber" lay-verify="required" value="50"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">初凝时间(秒)</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="contractNumber" lay-verify="required" value="50"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">容重(kg)</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="contractNumber" lay-verify="required" value="50"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="layui-row layui-col-space8">
+        <div class="layui-col-md6">
+            <div class="layui-card">
+                <div class="layui-card-header">选择材料
+                    <div class="layui-form-item search-title">
+                        <div class="layui-inline">
+                            <input type="text" name="contractNumber" size="38" placeholder="请输入材料种类、材料名称进行查询"
+                                   lay-verify="required" value=""
+                                   class="layui-input">
+                        </div>
+                        <div class="layui-inline">
+                            <a class="layui-btn layui-btn-sm layui-btn-normal" lay-submit>查询
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-card-body">
+                    <table class="layui-hide" id="Material"></table>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md6">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    已选材料
+                </div>
+                <div class="layui-card-body">
+                    <table class="layui-hide" id="MaterialSelect"></table>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <table class="my-table-1">
+                        <tr>
+                            <th>总胶材(kg)</th>
+                            <td>321</td>
+                            <th>水胶比</th>
+                            <td>321</td>
+                            <th>砂率(%)</th>
+                            <td>432</td>
+                            <th>矿粉(%)</th>
+                            <td>432</td>
+                            <th>粉煤灰(%)</th>
+                            <td>321</td>
+                            <th>膨胀剂(%)</th>
+                            <td>321</td>
+                            <th>外加剂(%)</th>
+                            <td>321</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-buttons">
+        <button class="layui-btn" lay-submit>保存</button>
+        <button class="layui-btn layui-btn-primary" lay-submit>取消</button>
+    </div>
+
+</div>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'table'], function () {
+        var table = layui.table;
+        table.render({
+            elem: '#Material',
+            page: true,
+            cols: [[
+                {field: 'count', title: '', type: 'number', width: 40, align: 'center'}
+                , {field: 'materialType', title: '材料种类/子类', align: 'center', sort: true}
+                , {field: 'materialName', title: '材料名称', align: 'center', sort: true}
+                , {field: 'operation', title: '操作', align: 'center', sort: true, toolbar: '#barDemo'}
+            ]],
+            data: [
+                {
+                    "count": 1,
+                    "materialType": "水泥",
+                    "materialName": "海藻水泥3",
+                    "operation": ""
+                }, {
+                    "count": 2,
+                    "materialType": "水泥",
+                    "materialName": "海藻水泥3",
+                    "operation": ""
+                }
+            ]
+        });
+        table.render({
+            elem: '#MaterialSelect',
+            cols: [[
+                {field: 'count', title: '', type: 'number', width: 40, align: 'center'}
+                , {field: 'materialType', title: '材料种类/子类', align: 'center', sort: true}
+                , {field: 'materialName', title: '材料名称', align: 'center', sort: true}
+                , {field: 'ratioNumber', title: '配比值(kg)', align: 'center',edit:true, sort: true}
+                , {field: 'operation', title: '操作', align: 'center', sort: true, toolbar: '#EditBtn2'}
+            ]],
+            data: [
+                {
+                    "count": 1,
+                    "materialType": "水泥",
+                    "materialName": "海藻水泥3",
+                    "ratioNumber": "",
+                    "operation": ""
+                }
+            ]
+        });
+        table.render({
+            elem: '#RatioDetails',
+            cols: [[
+                {field: 'count', title: '', type: 'number', width: 40, align: 'center', hide: true}
+                , {field: 'materialType', title: '材料种类', sort: true, hide: true}
+                , {field: 'materialName', title: '材料名称', sort: true}
+                , {field: 'ratioValue', title: '配比值', sort: true}
+            ]],
+            data: [
+                {
+                    "count": 1,
+                    "materialType": 20181219001,
+                    "materialName": "C35",
+                    "ratioValue": "120-140"
+                }
+            ]
+        });
+    })
+</script>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">添加</a>
+    <span>已添加</span>
+</script>
+<script type="text/html" id="EditBtn2">
+    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="edit">删除</a>
+</script>
+</body>
+</html>

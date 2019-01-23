@@ -554,3 +554,54 @@ html{background-color: #f2f2f2; color: #666;}
 .my-table-1 td{
   background:#fff;
 }
+.layui-form-label{
+  width:98px;
+  padding:9px 15px 9px 0
+}
+.footer-buttons{
+  text-align: center;
+  padding-top:20px;
+}
+.layui-card-header .search-title{
+  position: absolute;
+  right:5px;
+  top:0;
+}
+.layui-card-header .layui-input{
+  height:30px;
+}
+
+
+.w100{
+  width:100px;
+}
+.w110{
+  width:110px;
+}
+.w120{
+  width:120px;
+}
+.w130{
+  width:130px;
+}
+.w140{
+  width:140px;
+}
+.w150{
+  width:150px;
+}
+.w160{
+  width:160px;
+}
+.w170{
+  width:170px;
+}
+.w180{
+  width:180px;
+}
+.w190{
+  width:190px;
+}
+.w200{
+  width:200px;
+}

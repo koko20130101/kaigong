@@ -8,66 +8,63 @@
 </head>
 <body>
 <div class="layui-fluid">
-    <div class="layui-row layui-col-space15">
-        <div class="layui-col layui-col-md12">
-            <div class="layui-card">
-                <div class="layui-card-body">
-                    <form class="layui-form" action="" lay-filter="component-form-group">
-                        <div class="layui-form-item">
-                            <div class="layui-inline">
-                                <!--<label class="layui-form-label">结算方式</label>-->
-                                <select name="quiz">
-                                    <option value="">全部</option>
-                                    <option value="金合成泵送">金合成泵送</option>
-                                    <option value="金合成路面">金合成路面</option>
-                                    <option value="金合成瓜米">金合成瓜米</option>
-                                    <option value="金合成膨胀8%">金合成膨胀8%</option>
-                                    <option value="金合成膨胀12%">金合成膨胀12%</option>
-                                    <option value="金合成对外">金合成对外</option>
-                                </select>
-                            </div>
-                            <div class="layui-inline">
-                                <!--<label class="layui-form-label">状态</label>-->
-                                <select name="modules" lay-search="">
-                                    <option value="">选择强度等级</option>
-                                    <option value="C10">C10</option>
-                                    <option value="C15">C15</option>
-                                    <option value="C20">C20</option>
-                                    <option value="C25">C25</option>
-                                </select>
-                            </div>
-                            <div class="layui-inline">
-                                <!--<label class="layui-form-label">状态</label>-->
-                                <select name="modules" lay-search="">
-                                    <option value="">选择坍落度</option>
-                                    <option value="100-120">100-120</option>
-                                    <option value="120-140">120-140</option>
-                                </select>
-                            </div>
-                            <div class="layui-inline">
-                                <input type="text" name="contractNumber" size="28"
-                                       placeholder="请输入配比编号、配比种类、强度等级、坍落度进行查询" lay-verify="required"
-                                       class="layui-input">
-                            </div>
-                            <div class="layui-inline">
-                                <button class="layui-btn" lay-submit><i class="layui-icon layui-icon-search"></i>查询
-                                </button>
-                                <button type="reset" class="layui-btn layui-btn-normal"><i class="layui-icon">
-                                    &#xe608;</i>新增
-                                </button>
-                                <button type="reset" class="layui-btn layui-btn-normal"><i
-                                        class="layui-icon">&#xe642</i>
-                                    批量上下限设置
-                                </button>
-                                <button type="reset" class="layui-btn layui-btn-normal"><i
-                                        class="layui-icon">&#xe642</i>
-                                    批量调整
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+    <!--查询-->
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <form class="layui-form" action="" lay-filter="component-form-group">
+                <div class="layui-form-item no-margin">
+                    <div class="layui-inline w140">
+                        <!--<label class="layui-form-label">结算方式</label>-->
+                        <select name="quiz">
+                            <option value="">全部</option>
+                            <option value="金合成泵送">金合成泵送</option>
+                            <option value="金合成路面">金合成路面</option>
+                            <option value="金合成瓜米">金合成瓜米</option>
+                            <option value="金合成膨胀8%">金合成膨胀8%</option>
+                            <option value="金合成膨胀12%">金合成膨胀12%</option>
+                            <option value="金合成对外">金合成对外</option>
+                        </select>
+                    </div>
+                    <div class="layui-inline w130">
+                        <!--<label class="layui-form-label">状态</label>-->
+                        <select name="modules" lay-search="">
+                            <option value="">选择强度等级</option>
+                            <option value="C10">C10</option>
+                            <option value="C15">C15</option>
+                            <option value="C20">C20</option>
+                            <option value="C25">C25</option>
+                        </select>
+                    </div>
+                    <div class="layui-inline w110">
+                        <!--<label class="layui-form-label">状态</label>-->
+                        <select name="modules" lay-search="">
+                            <option value="">选择坍落度</option>
+                            <option value="100-120">100-120</option>
+                            <option value="120-140">120-140</option>
+                        </select>
+                    </div>
+                    <div class="layui-inline">
+                        <input type="text" name="contractNumber" size="28"
+                               placeholder="请输入配比编号、配比种类、强度等级、坍落度进行查询" lay-verify="required"
+                               class="layui-input">
+                    </div>
+                    <div class="layui-inline">
+                        <button class="layui-btn layui-btn-sm" lay-submit><i class="layui-icon layui-icon-search"></i>查询
+                        </button>
+                        <button type="reset" class="layui-btn layui-btn-sm layui-btn-normal"><i class="layui-icon">
+                            &#xe608;</i>新增
+                        </button>
+                        <button type="reset" class="layui-btn layui-btn-sm layui-btn-normal"><i
+                                class="layui-icon">&#xe642</i>
+                            批量上下限设置
+                        </button>
+                        <button type="reset" class="layui-btn layui-btn-sm layui-btn-normal"><i
+                                class="layui-icon">&#xe642</i>
+                            批量调整
+                        </button>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
     <div class="layui-row layui-col-space15">
@@ -92,7 +89,38 @@
                     </div>
                 </div>
                 <div class="layui-card-body">
-                    <table class="layui-hide" id="RatioTotal"></table>
+                    <table class="my-table-1">
+                        <tr>
+                            <th>配比编号</th>
+                            <td>22</td>
+                            <th>搅拌时间</th>
+                            <td>43</td>
+                            <th>初凝时间</th>
+                            <td>543</td>
+                            <th>容重(kg)</th>
+                            <td>321</td>
+                        </tr>
+                        <tr>
+                            <th>总胶材(kg)</th>
+                            <td>321</td>
+                            <th>水胶比</th>
+                            <td>321</td>
+                            <th>砂率(%)</th>
+                            <td>432</td>
+                            <th>矿粉(%)</th>
+                            <td>432</td>
+                        </tr>
+                        <tr>
+                            <th>粉煤灰(%)</th>
+                            <td>321</td>
+                            <th>膨胀剂(%)</th>
+                            <td>321</td>
+                            <th>外加剂(%)</th>
+                            <td>321</td>
+                            <th></th>
+                            <td></td>
+                        </tr>
+                    </table>
                     <hr>
                     <table class="layui-hide" id="RatioDetails"></table>
                 </div>
@@ -133,37 +161,6 @@
                     "strong": "C35",
                     "ratioType": "金合成对外",
                     "slumps": "120-140"
-                }
-            ]
-        });
-        table.render({
-            elem: '#RatioTotal',
-            cols: [[
-                {field: 'ratioNumber', title: '配比编号',width:88}
-                , {field: 'mixingTime', title: '搅拌时间',width:88}
-                , {field: 'initialSettingTime', title: '初凝时间',width:88}
-                , {field: 'bulkDensity', title: '容重(kg)',width:88}
-                , {field: 'totalRubber', title: '总胶材(kg)',width:100}
-                , {field: 'waterBinderRatio', title: '水胶比',width:88}
-                , {field: 'sandRate', title: '砂率(%)',width:88}
-                , {field: 'mineralPowder', title: '矿粉(%)',width:88}
-                , {field: 'flyAsh', title: '粉煤灰(%)',width:100}
-                , {field: 'expansiveAgent', title: '膨胀剂(%)',width:100}
-                , {field: 'admixture', title: '外加剂(%)',width:100}
-            ]],
-            data: [
-                {
-                    "ratioNumber": "J322",
-                    "mixingTime": "C35",
-                    "initialSettingTime": "120-140",
-                    "bulkDensity": "120-140",
-                    "totalRubber": "120-140",
-                    "waterBinderRatio": "120-140",
-                    "sandRate": "120-140",
-                    "mineralPowder": "120-140",
-                    "flyAsh": "120-140",
-                    "expansiveAgent": "120-140",
-                    "admixture": "120-140"
                 }
             ]
         });
