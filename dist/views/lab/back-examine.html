@@ -8,70 +8,61 @@
 </head>
 <body>
 <div class="layui-fluid">
-    <div class="layui-row layui-col-space15">
-        <div class="layui-col layui-col-md12">
-            <div class="layui-card">
-                <div class="layui-card-body">
-                    <form class="layui-form" action="" lay-filter="component-form-group">
-                        <div class="layui-form-item">
-                            <div class="layui-inline">
-                                <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
-                                    <ul class="layui-tab-title" id="tabHeader">
-                                        <li class="layui-this">昨天</li>
-                                        <li>今天</li>
-                                        <li>本月</li>
-                                        <li>自定义</li>
-                                    </ul>
-                                </div>
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <form class="layui-form" action="" lay-filter="component-form-group">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                            <ul class="layui-tab-title" id="tabHeader">
+                                <li class="layui-this">昨天</li>
+                                <li>今天</li>
+                                <li>本月</li>
+                                <li>自定义</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <div class="select-date">
+                            <div class="layui-input-inline">
+                                <input type="text" name="startDate" id="Start-date" lay-verify="date"
+                                       placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
                             </div>
-                            <div class="layui-inline">
-                                <div id="tabBody">
-                                    <div class="tab-content-item"></div>
-                                    <div class="tab-content-item"></div>
-                                    <div class="tab-content-item"></div>
-                                    <div class="tab-content-item">
-                                        <div class="layui-input-inline">
-                                            <input type="text" name="startDate" id="Start-date" lay-verify="date"
-                                                   placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
-                                        </div>
-                                        <div class="layui-form-mid">-</div>
-                                        <div class="layui-input-inline">
-                                            <input type="text" name="endDate" id="End-date" lay-verify="date"
-                                                   placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="layui-inline">
-                                <!--<label class="layui-form-label">结算方式</label>-->
-                                <select name="quiz">
-                                    <option value="">处理意见</option>
-                                    <option value="待审核">待审核</option>
-                                    <option value="直接转发">直接转发</option>
-                                    <option value="调料转发">调料转发</option>
-                                    <option value="骨料回收">骨料回收</option>
-                                    <option value="作废">作废</option>
-                                </select>
-                            </div>
-                            <div class="layui-inline">
-                                <!--<label class="layui-form-label">结算方式</label>-->
-                                <select name="quiz">
-                                    <option value="">全部</option>
-                                    <option value="剩料">剩料</option>
-                                    <option value="退料">退料</option>
-                                </select>
-                            </div>
-                            <div class="layui-inline">
-                                <input type="text" name="contractNumber" size="28"  placeholder="请输入工程名称进行查询" lay-verify="required" class="layui-input">
-                            </div>
-                            <div class="layui-inline">
-                                <button class="layui-btn" lay-submit><i class="layui-icon layui-icon-search"></i>查询</button>
+                            <div class="layui-form-mid">-</div>
+                            <div class="layui-input-inline">
+                                <input type="text" name="endDate" id="End-date" lay-verify="date"
+                                       placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
                             </div>
                         </div>
-                    </form>
-                    <table class="layui-hide" id="table-height"></table>
+                    </div>
+                    <div class="layui-inline w100">
+                        <!--<label class="layui-form-label">结算方式</label>-->
+                        <select name="quiz">
+                            <option value="">处理意见</option>
+                            <option value="待审核">待审核</option>
+                            <option value="直接转发">直接转发</option>
+                            <option value="调料转发">调料转发</option>
+                            <option value="骨料回收">骨料回收</option>
+                            <option value="作废">作废</option>
+                        </select>
+                    </div>
+                    <div class="layui-inline w100">
+                        <!--<label class="layui-form-label">结算方式</label>-->
+                        <select name="quiz">
+                            <option value="">全部</option>
+                            <option value="剩料">剩料</option>
+                            <option value="退料">退料</option>
+                        </select>
+                    </div>
+                    <div class="layui-inline">
+                        <input type="text" name="contractNumber" size="22"  placeholder="请输入工程名称进行查询" lay-verify="required" class="layui-input">
+                    </div>
+                    <div class="layui-inline">
+                        <button class="layui-btn layui-btn-sm" lay-submit><i class="layui-icon layui-icon-search"></i>查询</button>
+                    </div>
                 </div>
-            </div>
+            </form>
+            <table class="layui-hide" id="table-height"></table>
         </div>
     </div>
 </div>
@@ -82,6 +73,7 @@
     }).extend({
         index: 'lib/index' //主入口模块
     }).use(['element','index', 'table', 'laydate'], function () {
+        var $=layui.jquery;
         var table = layui.table
                 ,element = layui.element
                 ,laydate = layui.laydate;
@@ -140,12 +132,12 @@
         laydate.render({
             elem: '#End-date'
         });
-        element.tab({
-            headerElem: '#tabHeader>li' //指定tab头元素项
-            ,bodyElem: '#tabBody>.tab-content-item' //指定tab主体元素项
-        });
-        element.on('tab(docDemoTabBrief)', function(data){
-            console.log(data)
+        element.on('tab(docDemoTabBrief)', function(obj){
+            if(obj.index ==3){
+                $('.select-date').show();
+            }else{
+                $('.select-date').hide();
+            }
         });
     })
 </script>
