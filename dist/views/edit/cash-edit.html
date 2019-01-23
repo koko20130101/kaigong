@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" class="layui-bg-white">
+<head>
+    <meta charset="UTF-8">
+    <title>现金单管理</title>
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+<div class="layui-fluid">
+    <form class="layui-form" action="" lay-filter="component-form-group">
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span>*</span>客户名称：</label>
+            <div class="layui-input-block">
+                <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input" value="广州市碧桂园">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span>*</span>工程名称：</label>
+            <div class="layui-input-block">
+                <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input" value="广州市碧桂园">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span>*</span>工程地址：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-dw">
+                <a class="layui-btn layui-btn-normal" lay-event="edit">标注</a>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">业务员：</label>
+            <div class="layui-input-block">
+                <select name="" lay-search="">
+                    <option value="xxx">xxx</option>
+                    <option value="100-120">xxx</option>
+                    <option value="C15">xxx</option>
+                    <option value="C20">xxx</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">联系人：</label>
+            <div class="layui-input-block">
+                <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input" value="吴**">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">联系电话：</label>
+            <div class="layui-input-block">
+                <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input" value="152255555">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="formDemo">确 认</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['element', 'index', 'table', 'laydate'], function () {
+        var table = layui.table
+                , element = layui.element
+                , laydate = layui.laydate;
+
+        laydate.render({
+            elem: '#Start-date'
+        });
+        laydate.render({
+            elem: '#End-date'
+        });
+    })
+</script>
+</body>
+</html>
