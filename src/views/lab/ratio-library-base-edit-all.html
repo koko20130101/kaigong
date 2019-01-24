@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>合同单管理</title>
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space8">
+        <div class="layui-col-md6">
+            <div class="layui-card">
+                <div class="layui-card-header">基准配比
+                    <div class="layui-form-item search-title">
+                        <div class="layui-inline">
+                            <input type="text" name="contractNumber" size="38" placeholder="请输入配比编号、配比种类、强度等级、坍落度进行查询"
+                                   lay-verify="required" value=""
+                                   class="layui-input">
+                        </div>
+                        <div class="layui-inline">
+                            <a class="layui-btn layui-btn-sm layui-btn-normal" lay-submit>查询
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-card-body">
+                    <table class="layui-hide" id="Material" lay-filter="test"></table>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md6">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    配比材料
+                    <div class="layui-form-item search-title">
+                        <div class="layui-inline">
+                            <input type="text" name="contractNumber" size="38" placeholder="请输入材料种类、材料名称进行查询"
+                                   lay-verify="required" value=""
+                                   class="layui-input">
+                        </div>
+                        <div class="layui-inline">
+                            <a class="layui-btn layui-btn-sm layui-btn-normal" lay-submit>查询
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-card-body">
+                    <table class="layui-hide" id="MaterialSelect"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-buttons">
+        <button class="layui-btn" lay-submit>批量调整</button>
+    </div>
+
+</div>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'table'], function () {
+        var table = layui.table;
+        table.render({
+            elem: '#Material',
+            height:'full-100',
+            page: true,
+            cols: [[
+                {type:'checkbox'}
+                ,{field: 'count', title: '', type: 'number', width: 40, align: 'center'}
+                , {field: 'ratioNumber', title: '配比编号', sort: true}
+                , {field: 'strong', title: '强度等级', sort: true}
+                , {field: 'slumps', title: '坍落度', sort: true}
+                , {field: 'ratioType', title: '配比种类', sort: true}
+            ]],
+            data: [
+                {
+                    "count": 1,
+                    "ratioNumber": 20181219001,
+                    "strong": "C35",
+                    "ratioType": "金合成对外",
+                    "slumps": "120-140"
+                }, {
+                    "count": 2,
+                    "ratioNumber": 20181219001,
+                    "strong": "C35",
+                    "ratioType": "金合成对外",
+                    "slumps": "120-140"
+                }
+            ]
+        });
+        table.render({
+            elem: '#MaterialSelect',
+            height:'full-100',
+            cols: [[
+                {field: 'count', title: '', type: 'number', width: 40, align: 'center'}
+                , {field: 'materialType', title: '材料种类', align: 'center', sort: true}
+                , {field: 'materialSubType', title: '材料子类', align: 'center', sort: true}
+                , {field: 'materialName', title: '材料名称', align: 'center', sort: true}
+                , {field: 'ratioNumber', title: '配比调整(kg)', align: 'center',edit:true, sort: true}
+            ]],
+            data: [
+                {
+                    "count": 1,
+                    "materialType": "水泥",
+                    "materialName": "海藻水泥3",
+                    "ratioNumber": "",
+                    "operation": ""
+                }
+            ]
+        });
+
+    })
+</script>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">添加</a>
+    <span>已添加</span>
+</script>
+<script type="text/html" id="EditBtn2">
+    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="edit">删除</a>
+</script>
+</body>
+</html>

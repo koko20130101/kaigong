@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" class="layui-bg-white">
+<head>
+    <meta charset="UTF-8">
+    <title>开盘管理</title>
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+<div class="layui-fluid">
+    <form class="layui-form" action="" lay-filter="component-form-group">
+        <div class="layui-row">
+            <div class="layui-col-md5">
+                <div class="layui-form-item">
+                    <div class="layui-tab layui-tab-brief">
+                        <ul class="layui-tab-title" id="tabHeader">
+                            <li class="layui-this">基准配比</li>
+                            <li>生产配比</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">生产线：</label>
+                    <div class="layui-input-block">
+                        <input type="checkbox" name="" title="全部" lay-skin="primary">
+                        <input type="checkbox" name="" title="1线" lay-skin="primary">
+                        <input type="checkbox" name="" title="2线" lay-skin="primary">
+                        <input type="checkbox" name="" title="3线" lay-skin="primary">
+                        <input type="checkbox" name="" title="4线" lay-skin="primary">
+                    </div>
+                </div>
+
+            </div>
+            <div class="layui-col-md7">
+                <table class="my-table-2" style="width: 100%">
+                    <tr>
+                        <th>工程名称</th>
+                        <td>1/23测试工程全流程</td>
+                        <th>客户名称</th>
+                        <td>1/23</td>
+                        <th></th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>施工部位</th>
+                        <td>52层</td>
+                        <th>坍落度</th>
+                        <td>180±30</td>
+                        <th>卸料方式</th>
+                        <td>塔吊</td>
+                    </tr>
+                    <tr>
+                        <th>强度等级</th>
+                        <td>C30</td>
+                        <th>特殊要求</th>
+                        <td></td>
+                        <th></th>
+                        <td></td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+        <hr>
+        <div id="tabBody">
+            <div class="layui-tab-item layui-show">
+                <div class="layui-form-item no-margin">
+                    <div class="layui-inline w130">
+                        <select name="">
+                            <option value="">选择配比种类</option>
+                            <option value="6">泵送柱墙</option>
+                            <option value="7">普通直卸砼</option>
+                            <option value="8">普通泵送砼</option>
+                            <option value="11">泵送高层板</option>
+                            <option value="12">泵送高层柱</option>
+                            <option value="13">泵送细石砼</option>
+                            <option value="14">润管砂浆</option>
+                            <option value="17">路面砼</option>
+                            <option value="19">普通（飘板等）</option>
+                            <option value="20">细石二次结构</option>
+                            <option value="21">抗渗砼</option>
+                            <option value="22">微膨胀</option>
+                            <option value="25">抹灰砂浆</option>
+                            <option value="26">防水砂浆</option>
+                        </select>
+                    </div>
+                    <div class="layui-inline w130">
+                        <select name="" lay-search="">
+                            <option value="">选择强度等级</option>
+                            <option value="C10">C10</option>
+                            <option value="C15">C15</option>
+                            <option value="C20">C20</option>
+                            <option value="C25">C25</option>
+                        </select>
+                    </div>
+                    <div class="layui-inline">
+                        <input type="text" name="contractNumber" size="40" placeholder="请输入配比编号、配比种类、强度等级查询"
+                               lay-verify="required" class="layui-input">
+                    </div>
+                    <div class="layui-inline">
+                        <button class="layui-btn layui-btn-sm" lay-submit><i class="layui-icon layui-icon-search"></i>查询
+                        </button>
+                    </div>
+                </div>
+                <table class="layui-hide" id="table-height" lay-filter="test-table-totalRow"></table>
+                <script type="text/html" id="barDemo">
+                    <a class="layui-btn layui-btn-xs" lay-event="detail">详 情</a>
+                </script>
+            </div>
+            <div class="layui-tab-item">
+            </div>
+        </div>
+
+    </form>
+
+
+
+    <div class="footer-buttons-fixed">
+        <button class="layui-btn layui-btn-sm" lay-submit>确 认</button>
+        <button class="layui-btn layui-btn-sm layui-btn-primary" lay-submit>取消</button>
+    </div>
+</div>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['element', 'index', 'table'], function () {
+        var $ = layui.jquery
+                , table = layui.table
+                , element = layui.element
+                , laydate = layui.laydate
+                , layer = layui.layer;
+        table.render({
+            elem: '#table-height',
+            cols: [[
+                {type: 'checkbox'}
+                , {field: 'count', title: '', type: 'number', width: 40}
+                , {field: 'date', title: '日期', sort: true}
+                , {field: 'ratioNumber', title: '基准配比编号', align: 'center', width: 115}
+                , {field: 'strong', title: '强度等级', align: 'center', width: 88}
+                , {field: 'slumps', title: '坍落度', align: 'center', width: 88}
+                , {field: 'ratioType', title: '配比种类', width: 115}
+                , {field: 'mixingTime', title: '搅拦时间', align: 'center', width: 88}
+                , {field: 'firstFreezingTime', title: '初凝时间'}
+                , {field: 'operation', title: '操作', templet: '#barDemo'}
+            ]],
+            data: [
+                {
+                    "count": 1,
+                    "date": "2018-09-30 22:04:29",
+                    "ratioNumber": "ZQ30",
+                    "strong": "C25",
+                    "slumps": "120-140",
+                    "ratioType": "普通（飘板等）",
+                    "mixingTime": 50,
+                    "firstFreezingTime": "",
+                    "operation": 0
+                }, {
+                    "count": 2,
+                    "date": "2018-09-30 22:04:29",
+                    "ratioNumber": "ZQ30",
+                    "strong": "C25",
+                    "slumps": "120-140",
+                    "ratioType": "普通（飘板等）",
+                    "mixingTime": 50,
+                    "firstFreezingTime": "",
+                    "operation": 0
+                }, {
+                    "count": 3,
+                    "date": "2018-09-30 22:04:29",
+                    "ratioNumber": "ZQ30",
+                    "strong": "C25",
+                    "slumps": "120-140",
+                    "ratioType": "普通（飘板等）",
+                    "mixingTime": 50,
+                    "firstFreezingTime": "",
+                    "operation": 0
+                }
+            ]
+        });
+
+        element.on('tab(docDemoTabBrief)', function (obj) {
+            if (obj.index == 3) {
+                $('.select-date').show();
+            } else {
+                $('.select-date').hide();
+            }
+        });
+        table.on('row(test-table-totalRow)', function (obj) {
+            obj.tr.addClass('current');
+            obj.tr.siblings().removeClass('current');
+        });
+
+
+        //监听工具条
+        table.on('tool(test-table-totalRow)', function (obj) {
+            if (obj.event === 'detail') {
+                //layer.msg('ID：'+ data.id + ' 的查看操作');
+                layer.open({
+                    type: 2
+                    , title: '基准配比详情'
+                    , content: ['../lab/kp-pb-base-details.html']
+                    , shadeClose: true
+                    , area: ['98%', '98%']
+                    , maxmin: true
+                });
+            }
+        });
+
+        element.tab({
+            headerElem: '#tabHeader>li' //指定tab头元素项
+            ,bodyElem: '#tabBody>.layui-tab-item' //指定tab主体元素项
+        });
+    })
+</script>
+
+</body>
+</html>
