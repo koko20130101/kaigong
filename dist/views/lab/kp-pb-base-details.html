@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" class="layui-bg-white">
+<head>
+    <meta charset="UTF-8">
+    <title>开盘管理</title>
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+<div class="layui-fluid">
+    <table class="my-table-1">
+        <tr>
+            <th>工程名称</th>
+            <td>1/23测试工程全流程</td>
+            <th>客户名称</th>
+            <td>1/23</td>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th>施工部位</th>
+            <td>52层</td>
+            <th>坍落度</th>
+            <td>180±30</td>
+            <th>卸料方式</th>
+            <td>塔吊</td>
+        </tr>
+        <tr>
+            <th>强度等级</th>
+            <td>C30</td>
+            <th>特殊要求</th>
+            <td></td>
+            <th></th>
+            <td></td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <div class="layui-row">
+        <div class="layui-col-md3">
+            <table class="my-table-2" style="margin-top:10px;width:95%">
+                <colgroup>
+                    <col width="100">
+                    <col>
+                </colgroup>
+                <tr>
+                    <th>容重(kg)</th>
+                    <td>321</td>
+                </tr>
+                <tr>
+                    <th>总胶材(kg)</th>
+                    <td>321</td>
+                </tr>
+                <tr>
+                    <th>水胶比</th>
+                    <td>321</td>
+                </tr>
+                <tr>
+                    <th>砂率(%)</th>
+                    <td>432</td>
+                </tr>
+                <tr>
+                    <th>矿粉(%)</th>
+                    <td>432</td>
+                </tr>
+                <tr>
+                    <th>粉煤灰(%)</th>
+                    <td>321</td>
+                </tr>
+                <tr>
+                    <th>膨胀剂(%)</th>
+                    <td>321</td>
+                </tr>
+                <tr>
+                    <th>外加剂(%)</th>
+                    <td>321</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="layui-col-md9">
+            <table class="layui-hide" id="table-height"></table>
+        </div>
+    </div>
+</div>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['element', 'index', 'table'], function () {
+        var $ = layui.jquery
+                , table = layui.table;
+        table.render({
+            elem: '#table-height',
+            cols: [[
+                {field: 'count', title: '', type: 'number', width: 40, align: 'center'}
+                , {field: 'materialType', title: '材料种类', align: 'center', sort: true}
+                , {field: 'materialName', title: '材料名称', align: 'center', sort: true}
+                , {field: 'ratioNumber', title: '配比值(kg)', align: 'center',sort: true}
+            ]],
+            data: [
+                {
+                    "count": 1,
+                    "materialType": "水泥",
+                    "materialName": "海藻水泥3",
+                    "ratioNumber": "523.06"
+                },{
+                    "count": 1,
+                    "materialType": "水泥",
+                    "materialName": "海藻水泥3",
+                    "ratioNumber": "523.06"
+                },{
+                    "count": 1,
+                    "materialType": "水泥",
+                    "materialName": "海藻水泥3",
+                    "ratioNumber": "523.06"
+                },{
+                    "count": 1,
+                    "materialType": "水泥",
+                    "materialName": "海藻水泥3",
+                    "ratioNumber": "523.06"
+                },{
+                    "count": 1,
+                    "materialType": "水泥",
+                    "materialName": "海藻水泥3",
+                    "ratioNumber": "523.06"
+                }
+            ]
+        });
+
+        table.on('row(test-table-totalRow)', function (obj) {
+            obj.tr.addClass('current');
+            obj.tr.siblings().removeClass('current');
+        });
+    })
+</script>
+
+</body>
+</html>

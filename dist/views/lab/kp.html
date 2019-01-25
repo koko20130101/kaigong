@@ -57,7 +57,20 @@
                 </div>
             </form>
             <table class="layui-hide" id="table-height" lay-filter="test-table-totalRow"></table>
-
+            <script type="text/html" id="barDemo">
+                {{#  if(d.operation.isMixture){ }}
+                    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="adjust">调整配比</a>
+                        {{# if(d.operation.isLock){ }}
+                            <a class="layui-btn layui-btn-xs" lay-event="unlock"><i class="layui-icon layui-icon-unlink"></i>解锁</a>
+                        {{#  } else { }}
+                            <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="lock"><i class="layui-icon layui-icon-link"></i>锁定</a>
+                        {{#  } }}
+                    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="detail">配比详情</a>
+                {{#  } else { }}
+                    <a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="add">配比选择</a>
+                {{#  } }}
+                <a class="layui-btn layui-btn-xs" lay-event="update">上传设置</a>
+            </script>
         </div>
     </div>
 </div>
@@ -96,7 +109,7 @@
                 , {field: 'gaveCube', title: '已送方量',align:'center',width:88}
                 , {field: 'remark', title: '备注'}
                 , {field: 'kpState', title: '开盘状态',align:'center',width:88}
-                , {field: 'operation', title: '操作',minWidth:350,toolbar: '#barDemo'}
+                , {field: 'operation', title: '操作',minWidth:350,templet: '#barDemo'}
             ]],
             data: [
                 {
@@ -117,7 +130,10 @@
                     "gaveCube": 20,
                     "remark": 0,
                     "kpState": "已审核",
-                    "operation": 0
+                    "operation": {
+                        isMixture:false,
+                        isLock:false
+                    }
                 },{
                     "count": 3,
                     "order": "5435434",
@@ -136,7 +152,10 @@
                     "gaveCube": 20,
                     "remark": 0,
                     "kpState": "已审核",
-                    "operation": 0
+                    "operation": {
+                        isMixture:true,
+                        isLock:true
+                    }
                 },{
                     "count": 3,
                     "order": "5435434",
@@ -155,7 +174,10 @@
                     "gaveCube": 20,
                     "remark": 0,
                     "kpState": "已审核",
-                    "operation": 0
+                    "operation": {
+                        isMixture:false,
+                        isLock:false
+                    }
                 }
             ]
         });
@@ -178,38 +200,87 @@
             obj.tr.siblings().removeClass('current');
         });
 
-        var active = {
-            lock: function(){
-                layer.confirm('注：您确定要锁定该工程生产吗？', {
-                    title:'系统提示',
-                    btn: ['确认','取消'] //按钮
-                });
-            },
-            more: function(){
-                layer.open({
-                    type: 2
-                    ,title:'现金单管理'
-                    ,content: ['../edit/cash-edit.html']
-                    ,shadeClose: true
-                    ,area: ['80%', '80%']
-                    ,maxmin: true
-                });
+        //监听工具条
+        table.on('tool(test-table-totalRow)', function(obj){
+            switch (obj.event){
+                case 'add':
+                    //弹出配比选择
+                    layer.open({
+                        type: 2
+                        ,title:'配比选择'
+                        ,content: ['../lab/kp-pb-select.html']
+                        ,shadeClose: true
+                        ,area: ['95%', '90%']
+                        ,btn: ['确认','取消'] //按钮
+                        ,yes:function (index, layero) {
+                            layer.closeAll();
+                            layer.open({
+                                type: 2
+                                ,title:'配比选择'
+                                ,content: ['../lab/kp-pb-selected.html']
+                                ,shadeClose: true
+                                ,area: ['100%', '100%']
+                                ,btn: ['确认','重选配比','取消'] //按钮
+                                ,btn2: function(index, layero){
+                                    //按钮【按钮二】的回调
+                                    layer.open({
+                                        type: 2
+                                        , title: '配比选择'
+                                        , content: ['../lab/kp-pb-select.html']
+                                        , shadeClose: true
+                                        , area: ['95%', '90%']
+                                        , btn: ['确认', '取消'] //按钮
+                                    });
+                                }
+                            })
+                        }
+                        ,maxmin: true
+                    });
+                    break;
+                case 'adjust':
+                    //弹出调整配比
+                    layer.open({
+                        type: 2
+                        ,title:'调整配比'
+                        ,content: ['../lab/kp-pb-adjust.html']
+                        ,shadeClose: true
+                        ,area: ['95%', '90%']
+                        ,btn: ['确认','取消'] //按钮
+                        ,maxmin: true
+                    });
+                    break;
+                case 'detail':
+                    //弹出配比详情
+                    layer.open({
+                        type: 2
+                        ,title:'配比详情'
+                        ,content: ['../lab/kp-pb-adjust.html']
+                        ,shadeClose: true
+                        ,area: ['95%', '90%']
+                        ,btn: ['确认','取消'] //按钮
+                        ,maxmin: true
+                    });
+                    break;
+                case 'lock':
+                    layer.confirm('注：您确定要锁定该工程生产吗？', {
+                        title:'系统提示',
+                        btn: ['确认','取消'] //按钮
+                    });
+                    break;
+                case 'unlock':
+                    layer.confirm('注：您确定要解锁该工程生产吗？', {
+                        title:'系统提示',
+                        btn: ['确认','取消'] //按钮
+                    });
+                    break;
+                case 'update':
+                    break;
+                default:
+                    break;
             }
-        };
-
-        $('.layui-btn').on('click', function(){
-            var type = $(this).data('type');
-            active[type] && active[type].call(this);
         });
     })
 </script>
-<script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-xs" data-type="adjust">调整配比</a>
-    <a class="layui-btn layui-btn-xs" data-type="reelect">重选配比</a>
-    <a class="layui-btn layui-btn-xs" data-type="lock">解锁</a>
-    <a class="layui-btn layui-btn-xs" data-type="more">配比详情</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" ldata-type="update">上传设置</a>
-    <!--<a class="layui-btn layui-btn-xs" lay-event="check">审核</a>-->
-</script>
+
 </body>
 </html>
