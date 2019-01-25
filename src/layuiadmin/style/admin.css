@@ -606,7 +606,7 @@ html{background-color: #f2f2f2; color: #666;}
 .line-box{
   position: absolute;
   left: 0;
-  top:75px;
+  top:0;
   right:0;
   overflow: auto;
 }
@@ -617,7 +617,26 @@ html{background-color: #f2f2f2; color: #666;}
   font-weight: 700;
 }
 .line-box .layui-row > div{
-  padding:0 8px;
+  padding-right:10px;
+}
+
+.layui-layer-btn .layui-layer-btn1{
+  border-color: #5FB878;
+  background-color: #5FB878;
+  color: #fff;
+}
+
+.my-inventory >div{
+  padding-right:15px;
+}
+
+.pb-select-left .layui-table-view{
+  margin:0;
+}
+.pb-select-left .weight {
+  text-align: center;
+  padding:6px 0;
+  background:#ddd;
 }
 
 .footer-buttons{
@@ -631,18 +650,6 @@ html{background-color: #f2f2f2; color: #666;}
 }
 .layui-card-header .layui-input{
   height:30px;
-}
-.footer-buttons-fixed{
-  position: fixed;
-  left:0;
-  right:0;
-  bottom:0;
-  padding:10px 0;
-  text-align: center;
-  background: #f2f2f2;
-}
-.has-footer{
-  padding-bottom:50px;
 }
 
 /*表格行选中*/

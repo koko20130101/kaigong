@@ -65,7 +65,7 @@
                         {{#  } else { }}
                             <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="lock"><i class="layui-icon layui-icon-link"></i>锁定</a>
                         {{#  } }}
-                    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="more">配比详情</a>
+                    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="detail">配比详情</a>
                 {{#  } else { }}
                     <a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="add">配比选择</a>
                 {{#  } }}
@@ -211,6 +211,29 @@
                         ,content: ['../lab/kp-pb-select.html']
                         ,shadeClose: true
                         ,area: ['95%', '90%']
+                        ,btn: ['确认','取消'] //按钮
+                        ,yes:function (index, layero) {
+                            layer.closeAll();
+                            layer.open({
+                                type: 2
+                                ,title:'配比选择'
+                                ,content: ['../lab/kp-pb-selected.html']
+                                ,shadeClose: true
+                                ,area: ['100%', '100%']
+                                ,btn: ['确认','重选配比','取消'] //按钮
+                                ,btn2: function(index, layero){
+                                    //按钮【按钮二】的回调
+                                    layer.open({
+                                        type: 2
+                                        , title: '配比选择'
+                                        , content: ['../lab/kp-pb-select.html']
+                                        , shadeClose: true
+                                        , area: ['95%', '90%']
+                                        , btn: ['确认', '取消'] //按钮
+                                    });
+                                }
+                            })
+                        }
                         ,maxmin: true
                     });
                     break;
@@ -222,6 +245,7 @@
                         ,content: ['../lab/kp-pb-adjust.html']
                         ,shadeClose: true
                         ,area: ['95%', '90%']
+                        ,btn: ['确认','取消'] //按钮
                         ,maxmin: true
                     });
                     break;
@@ -230,9 +254,10 @@
                     layer.open({
                         type: 2
                         ,title:'配比详情'
-                        ,content: ['../edit/cash-edit.html']
+                        ,content: ['../lab/kp-pb-adjust.html']
                         ,shadeClose: true
                         ,area: ['95%', '90%']
+                        ,btn: ['确认','取消'] //按钮
                         ,maxmin: true
                     });
                     break;
