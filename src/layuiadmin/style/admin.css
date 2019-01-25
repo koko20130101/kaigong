@@ -553,14 +553,13 @@ html{background-color: #f2f2f2; color: #666;}
 .my-table-1 th{
   background:#f2f2f2;
   font-weight:400;
-  width:15%;
 }
 .my-table-1 td{
   background:#fff;
 }
 
 .my-table-2{
-  width:98%;
+  width:100%;
   border-right:1px solid #e6e6e6;
   border-top:1px solid #e6e6e6;
   margin-bottom:10px;
@@ -604,6 +603,23 @@ html{background-color: #f2f2f2; color: #666;}
 .layui-form-item .layui-input-inline{
   margin-left:20px;
 }*/
+.line-box{
+  position: absolute;
+  left: 0;
+  top:75px;
+  right:0;
+  overflow: auto;
+}
+.line-box h2{
+  font-size:16px;
+  text-align: center;
+  margin-top:10px;
+  font-weight: 700;
+}
+.line-box .layui-row > div{
+  padding:0 8px;
+}
+
 .footer-buttons{
   text-align: center;
   padding-top:20px;

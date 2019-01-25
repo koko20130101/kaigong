@@ -8,30 +8,40 @@
 </head>
 <body>
 <div class="layui-fluid">
+    <div class="layui-tab layui-tab-brief">
+        <ul class="layui-tab-title" id="tabHeader">
+            <li class="layui-this">1线</li>
+            <li>2线</li>
+            <li>3线</li>
+            <li>4线</li>
+        </ul>
+    </div>
     <table class="my-table-1">
         <tr>
             <th>工程名称</th>
             <td>1/23测试工程全流程</td>
             <th>客户名称</th>
             <td>1/23</td>
-            <th></th>
-            <td></td>
+            <th>生产配比编号</th>
+            <td>BGZ30-5075</td>
+            <th>基准配比编号</th>
+            <td>BGZ30</td>
         </tr>
         <tr>
             <th>施工部位</th>
             <td>52层</td>
-            <th>坍落度</th>
-            <td>180±30</td>
-            <th>卸料方式</th>
-            <td>塔吊</td>
-        </tr>
-        <tr>
             <th>强度等级</th>
             <td>C30</td>
             <th>特殊要求</th>
-            <td></td>
-            <th></th>
-            <td></td>
+            <td colspan="3">C30P6p6抗渗S6C30三天早强</td>
+        </tr>
+        <tr>
+            <th>卸料方式</th>
+            <td>塔吊</td>
+            <th>坍落度</th>
+            <td>180±30</td>
+            <th>配比种类</th>
+            <td colspan="3">泵送高层柱</td>
         </tr>
     </table>
 
@@ -92,11 +102,15 @@
         index: 'lib/index' //主入口模块
     }).use(['element', 'index', 'table'], function () {
         var $ = layui.jquery
-                , table = layui.table;
+                , table = layui.table
+                , element = layui.element
+                , laydate = layui.laydate
+                , layer = layui.layer;
         table.render({
             elem: '#table-height',
             cols: [[
                 {field: 'count', title: '', type: 'number', width: 40, align: 'center'}
+                , {field: 'LocationName', title: '仓位名称', align: 'center', sort: true}
                 , {field: 'materialType', title: '材料种类', align: 'center', sort: true}
                 , {field: 'materialName', title: '材料名称', align: 'center', sort: true}
                 , {field: 'ratioNumber', title: '配比值(kg)', align: 'center',sort: true}
@@ -104,26 +118,31 @@
             data: [
                 {
                     "count": 1,
+                    "LocationName": "骨料5",
                     "materialType": "水泥",
                     "materialName": "海藻水泥3",
                     "ratioNumber": "523.06"
                 },{
-                    "count": 1,
+                    "count": 2,
+                    "LocationName": "骨料5",
                     "materialType": "水泥",
                     "materialName": "海藻水泥3",
                     "ratioNumber": "523.06"
                 },{
-                    "count": 1,
+                    "count": 3,
+                    "LocationName": "骨料5",
                     "materialType": "水泥",
                     "materialName": "海藻水泥3",
                     "ratioNumber": "523.06"
                 },{
-                    "count": 1,
+                    "count": 4,
+                    "LocationName": "骨料5",
                     "materialType": "水泥",
                     "materialName": "海藻水泥3",
                     "ratioNumber": "523.06"
                 },{
-                    "count": 1,
+                    "count": 5,
+                    "LocationName": "骨料5",
                     "materialType": "水泥",
                     "materialName": "海藻水泥3",
                     "ratioNumber": "523.06"
@@ -135,6 +154,7 @@
             obj.tr.addClass('current');
             obj.tr.siblings().removeClass('current');
         });
+
     })
 </script>
 

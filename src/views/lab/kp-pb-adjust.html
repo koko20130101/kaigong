@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en" class="layui-bg-white">
+<head>
+    <meta charset="UTF-8">
+    <title>调整配比</title>
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+<div class="layui-fluid has-footer">
+    <table class="my-table-2" style="width: 100%">
+        <tr>
+            <th>生产配比编号</th>
+            <td>37476477382-1535</td>
+            <th>施工部位</th>
+            <td>23层</td>
+            <th>强度等级</th>
+            <td>C30P6.1膨胀剂20%抗</td>
+            <th>坍落度</th>
+            <td>160±20</td>
+        </tr>
+        <tr>
+            <th>卸料方式</th>
+            <td>塔吊</td>
+            <th>配比种类</th>
+            <td>普通直卸砼</td>
+            <th>搅拌时间</th>
+            <td>2</td>
+            <th>初凝时间</th>
+            <td>2</td>
+        </tr>
+    </table>
+
+    <div class="line-box">
+        <div class="layui-row" style="width: 2400px;">
+            <div class="layui-col-md3">
+                <h2>1线</h2>
+                <table class="layui-hide" id="Line1"></table>
+                <table class="my-table-2">
+                    <colgroup>
+                        <col width="100">
+                        <col>
+                        <col width="100">
+                        <col>
+                    </colgroup>
+                    <tr>
+                        <th>容重(kg)</th>
+                        <td>321</td>
+                        <th>重量变化</th>
+                        <td>321</td>
+                    </tr>
+                    <tr>
+                        <th>总胶材(kg)</th>
+                        <td>321</td>
+                        <th>水胶比</th>
+                        <td>321</td>
+                    </tr>
+                    <tr>
+                        <th>砂率(%)</th>
+                        <td>432</td>
+                        <th>外加剂(%)</th>
+                        <td>321</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="layui-col-md3">
+                <h2>2线</h2>
+                <table class="layui-hide" id="Line2"></table>
+                <table class="my-table-2">
+                    <colgroup>
+                        <col width="100">
+                        <col>
+                        <col width="100">
+                        <col>
+                    </colgroup>
+                    <tr>
+                        <th>容重(kg)</th>
+                        <td>321</td>
+                        <th>重量变化</th>
+                        <td>321</td>
+                    </tr>
+                    <tr>
+                        <th>总胶材(kg)</th>
+                        <td>321</td>
+                        <th>水胶比</th>
+                        <td>321</td>
+                    </tr>
+                    <tr>
+                        <th>砂率(%)</th>
+                        <td>432</td>
+                        <th>外加剂(%)</th>
+                        <td>321</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="layui-col-md3">
+                <h2>3线</h2>
+                <table class="layui-hide" id="Line3"></table>
+                <table class="my-table-2">
+                    <colgroup>
+                        <col width="100">
+                        <col>
+                        <col width="100">
+                        <col>
+                    </colgroup>
+                    <tr>
+                        <th>容重(kg)</th>
+                        <td>321</td>
+                        <th>重量变化</th>
+                        <td>321</td>
+                    </tr>
+                    <tr>
+                        <th>总胶材(kg)</th>
+                        <td>321</td>
+                        <th>水胶比</th>
+                        <td>321</td>
+                    </tr>
+                    <tr>
+                        <th>砂率(%)</th>
+                        <td>432</td>
+                        <th>外加剂(%)</th>
+                        <td>321</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="layui-col-md3">
+                <h2>4线</h2>
+                <table class="layui-hide" id="Line4"></table>
+                <table class="my-table-2">
+                    <colgroup>
+                        <col width="100">
+                        <col>
+                        <col width="100">
+                        <col>
+                    </colgroup>
+                    <tr>
+                        <th>容重(kg)</th>
+                        <td>321</td>
+                        <th>重量变化</th>
+                        <td>321</td>
+                    </tr>
+                    <tr>
+                        <th>总胶材(kg)</th>
+                        <td>321</td>
+                        <th>水胶比</th>
+                        <td>321</td>
+                    </tr>
+                    <tr>
+                        <th>砂率(%)</th>
+                        <td>432</td>
+                        <th>外加剂(%)</th>
+                        <td>321</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-buttons-fixed">
+        <button class="layui-btn layui-btn-sm" lay-submit>保 存</button>
+        <button class="layui-btn layui-btn-sm layui-btn-primary" lay-submit>取消</button>
+    </div>
+</div>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['element', 'index', 'table'], function () {
+        var $ = layui.jquery
+                , table = layui.table
+                , element = layui.element
+                , laydate = layui.laydate
+                , layer = layui.layer;
+        table.render({
+            elem: '#Line1',
+            cols: [[
+                {type: 'checkbox'}
+                , {field: 'count', title: '', type: 'number', width: 40}
+                , {field: 'locationNumber', title: '仓位编号', sort: true}
+                , {field: 'locationName', title: '仓位名称', align: 'center'}
+                , {field: 'materialType', title: '材料种类', align: 'center', sort: true}
+                , {field: 'materialName', title: '材料名称', align: 'center', sort: true}
+                , {field: 'ratioNumber', title: '配比值(kg)', align: 'center',edit:true,sort: true}
+            ]],
+            data: [
+                {
+                    "count": 1,
+                    "locationNumber": "233",
+                    "locationName": "水泥2",
+                    "materialType": "水泥",
+                    "materialName": "海藻水泥2",
+                    "ratioNumber": ""
+                }, {
+                    "count": 1,
+                    "locationNumber": "233",
+                    "locationName": "水泥2",
+                    "materialType": "水泥",
+                    "materialName": "海藻水泥2",
+                    "ratioNumber": ""
+                },{
+                    "count": 1,
+                    "locationNumber": "233",
+                    "locationName": "水泥2",
+                    "materialType": "水泥",
+                    "materialName": "海藻水泥2",
+                    "ratioNumber": ""
+                }
+            ]
+        });
+        table.render({
+            elem: '#Line2',
+            cols: [[
+                {type: 'checkbox'}
+                , {field: 'count', title: '', type: 'number', width: 40}
+                , {field: 'locationNumber', title: '仓位编号', sort: true}
+                , {field: 'locationName', title: '仓位名称', align: 'center'}
+                , {field: 'materialType', title: '材料种类', align: 'center', sort: true}
+                , {field: 'materialName', title: '材料名称', align: 'center', sort: true}
+                , {field: 'ratioNumber', title: '配比值(kg)', align: 'center',edit:true,sort: true}
+            ]],
+            data: [
+                {
+                    "count": 1,
+                    "locationNumber": "233",
+                    "locationName": "水泥2",
+                    "materialType": "水泥",
+                    "materialName": "海藻水泥2",
+                    "ratioNumber": ""
+                }, {
+                    "count": 1,
+                    "locationNumber": "233",
+                    "locationName": "水泥2",
+                    "materialType": "水泥",
+                    "materialName": "海藻水泥2",
+                    "ratioNumber": ""
+                },{
+                    "count": 1,
+                    "locationNumber": "233",
+                    "locationName": "水泥2",
+                    "materialType": "水泥",
+                    "materialName": "海藻水泥2",
+                    "ratioNumber": ""
+                }
+            ]
+        });
+        table.render({
+            elem: '#Line3',
+            cols: [[
+                {type: 'checkbox'}
+                , {field: 'count', title: '', type: 'number', width: 40}
+                , {field: 'locationNumber', title: '仓位编号', sort: true}
+                , {field: 'locationName', title: '仓位名称', align: 'center'}
+                , {field: 'materialType', title: '材料种类', align: 'center', sort: true}
+                , {field: 'materialName', title: '材料名称', align: 'center', sort: true}
+                , {field: 'ratioNumber', title: '配比值(kg)', align: 'center',edit:true,sort: true}
+            ]],
+            data: [
+                {
+                    "count": 1,
+                    "locationNumber": "233",
+                    "locationName": "水泥2",
+                    "materialType": "水泥",
+                    "materialName": "海藻水泥2",
+                    "ratioNumber": ""
+                }, {
+                    "count": 1,
+                    "locationNumber": "233",
+                    "locationName": "水泥2",
+                    "materialType": "水泥",
+                    "materialName": "海藻水泥2",
+                    "ratioNumber": ""
+                },{
+                    "count": 1,
+                    "locationNumber": "233",
+                    "locationName": "水泥2",
+                    "materialType": "水泥",
+                    "materialName": "海藻水泥2",
+                    "ratioNumber": ""
+                }
+            ]
+        });
+        table.render({
+            elem: '#Line4',
+            cols: [[
+                {type: 'checkbox'}
+                , {field: 'count', title: '', type: 'number', width: 40}
+                , {field: 'locationNumber', title: '仓位编号', sort: true}
+                , {field: 'locationName', title: '仓位名称', align: 'center'}
+                , {field: 'materialType', title: '材料种类', align: 'center', sort: true}
+                , {field: 'materialName', title: '材料名称', align: 'center', sort: true}
+                , {field: 'ratioNumber', title: '配比值(kg)', align: 'center',edit:true,sort: true}
+            ]],
+            data: [
+                {
+                    "count": 1,
+                    "locationNumber": "233",
+                    "locationName": "水泥2",
+                    "materialType": "水泥",
+                    "materialName": "海藻水泥2",
+                    "ratioNumber": ""
+                }, {
+                    "count": 1,
+                    "locationNumber": "233",
+                    "locationName": "水泥2",
+                    "materialType": "水泥",
+                    "materialName": "海藻水泥2",
+                    "ratioNumber": ""
+                },{
+                    "count": 1,
+                    "locationNumber": "233",
+                    "locationName": "水泥2",
+                    "materialType": "水泥",
+                    "materialName": "海藻水泥2",
+                    "ratioNumber": ""
+                }
+            ]
+        });
+    })
+</script>
+
+</body>
+</html>
