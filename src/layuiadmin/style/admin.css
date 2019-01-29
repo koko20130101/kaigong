@@ -523,8 +523,11 @@ html{background-color: #f2f2f2; color: #666;}
 }
 
 /*2019-01-22*/
-.layui-form .no-margin{
+.no-margin{
   margin:0;
+}
+.no-margin-top{
+  margin-top:0;
 }
 .select-date{
   display: none;
@@ -571,7 +574,6 @@ html{background-color: #f2f2f2; color: #666;}
 .my-table-2 th{
   background:#f2f2f2;
   font-weight:400;
-  text-align: left;
   padding:4px 15px;
 }
 .my-table-2 td{
@@ -637,6 +639,12 @@ html{background-color: #f2f2f2; color: #666;}
   text-align: center;
   padding:6px 0;
   background:#ddd;
+}
+
+.pro-line{
+  position:absolute;
+  right:0;
+  bottom:0;
 }
 
 .footer-buttons{
