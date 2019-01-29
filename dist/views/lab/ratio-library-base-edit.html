@@ -103,7 +103,15 @@
                     </div>
                 </div>
                 <div class="layui-card-body">
-                    <table class="layui-hide" id="Material" lay-filter="test"></table>
+                    <table class="layui-hide" id="Material" lay-filter="Material"></table>
+                    <script type="text/html" id="EditBtn1">
+                        {{# if(d.operation.isAdded) { }}
+                        <span>已添加</span>
+                        {{# }else{ }}
+                        <!--<span class="red">未添加</span>-->
+                        <a class="layui-btn layui-btn-xs" lay-event="add">未添加</a>
+                        {{# } }}
+                    </script>
                 </div>
             </div>
         </div>
@@ -113,7 +121,10 @@
                     已选材料
                 </div>
                 <div class="layui-card-body">
-                    <table class="layui-hide" id="MaterialSelect"></table>
+                    <table class="layui-hide" id="MaterialSelect" lay-filter="Material"></table>
+                    <script type="text/html" id="EditBtn2">
+                        <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+                    </script>
                 </div>
             </div>
         </div>
@@ -146,10 +157,10 @@
     <p></p>
     <p></p>
 
-    <div class="footer-buttons">
-        <button class="layui-btn" lay-submit>保存</button>
-        <button class="layui-btn layui-btn-primary" lay-submit>取消</button>
-    </div>
+    <!--<div class="footer-buttons">-->
+    <!--<button class="layui-btn" lay-submit>保存</button>-->
+    <!--<button class="layui-btn layui-btn-primary" lay-submit>取消</button>-->
+    <!--</div>-->
 
 </div>
 <script src="../../layuiadmin/layui/layui.js"></script>
@@ -160,47 +171,79 @@
         index: 'lib/index' //主入口模块
     }).use(['index', 'table'], function () {
         var table = layui.table;
-        table.render({
+        var data_1 = [
+            {
+                "count": 1,
+                "materialType": "水泥",
+                "materialName": "海藻水泥3",
+                "ratioNumber": "",
+                "operation": {
+                    isAdded: false
+                },
+                "LAY_CHECKED": true
+            }, {
+                "count": 2,
+                "materialType": "水泥",
+                "materialName": "海藻水泥3",
+                "ratioNumber": "",
+                "operation": {
+                    isAdded: false
+                },
+                "LAY_CHECKED": false
+            }, {
+                "count": 3,
+                "materialType": "水泥",
+                "materialName": "海藻水泥3",
+                "ratioNumber": "",
+                "operation": {
+                    isAdded: false
+                },
+                "LAY_CHECKED": false
+            }, {
+                "count": 4,
+                "materialType": "水泥",
+                "materialName": "海藻水泥3",
+                "ratioNumber": "",
+                "operation": {
+                    isAdded: false
+                },
+                "LAY_CHECKED": false
+            }, {
+                "count": 5,
+                "materialType": "水泥",
+                "materialName": "海藻水泥3",
+                "ratioNumber": "",
+                "operation": {
+                    isAdded: false
+                },
+                "LAY_CHECKED": false
+            }
+        ];
+        var data_2 = [];
+
+        var material = table.render({
             elem: '#Material',
+            id: "Material",
             page: true,
             cols: [[
-                {field: 'count', title: '', type: 'number', width: 40, align: 'center'}
+                 {field: 'count', title: '', type: 'number', width: 40, align: 'center'}
                 , {field: 'materialType', title: '材料种类/子类', align: 'center', sort: true}
                 , {field: 'materialName', title: '材料名称', align: 'center', sort: true}
-                , {field: 'operation', title: '操作', align: 'center', sort: true, toolbar: '#barDemo'}
+                , {field: 'operation', title: '操作', align: 'center', sort: true, templet: '#EditBtn1'}
             ]],
-            data: [
-                {
-                    "count": 1,
-                    "materialType": "水泥",
-                    "materialName": "海藻水泥3",
-                    "operation": ""
-                }, {
-                    "count": 2,
-                    "materialType": "水泥",
-                    "materialName": "海藻水泥3",
-                    "operation": ""
-                }
-            ]
+            data: data_1
         });
-        table.render({
+        var materialSelectTable = table.render({
             elem: '#MaterialSelect',
+            id: 'MaterialSelect',
             cols: [[
                 {field: 'count', title: '', type: 'number', width: 40, align: 'center'}
                 , {field: 'materialType', title: '材料种类/子类', align: 'center', sort: true}
                 , {field: 'materialName', title: '材料名称', align: 'center', sort: true}
-                , {field: 'ratioNumber', title: '配比值(kg)', align: 'center',edit:true, sort: true}
-                , {field: 'operation', title: '操作', align: 'center', sort: true, toolbar: '#EditBtn2'}
+                , {field: 'ratioNumber', title: '配比值(kg)', align: 'center', edit: true, sort: true}
+                , {field: 'operation', title: '操作', align: 'center', sort: true, templet: '#EditBtn2'}
             ]],
-            data: [
-                {
-                    "count": 1,
-                    "materialType": "水泥",
-                    "materialName": "海藻水泥3",
-                    "ratioNumber": "",
-                    "operation": ""
-                }
-            ]
+            data: data_2
         });
         table.render({
             elem: '#RatioDetails',
@@ -220,18 +263,52 @@
             ]
         });
 
-        table.on('row(test)', function(obj){
-            obj.tr.addClass('current');
-            obj.tr.siblings().removeClass('current');
+        table.on('row(Material)', function (obj) {
+            obj.tr.addClass('current').siblings().removeClass('current');
+        });
+
+        //监听工具条
+        table.on('tool(Material)', function (obj) {
+            var data = obj.data;
+            switch (obj.event) {
+                case 'add':
+                    data_1.forEach(function (item) {
+                        if(item.count == data.count){
+                            item.operation.isAdded = true;
+                            data_2.push(item);
+                        }
+                    });
+
+                    //更新左边表格
+                    material.reload({
+                        data:data_1
+                    });
+
+                    //更新右边的表格
+                    materialSelectTable.reload({
+                        data: data_2
+                    });
+                    break;
+                case 'del':
+                    data_1.forEach(function (item) {
+                        if(item.count == data.count){
+                            item.operation.isAdded = false;
+                        }
+                    });
+                    data_2.forEach(function (item,index) {
+                        if (item.count == data.count) {
+                            data_2.splice(index, 1);
+                        }
+                    });
+                    //更新左边表格
+                    material.reload({
+                        data:data_1
+                    });
+                    obj.del();
+                    break;
+            }
         });
     })
-</script>
-<script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-xs" lay-event="edit">添加</a>
-    <span>已添加</span>
-</script>
-<script type="text/html" id="EditBtn2">
-    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="edit">删除</a>
 </script>
 </body>
 </html>
