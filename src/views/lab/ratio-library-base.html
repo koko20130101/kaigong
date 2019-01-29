@@ -59,9 +59,9 @@
                     <div class="layui-inline">
                         <button class="layui-btn layui-btn-sm" lay-submit><i class="layui-icon layui-icon-search"></i>查询
                         </button>
-                        <button type="reset" class="layui-btn layui-btn-sm layui-btn-normal"><i class="layui-icon">
+                        <a class="layui-btn layui-btn-sm layui-btn-normal" data-type="add"><i class="layui-icon">
                             &#xe608;</i>新增
-                        </button>
+                        </a>
                         <button type="reset" class="layui-btn layui-btn-sm layui-btn-normal"><i
                                 class="layui-icon">&#xe656</i>
                             批量上下限设置
@@ -91,7 +91,7 @@
                         <div class="layui-col-md5">配比详情</div>
                         <div class="layui-col-md7" align="right">
                             <a class="layui-btn layui-btn-xs" lay-event="edit">复制</a>
-                            <a lay-href="./lab/ratio-library-base-edit.html" class="layui-btn layui-btn-xs layui-btn-normal">修改</a>
+                            <a class="layui-btn layui-btn-xs layui-btn-normal" data-type="reset">修改</a>
                             <a class="layui-btn layui-btn-xs layui-btn-danger">删除</a>
                         </div>
                     </div>
@@ -144,7 +144,9 @@
     }).extend({
         index: 'lib/index' //主入口模块
     }).use(['index', 'table'], function () {
-        var table = layui.table;
+        var $ = layui.$
+                ,table = layui.table
+                ,layer=layui.layer
         table.render({
             elem: '#table-height',
             height: 'full-100',
@@ -219,6 +221,36 @@
                     "ratioValue": "120-140"
                 }
             ]
+        });
+
+        var active = {
+            add: function(){
+                layer.open({
+                    type: 2
+                    ,title:'新增基准配比'
+                    ,content: ['../lab/ratio-library-base-edit.html']
+                    ,shadeClose: true
+                    ,area: ['100%', '100%']
+                    ,maxmin: true
+                    ,btn: ['保存','取消'] //按钮
+                });
+            },
+            reset: function(){
+                layer.open({
+                    type: 2
+                    ,title:'修改基准配比'
+                    ,content: ['../lab/ratio-library-base-edit.html']
+                    ,shadeClose: true
+                    ,area: ['100%', '100%']
+                    ,maxmin: true
+                    ,btn: ['保存','取消'] //按钮
+                });
+            }
+        };
+
+        $('.layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] && active[type].call(this);
         });
     })
 </script>
