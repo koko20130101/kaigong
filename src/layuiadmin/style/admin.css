@@ -533,7 +533,7 @@ html{background-color: #f2f2f2; color: #666;}
   display: none;
 }
 .select-date .layui-input-inline{
-  width:102px;
+  width:150px;
 }
 .layui-card{
   margin-bottom:8px;
