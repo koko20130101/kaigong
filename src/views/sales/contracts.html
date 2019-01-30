@@ -41,7 +41,11 @@
                             </div>
                         </div>
                     </form>
-                    <table class="layui-hide" id="table-height"></table>
+                    <table class="layui-hide" id="table-height" lay-filter="OrderTable"></table>
+                    <script type="text/html" id="barDemo">
+                        <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
+                        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">正供</a>
+                    </script>
                 </div>
             </div>
         </div>
@@ -55,7 +59,8 @@
         index: 'lib/index' //主入口模块
     }).use(['index', 'table'],function () {
         var $ = layui.$;
-        var table = layui.table;
+        var table = layui.table
+                ,layer=layui.layer;
         table.render({
             elem: '#table-height',
             height: 'full-100',
@@ -71,7 +76,7 @@
                 , {field: 'tel', title: '联系电话'}
                 , {field: 'payType', title: '结算类型', width: 100, sort: true}
                 , {field: 'creationTime', title: '创建时间', width: 160, sort: true}
-                , {field: 'operation', title: '操作', toolbar: '#barDemo'}
+                , {field: 'operation', title: '操作',minWidth:110, toolbar: '#barDemo'}
             ]],
             data: [
                 {
@@ -102,12 +107,51 @@
                 }
             ]
         });
+        //监听工具条
+        table.on('tool(OrderTable)', function (obj) {
+            switch (obj.event) {
+                case 'edit':
+                    //弹出配比选择
+                    var index = layer.open({
+                        type: 2
+                        , title: '修改合同工程'
+                        , content: ['../edit/contract-edit.html']
+                        , shadeClose: true
+                        , area: ['100%', '100%']
+                        , btn: ['保存', '取消'] //按钮
+                        , yes: function (index, layero) {
+                            layer.closeAll();
+                            layer.open({
+                                type: 2
+                                , title: '配比选择'
+                                , content: ['../lab/kp-pb-selected.html']
+                                , shadeClose: true
+                                , area: ['100%', '100%']
+                                , btn: ['确认', '重选配比', '取消'] //按钮
+                                , btn2: function (index, layero) {
+                                    //按钮【按钮二】的回调
+                                    layer.open({
+                                        type: 2
+                                        , title: '配比选择'
+                                        , content: ['../lab/kp-pb-select.html']
+                                        , shadeClose: true
+                                        , area: ['95%', '90%']
+                                        , btn: ['确认', '取消'] //按钮
+                                    });
+                                }
+                            })
+                        }
+                        , maxmin: true
+                    });
+                    break;
+                case 'state':
+
+                    break;
+                default:
+                    break;
+            }
+        });
     })
-</script>
-<script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-xs" lay-href="edit/contract-edit.html">修改</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">正供</a>
-    <!--<a class="layui-btn layui-btn-xs" lay-event="check">审核</a>-->
 </script>
 </body>
 </html>

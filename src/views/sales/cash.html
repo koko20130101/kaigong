@@ -46,12 +46,12 @@
                 {field: 'count', title: '', type: 'number', width: 40, align: 'center'}
                 , {field: 'customerName', title: '客户名称', sort: true}
                 , {field: 'projectName', title: '工程名称', sort: true}
-                , {field: 'address', title: '工程地址', minWidth: 300, sort: true}
-                , {field: 'salesmen', title: '业务员', width: 100, sort: true}
-                , {field: 'contacts', title: '联系人', width: 100, sort: true}
-                , {field: 'tel', title: '联系电话', width: 130}
-                , {field: 'creationTime', title: '创建时间', width: 160, sort: true}
-                , {field: 'operation', title: '操作', toolbar: '#barDemo'}
+                , {field: 'address', title: '工程地址', minWidth: 250, sort: true}
+                , {field: 'salesmen', title: '业务员', width: 88, sort: true}
+                , {field: 'contacts', title: '联系人', width: 88, sort: true}
+                , {field: 'tel', title: '联系电话', width:120}
+                , {field: 'creationTime', title: '创建时间', width: 165, sort: true}
+                , {field: 'operation', title: '操作',minWidth:140, toolbar: '#barDemo'}
             ]],
             data: [
                 {
@@ -93,6 +93,7 @@
                     ,content: ['../edit/cash-edit.html']
                     ,shadeClose: true
                     ,area: ['80%', '80%']
+                    , btn: ['保存', '取消'] //按钮
                     ,maxmin: true
                 });
             }

@@ -171,6 +171,7 @@
         index: 'lib/index' //主入口模块
     }).use(['index', 'table'], function () {
         var table = layui.table;
+        //左边表格数据
         var data_1 = [
             {
                 "count": 1,
@@ -219,6 +220,7 @@
                 "LAY_CHECKED": false
             }
         ];
+        //右边表格数据
         var data_2 = [];
 
         var material = table.render({

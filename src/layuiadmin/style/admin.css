@@ -595,16 +595,12 @@ html{background-color: #f2f2f2; color: #666;}
   top:0;
   color:#999;
 }
-/*.layui-form-label{
-  width:98px;
-  padding:9px 15px 9px 0
+.layui-form-label{
+  width:90px;
 }
 .layui-input-block{
   margin-left:120px;
 }
-.layui-form-item .layui-input-inline{
-  margin-left:20px;
-}*/
 .line-box{
   position: absolute;
   left: 0;
@@ -628,9 +624,33 @@ html{background-color: #f2f2f2; color: #666;}
   color: #fff;
 }
 
-.my-inventory >div{
-  padding-right:15px;
+
+.pb-select-left{
+  width:425px;
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  padding:15px 0 0 10px;
 }
+.pb-select-right{
+  background:#f9f9f9;
+  position:absolute;
+  left:455px;
+  top:15px;
+  bottom:0;
+  right:0;
+}
+.pb-select-left .layui-form-label{
+  width:60px;
+}
+.pb-select-left .layui-input-block{
+  margin-left:88px;
+}
+.pb-select-left .layui-form-checkbox[lay-skin=primary]{
+  padding-left:22px;
+}
+
 
 .pb-select-left .layui-table-view{
   margin:0;
@@ -643,8 +663,8 @@ html{background-color: #f2f2f2; color: #666;}
 
 .pro-line{
   position:absolute;
-  right:0;
-  bottom:0;
+  top:6px;
+  right:10px;
 }
 
 .footer-buttons{
@@ -679,6 +699,15 @@ html{background-color: #f2f2f2; color: #666;}
   top:70px;
   left:0;
   width: 100%;
+}
+.layui-form-dw{
+  position: absolute;
+  top:8px;
+  right:18px;
+  background:#fff;
+}
+.align-center{
+  text-align: center;
 }
 
 .w100{
