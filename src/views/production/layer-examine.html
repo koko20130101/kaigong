@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>订单录入</title>
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-card-header">
+            基本内容
+        </div>
+        <div class="layui-card-body">
+            <table class="my-table-2">
+                <colgroup>
+                    <col width="120">
+                    <col>
+                    <col width="120">
+                    <col>
+                </colgroup>
+                <tr>
+                    <th>订单号</th>
+                    <td>1901280001</td>
+                    <th>产品类型</th>
+                    <td>混凝土</td>
+                </tr>
+                <tr>
+                    <th>下单人</th>
+                    <td>管理员</td>
+                    <th>下单时间</th>
+                    <td>2019-01-28 17:26:28</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="layui-card">
+        <div class="layui-card-header">
+            工程信息
+        </div>
+        <div class="layui-card-body">
+            <table class="my-table-2">
+                <colgroup>
+                    <col width="120">
+                    <col>
+                    <col width="120">
+                    <col>
+                </colgroup>
+                <tr>
+                    <th>工程名称</th>
+                    <td>蜂蜜柚子茶工程</td>
+                    <th>客户名称</th>
+                    <td>晓晓</td>
+                </tr>
+                <tr>
+                    <th>工程地址</th>
+                    <td colspan="3">广东省中山市会展西路</td>
+                </tr>
+                <tr>
+                    <th>联系人</th>
+                    <td>小件</td>
+                    <th>联系电话</th>
+                    <td>15219407620</td>
+                </tr>
+                <tr>
+                    <th>业务员</th>
+                    <td>小孔</td>
+                    <th>业务员电话</th>
+                    <td>未知</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="layui-card">
+        <div class="layui-card-header">
+            产品信息
+        </div>
+        <div class="layui-card-body">
+            <table class="my-table-2">
+                <colgroup>
+                    <col width="120">
+                    <col>
+                    <col width="120">
+                    <col>
+                </colgroup>
+                <tr>
+                    <th>施工部位</th>
+                    <td>部位</td>
+                    <th>方量</th>
+                    <td>12.00</td>
+                </tr>
+                <tr>
+                    <th>强度等级</th>
+                    <td>C10</td>
+                    <th>生产时间</th>
+                    <td>2019-01-28 17:26:00</td>
+                </tr>
+                <tr>
+                    <th>特殊要求</th>
+                    <td>不需要</td>
+                    <th>随车资料</th>
+                    <td>不需要</td>
+                </tr>
+                <tr>
+                    <th>坍落度</th>
+                    <td><=70</td>
+                    <th>发车时隔</th>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>卸料方式</th>
+                    <td>地泵</td>
+                    <th>特种混凝土</th>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>已送方量</th>
+                    <td>0.00</td>
+                    <th>送货单抬头</th>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>备注</th>
+                    <td colspan="3"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="layui-card">
+        <div class="layui-card-header">
+            说明
+        </div>
+        <div class="layui-card-body">
+            <form class="layui-form">
+                <div class="layui-form-item layui-form-text">
+                    <div class="layui-input-block" style="margin-left:0">
+                        <textarea name="desc" placeholder="请输入审核说明" class="layui-textarea"></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index'], function () {
+
+
+    })
+</script>
+</body>
+</html>
