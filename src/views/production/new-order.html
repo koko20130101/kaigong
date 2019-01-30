@@ -21,10 +21,37 @@
             工程
         </div>
         <div class="layui-card-body align-center">
-            <a class="layui-btn layui-btn-normal">选择合同单</a>
-            <a class="layui-btn layui-btn-normal">
+            <a class="layui-btn layui-btn-normal" data-type="contract">选择合同单</a>
+            <a class="layui-btn layui-btn-normal" data-type="cash">
                 选择/新增现金单
             </a>
+        </div>
+    </div>
+    <div class="layui-card">
+        <div class="layui-card-header">
+            工程
+        </div>
+        <div class="layui-card-body">
+            <form class="layui-form" action="" lay-filter="component-form-group">
+                <div class="layui-form-item no-margin">
+                    <div class="layui-inline">
+                        <label class="layui-form-label"><span class="red">*</span>工程名称：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label"><span class="red">*</span>客户名称：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <a class="layui-btn layui-btn-sm layui-btn-normal" data-type="reelect"><i class="layui-icon layui-icon-refresh-1"></i>重选工程
+                        </a>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
     <div class="layui-card grid-demo">
@@ -210,8 +237,9 @@
     }).extend({
         index: 'lib/index' //主入口模块
     }).use(['element', 'index', 'table', 'laydate'], function () {
-        var table = layui.table
-                , element = layui.element
+        var $ = layui.$
+                , table = layui.table
+                , layer = layui.layer
                 , laydate = layui.laydate;
         table.render({
             elem: '#table-height',
@@ -254,11 +282,52 @@
         });
         laydate.render({
             elem: '#Start-date'
-            ,type:'datetime'
+            , type: 'datetime'
         });
         laydate.render({
             elem: '#End-date'
-            ,type:'datetime'
+            , type: 'datetime'
+        });
+
+        var active = {
+            contract: function () {
+                layer.open({
+                    type: 2
+                    , title: '选择工程'
+                    , content: ['../production/layer-contracts.html']
+                    , shadeClose: true
+                    , area: ['95%', '90%']
+                    , maxmin: true
+                    , btn: ['确认', '关闭'] //按钮
+                });
+            },
+            cash: function () {
+                layer.open({
+                    type: 2
+                    , title: '选择工程'
+                    , content: ['../production/layer-contracts.html']
+                    , shadeClose: true
+                    , area: ['95%', '90%']
+                    , maxmin: true
+                    , btn: ['确认', '关闭'] //按钮
+                });
+            },
+            reelect:function () {
+                layer.open({
+                    type: 2
+                    , title: '选择工程'
+                    , content: ['../production/layer-contracts-cash.html']
+                    , shadeClose: true
+                    , area: ['95%', '90%']
+                    , maxmin: true
+                    , btn: ['确认', '关闭'] //按钮
+                });
+            }
+        };
+
+        $('.layui-btn').on('click', function () {
+            var type = $(this).data('type');
+            active[type] && active[type].call(this);
         });
     })
 </script>
