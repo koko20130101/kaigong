@@ -641,6 +641,9 @@ html{background-color: #f2f2f2; color: #666;}
   bottom:0;
   right:0;
 }
+.pb-select-right .layui-col-md12 {
+  padding:10px;
+}
 .pb-select-left .layui-form-label{
   width:60px;
 }
@@ -651,7 +654,6 @@ html{background-color: #f2f2f2; color: #666;}
   padding-left:22px;
 }
 
-
 .pb-select-left .layui-table-view{
   margin:0;
 }
@@ -660,6 +662,7 @@ html{background-color: #f2f2f2; color: #666;}
   padding:6px 0;
   background:#ddd;
 }
+
 
 .pro-line{
   position:absolute;

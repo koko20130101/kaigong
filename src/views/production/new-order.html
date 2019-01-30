@@ -76,7 +76,7 @@
                         <label class="layui-form-label"><span class="red">*</span>生产时间：</label>
                         <div class="layui-input-inline">
                             <input type="text" name="endDate" id="End-date" lay-verify="date"
-                                   placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                                   placeholder="年-月-日  时:分:秒" autocomplete="off" class="layui-input">
                         </div>
                     </div>
 
@@ -92,7 +92,7 @@
                         </div>
                     </div>
                     <div class="layui-inline">
-                        <label for="" class="layui-form-label">发车间隔：</label>
+                        <label class="layui-form-label">发车间隔：</label>
                         <div class="layui-input-inline">
                             <select name="" lay-search="">
                                 <option value="">请选择</option>
@@ -129,7 +129,7 @@
                         </div>
                     </div>
                     <div class="layui-inline">
-                        <label for="" class="layui-form-label">已送方量：</label>
+                        <label class="layui-form-label">已送方量：</label>
                         <div class="layui-input-inline">
                             <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
                         </div>
@@ -254,9 +254,11 @@
         });
         laydate.render({
             elem: '#Start-date'
+            ,type:'datetime'
         });
         laydate.render({
             elem: '#End-date'
+            ,type:'datetime'
         });
     })
 </script>

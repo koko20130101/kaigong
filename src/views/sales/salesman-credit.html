@@ -8,32 +8,28 @@
 </head>
 <body>
 <div class="layui-fluid">
-    <div class="layui-row layui-col-space15">
-        <div class="layui-col layui-col-md12">
-            <div class="layui-card">
-                <div class="layui-card-body">
-                    <form class="layui-form" action="" lay-filter="component-form-group">
-                        <div class="layui-form-item">
-                            <div class="layui-inline">
-                                <!--<label class="layui-form-label">状态</label>-->
-                                <select name="modules"  lay-search="">
-                                    <option value="">选择状态</option>
-                                    <option value="1">正供</option>
-                                    <option value="2">停供</option>
-                                </select>
-                            </div>
-                            <div class="layui-inline">
-                                <input type="text" name="contractNumber" size="28"  placeholder="请输入业务员称进行查询" lay-verify="required" class="layui-input">
-                            </div>
-                            <div class="layui-inline">
-                                <button class="layui-btn" lay-submit><i class="layui-icon layui-icon-search"></i>查询</button>
-                                <button type="reset" class="layui-btn layui-btn-normal"><i class="layui-icon">&#xe608;</i>新增</button>
-                            </div>
-                        </div>
-                    </form>
-                    <table class="layui-hide" id="table-height"></table>
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <form class="layui-form" action="" lay-filter="component-form-group">
+                <div class="layui-form-item">
+                    <div class="layui-inline w100">
+                        <!--<label class="layui-form-label">状态</label>-->
+                        <select name="modules"  lay-search="">
+                            <option value="">选择状态</option>
+                            <option value="1">正供</option>
+                            <option value="2">停供</option>
+                        </select>
+                    </div>
+                    <div class="layui-inline">
+                        <input type="text" name="contractNumber" size="28"  placeholder="请输入业务员称进行查询" lay-verify="required" class="layui-input">
+                    </div>
+                    <div class="layui-inline">
+                        <button class="layui-btn layui-btn-sm" lay-submit><i class="layui-icon layui-icon-search"></i>查询</button>
+                        <button type="reset" class="layui-btn layui-btn-sm layui-btn-normal"><i class="layui-icon">&#xe608;</i>新增</button>
+                    </div>
                 </div>
-            </div>
+            </form>
+            <table class="layui-hide" id="table-height"></table>
         </div>
     </div>
 </div>
