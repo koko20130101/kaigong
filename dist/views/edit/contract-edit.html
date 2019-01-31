@@ -16,29 +16,28 @@
             <div class="layui-card-body">
                 <div class="layui-form-item">
                     <div class="layui-inline">
-                        <label class="layui-form-label"><span>*</span>合同编号：</label>
+                        <label class="layui-form-label"><span class="red">*</span>合同编号：</label>
                         <div class="layui-input-inline">
                             <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input"
                                    value="32323">
                         </div>
                     </div>
                     <div class="layui-inline">
-                        <label class="layui-form-label"><span>*</span>客户：</label>
+                        <label class="layui-form-label"><span class="red">*</span>客户：</label>
                         <div class="layui-input-inline">
                             <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input"
                                    value="33">
                         </div>
                     </div>
                     <div class="layui-inline">
-                        <label class="layui-form-label"><span>*</span>工程名称：</label>
+                        <label class="layui-form-label"><span class="red">*</span>工程名称：</label>
                         <div class="layui-input-inline">
                             <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input"
                                    value="33">
                         </div>
                     </div>
-
                     <div class="layui-inline">
-                        <label class="layui-form-label"><span>*</span>工程地址：</label>
+                        <label class="layui-form-label"><span class="red">*</span>工程地址：</label>
                         <div class="layui-input-inline">
                             <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
                         </div>
@@ -46,9 +45,11 @@
                             <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="edit">标注</a>
                         </div>
                     </div>
-
+                </div>
+                
+                <div class="layui-form-item">
                     <div class="layui-inline">
-                        <label class="layui-form-label"><span>*</span>联系人：</label>
+                        <label class="layui-form-label"><span class="red">*</span>联系人：</label>
                         <div class="layui-input-inline">
                             <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
                         </div>
@@ -141,13 +142,13 @@
                 </div>
                 <div class="layui-form-item">
                     <div class="layui-inline">
-                        <label class="layui-form-label"><span>*</span>下单人：</label>
+                        <label class="layui-form-label"><span class="red">*</span>下单人：</label>
                         <div class="layui-input-inline">
                             <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-inline">
-                        <label class="layui-form-label"><span>*</span>手机号码：</label>
+                        <label class="layui-form-label"><span class="red">*</span>手机号码：</label>
                         <div class="layui-input-inline">
                             <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
                         </div>
@@ -223,12 +224,6 @@
                 </div>
             </div>
         </div>
-        <div class="layui-row my-row">
-            <div class="layui-col-md12">
-                <button class="layui-btn" lay-submit lay-filter="formDemo">保存</button>
-                <button class="layui-btn layui-btn-primary">取消</button>
-            </div>
-        </div>
     </form>
 </div>
 <script src="../../layuiadmin/layui/layui.js"></script>
@@ -237,11 +232,11 @@
         base: '../../layuiadmin/' //静态资源所在路径
     }).extend({
         index: 'lib/index' //主入口模块
-    }).use(['element', 'index', 'table', 'laydate','upload'], function () {
+    }).use(['element', 'index', 'table', 'laydate', 'upload'], function () {
         var table = layui.table
                 , element = layui.element
                 , laydate = layui.laydate
-                ,upload = layui.upload;
+                , upload = layui.upload;
         laydate.render({
             elem: '#Start-date'
         });
@@ -251,11 +246,11 @@
         //执行实例
         var uploadInst = upload.render({
             elem: '#test1' //绑定元素
-            ,url: '/upload/' //上传接口
-            ,done: function(res){
+            , url: '/upload/' //上传接口
+            , done: function (res) {
                 //上传完毕回调
             }
-            ,error: function(){
+            , error: function () {
                 //请求异常回调
             }
         });

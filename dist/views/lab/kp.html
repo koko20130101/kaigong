@@ -26,12 +26,12 @@
                         <div class="select-date">
                             <div class="layui-input-inline">
                                 <input type="text" name="startDate" id="Start-date" lay-verify="date"
-                                       placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                                       placeholder="年-月-日  时:分:秒" autocomplete="off" class="layui-input">
                             </div>
                             <div class="layui-form-mid">-</div>
                             <div class="layui-input-inline">
                                 <input type="text" name="endDate" id="End-date" lay-verify="date"
-                                       placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                                       placeholder="年-月-日  时:分:秒" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                     </div>
@@ -45,10 +45,12 @@
                         </select>
                     </div>
                     <div class="layui-inline">
-                        <input type="text" name="contractNumber" size="30"  placeholder="请输入工程名称、施工部位、强度等级、坍落度进行查询" lay-verify="required" class="layui-input">
+                        <input type="text" name="contractNumber" size="30" placeholder="请输入工程名称、施工部位、强度等级、坍落度进行查询"
+                               lay-verify="required" class="layui-input">
                     </div>
                     <div class="layui-inline">
-                        <button class="layui-btn layui-btn-sm" lay-submit><i class="layui-icon layui-icon-search"></i>查询</button>
+                        <button class="layui-btn layui-btn-sm" lay-submit><i class="layui-icon layui-icon-search"></i>查询
+                        </button>
                         <button type="reset" class="layui-btn layui-btn-sm layui-btn-normal"><i class="layui-icon">&#xe656</i>批量调整
                         </button>
                         <button type="reset" class="layui-btn layui-btn-sm layui-btn-normal"><i class="layui-icon">&#xe656</i>批量换仓
@@ -59,15 +61,16 @@
             <table class="layui-hide" id="table-height" lay-filter="test-table-totalRow"></table>
             <script type="text/html" id="barDemo">
                 {{#  if(d.operation.isMixture){ }}
-                    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="adjust">调整配比</a>
-                        {{# if(d.operation.isLock){ }}
-                            <a class="layui-btn layui-btn-xs" lay-event="unlock"><i class="layui-icon layui-icon-unlink"></i>解锁</a>
-                        {{#  } else { }}
-                            <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="lock"><i class="layui-icon layui-icon-link"></i>锁定</a>
-                        {{#  } }}
-                    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="detail">配比详情</a>
+                <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="adjust">调整配比</a>
+                {{# if(d.operation.isLock){ }}
+                <a class="layui-btn layui-btn-xs" lay-event="unlock"><i class="layui-icon layui-icon-unlink"></i>解锁</a>
                 {{#  } else { }}
-                    <a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="add">配比选择</a>
+                <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="lock"><i
+                        class="layui-icon layui-icon-link"></i>锁定</a>
+                {{#  } }}
+                <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="detail">配比详情</a>
+                {{#  } else { }}
+                <a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="add">配比选择</a>
                 {{#  } }}
                 <a class="layui-btn layui-btn-xs" lay-event="update">上传设置</a>
             </script>
@@ -80,12 +83,12 @@
         base: '../../layuiadmin/' //静态资源所在路径
     }).extend({
         index: 'lib/index' //主入口模块
-    }).use(['element','index', 'table', 'laydate'], function () {
+    }).use(['element', 'index', 'table', 'laydate'], function () {
         var $ = layui.jquery
-                ,table = layui.table
-                ,element = layui.element
-                ,laydate = layui.laydate
-                ,layer=layui.layer;
+                , table = layui.table
+                , element = layui.element
+                , laydate = layui.laydate
+                , layer = layui.layer;
         table.render({
             elem: '#table-height',
             height: 'full-100',
@@ -93,23 +96,23 @@
             totalRow: true,   //开启合并
             cols: [[
                 {field: 'count', title: '', type: 'number', width: 40}
-                ,{field:'order', title: '订单号',minWidth:150,sort: true,totalRowText: '合计'}
-                , {field: 'proTime', title: '生产时间',width:165,sort: true}
-                , {field: 'proRatioNumber', title: '生产配备编号',width:150, sort: true}
-                , {field: 'baseRatioNumber', title: '基准配比编号',width:115,}
-                , {field: 'projectName', title: '工程名称',minWidth:150}
-                , {field: 'projectPart', title: '施工部位',width:88}
-                , {field: 'strong', title: '强度等级',width:88}
-                , {field: 'special', title: '特殊要求',minWidth:150}
-                , {field: 'slumps', title: '坍落度',width:88}
-                , {field: 'unloadType', title: '卸料方式',width:88}
-                , {field: 'cube', title: '方量',align:'center',width:60}
-                , {field: 'proLine', title: '生产线',align:'center',width:80}
-                , {field: 'gaveWagon', title: '已送车数',totalRow:true,align:'center',width:88}
-                , {field: 'gaveCube', title: '已送方量',align:'center',width:88}
+                , {field: 'order', title: '订单号', minWidth: 150, sort: true, totalRowText: '合计'}
+                , {field: 'proTime', title: '生产时间', width: 165, sort: true}
+                , {field: 'proRatioNumber', title: '生产配备编号', width: 150, sort: true}
+                , {field: 'baseRatioNumber', title: '基准配比编号', width: 115,}
+                , {field: 'projectName', title: '工程名称', minWidth: 150}
+                , {field: 'projectPart', title: '施工部位', width: 88}
+                , {field: 'strong', title: '强度等级', width: 88}
+                , {field: 'special', title: '特殊要求', minWidth: 150}
+                , {field: 'slumps', title: '坍落度', width: 88}
+                , {field: 'unloadType', title: '卸料方式', width: 88}
+                , {field: 'cube', title: '方量', align: 'center', width: 60}
+                , {field: 'proLine', title: '生产线', align: 'center', width: 80}
+                , {field: 'gaveWagon', title: '已送车数', totalRow: true, align: 'center', width: 88}
+                , {field: 'gaveCube', title: '已送方量', align: 'center', width: 88}
                 , {field: 'remark', title: '备注'}
-                , {field: 'kpState', title: '开盘状态',align:'center',width:88}
-                , {field: 'operation', title: '操作',minWidth:350,templet: '#barDemo'}
+                , {field: 'kpState', title: '开盘状态', align: 'center', width: 88}
+                , {field: 'operation', title: '操作', minWidth: 350, templet: '#barDemo'}
             ]],
             data: [
                 {
@@ -131,10 +134,10 @@
                     "remark": 0,
                     "kpState": "已审核",
                     "operation": {
-                        isMixture:false,
-                        isLock:false
+                        isMixture: false,
+                        isLock: false
                     }
-                },{
+                }, {
                     "count": 3,
                     "order": "5435434",
                     "proTime": "2019-01-14 15:20:00",
@@ -153,10 +156,10 @@
                     "remark": 0,
                     "kpState": "已审核",
                     "operation": {
-                        isMixture:true,
-                        isLock:true
+                        isMixture: true,
+                        isLock: true
                     }
-                },{
+                }, {
                     "count": 3,
                     "order": "5435434",
                     "proTime": "2019-01-14 15:20:00",
@@ -175,53 +178,55 @@
                     "remark": 0,
                     "kpState": "已审核",
                     "operation": {
-                        isMixture:false,
-                        isLock:false
+                        isMixture: false,
+                        isLock: false
                     }
                 }
             ]
         });
         laydate.render({
             elem: '#Start-date'
+            , type: 'datetime'
         });
         laydate.render({
             elem: '#End-date'
+            , type: 'datetime'
         });
 
-        element.on('tab(docDemoTabBrief)', function(obj){
-            if(obj.index ==3){
+        element.on('tab(docDemoTabBrief)', function (obj) {
+            if (obj.index == 3) {
                 $('.select-date').show();
-            }else{
+            } else {
                 $('.select-date').hide();
             }
         });
-        table.on('row(test-table-totalRow)', function(obj){
+        table.on('row(test-table-totalRow)', function (obj) {
             obj.tr.addClass('current');
             obj.tr.siblings().removeClass('current');
         });
 
         //监听工具条
-        table.on('tool(test-table-totalRow)', function(obj){
-            switch (obj.event){
+        table.on('tool(test-table-totalRow)', function (obj) {
+            switch (obj.event) {
                 case 'add':
                     //弹出配比选择
-                    layer.open({
+                    var index = layer.open({
                         type: 2
-                        ,title:'配比选择'
-                        ,content: ['../lab/kp-pb-select.html']
-                        ,shadeClose: true
-                        ,area: ['95%', '90%']
-                        ,btn: ['确认','取消'] //按钮
-                        ,yes:function (index, layero) {
+                        , title: '配比选择'
+                        , content: ['../lab/kp-pb-select.html']
+                        , shadeClose: true
+                        , area: ['95%', '90%']
+                        , btn: ['确认', '取消'] //按钮
+                        , yes: function (index, layero) {
                             layer.closeAll();
                             layer.open({
                                 type: 2
-                                ,title:'配比选择'
-                                ,content: ['../lab/kp-pb-selected.html']
-                                ,shadeClose: true
-                                ,area: ['100%', '100%']
-                                ,btn: ['确认','重选配比','取消'] //按钮
-                                ,btn2: function(index, layero){
+                                , title: '配比选择'
+                                , content: ['../lab/kp-pb-selected.html']
+                                , shadeClose: true
+                                , area: ['100%', '100%']
+                                , btn: ['确认', '重选配比', '取消'] //按钮
+                                , btn2: function (index, layero) {
                                     //按钮【按钮二】的回调
                                     layer.open({
                                         type: 2
@@ -234,43 +239,43 @@
                                 }
                             })
                         }
-                        ,maxmin: true
+                        , maxmin: true
                     });
                     break;
                 case 'adjust':
                     //弹出调整配比
                     layer.open({
                         type: 2
-                        ,title:'调整配比'
-                        ,content: ['../lab/kp-pb-adjust.html']
-                        ,shadeClose: true
-                        ,area: ['95%', '90%']
-                        ,btn: ['确认','取消'] //按钮
-                        ,maxmin: true
+                        , title: '调整配比'
+                        , content: ['../lab/kp-pb-adjust.html']
+                        , shadeClose: true
+                        , area: ['95%', '90%']
+                        , btn: ['确认', '取消'] //按钮
+                        , maxmin: true
                     });
                     break;
                 case 'detail':
                     //弹出配比详情
                     layer.open({
                         type: 2
-                        ,title:'配比详情'
-                        ,content: ['../lab/kp-pb-adjust.html']
-                        ,shadeClose: true
-                        ,area: ['95%', '90%']
-                        ,btn: ['确认','取消'] //按钮
-                        ,maxmin: true
+                        , title: '配比详情'
+                        , content: ['../lab/kp-pb-adjust.html']
+                        , shadeClose: true
+                        , area: ['95%', '90%']
+                        , btn: ['确认', '取消'] //按钮
+                        , maxmin: true
                     });
                     break;
                 case 'lock':
                     layer.confirm('注：您确定要锁定该工程生产吗？', {
-                        title:'系统提示',
-                        btn: ['确认','取消'] //按钮
+                        title: '系统提示',
+                        btn: ['确认', '取消'] //按钮
                     });
                     break;
                 case 'unlock':
                     layer.confirm('注：您确定要解锁该工程生产吗？', {
-                        title:'系统提示',
-                        btn: ['确认','取消'] //按钮
+                        title: '系统提示',
+                        btn: ['确认', '取消'] //按钮
                     });
                     break;
                 case 'update':

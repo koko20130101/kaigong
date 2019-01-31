@@ -8,23 +8,19 @@
 </head>
 <body>
 <div class="layui-fluid">
-    <div class="layui-row layui-col-space15">
-        <div class="layui-col layui-col-md12">
-            <div class="layui-card">
-                <div class="layui-card-body">
-                    <form class="layui-form" action="" lay-filter="component-form-group">
-                        <div class="layui-form-item">
-                            <div class="layui-inline">
-                                <input type="text" name="contractNumber" size="28"  placeholder="请输入工程名称进行查询" lay-verify="required" class="layui-input">
-                            </div>
-                            <div class="layui-inline">
-                                <button class="layui-btn" lay-submit><i class="layui-icon layui-icon-search"></i>查询</button>
-                            </div>
-                        </div>
-                    </form>
-                    <table class="layui-hide" id="table-height"></table>
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <form class="layui-form" action="" lay-filter="component-form-group">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <input type="text" name="contractNumber" size="28"  placeholder="请输入工程名称进行查询" lay-verify="required" class="layui-input">
+                    </div>
+                    <div class="layui-inline">
+                        <button class="layui-btn layui-btn-sm" lay-submit><i class="layui-icon layui-icon-search"></i>查询</button>
+                    </div>
                 </div>
-            </div>
+            </form>
+            <table class="layui-hide" id="table-height"></table>
         </div>
     </div>
 </div>
@@ -46,12 +42,12 @@
                 {field: 'count', title: '', type: 'number', width: 40, align: 'center'}
                 , {field: 'customerName', title: '客户名称', sort: true}
                 , {field: 'projectName', title: '工程名称', sort: true}
-                , {field: 'address', title: '工程地址', minWidth: 300, sort: true}
-                , {field: 'salesmen', title: '业务员', width: 100, sort: true}
-                , {field: 'contacts', title: '联系人', width: 100, sort: true}
-                , {field: 'tel', title: '联系电话', width: 130}
-                , {field: 'creationTime', title: '创建时间', width: 160, sort: true}
-                , {field: 'operation', title: '操作', toolbar: '#barDemo'}
+                , {field: 'address', title: '工程地址', minWidth: 250, sort: true}
+                , {field: 'salesmen', title: '业务员', width: 88, sort: true}
+                , {field: 'contacts', title: '联系人', width: 88, sort: true}
+                , {field: 'tel', title: '联系电话', width:120}
+                , {field: 'creationTime', title: '创建时间', width: 165, sort: true}
+                , {field: 'operation', title: '操作',minWidth:140, toolbar: '#barDemo'}
             ]],
             data: [
                 {
@@ -93,6 +89,7 @@
                     ,content: ['../edit/cash-edit.html']
                     ,shadeClose: true
                     ,area: ['80%', '80%']
+                    , btn: ['保存', '取消'] //按钮
                     ,maxmin: true
                 });
             }

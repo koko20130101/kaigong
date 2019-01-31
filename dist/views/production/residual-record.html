@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>客户销售统计</title>
+    <title>业务销售统计</title>
     <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
 </head>
@@ -36,12 +36,10 @@
                         </div>
                     </div>
                     <div class="layui-inline">
-                        <input type="text" name="contractNumber" size="28"  placeholder="请输入客户名称进行查询" lay-verify="required" class="layui-input">
+                        <input type="text" name="contractNumber" size="33"  placeholder="请输入送货单号、工程名称进行查询" lay-verify="required" class="layui-input">
                     </div>
                     <div class="layui-inline">
-                        <button class="layui-btn layui-btn-sm" lay-submit><i class="layui-icon layui-icon-search"></i>查询</button>
-                        <button type="reset" class="layui-btn layui-btn-sm layui-btn-normal"><i class="layui-icon layui-icon-download-circle"></i>导出
-                        </button>
+                        <a class="layui-btn layui-btn-sm" lay-submit><i class="layui-icon layui-icon-search"></i>查询</a>
                     </div>
                 </div>
             </form>
@@ -65,37 +63,45 @@
             height: 'full-100',
             page: true,
             cols: [[
-                {field: 'count', title: '', type: 'number', width: 40,rowspan: 2}
-                ,{field:'customerName', title: '客户名称',minWidth:150,sort: true,rowspan: 2}
-                ,{field:'orderCube', title: '订单方量', sort: true,rowspan: 2}
-                , {field: 'saleCube', title: '销售方量',sort: true,rowspan: 2}
-                , {field: 'saleTotal', title: '销售总额', sort: true,rowspan: 2}
-                , {field: 'order', title: '合同单',align:'center',colspan:4}
-                , {field: 'cash', title: '现金单',align:'center', colspan:2}
-                ,{field:'operation', title: '操作',align:'center',rowspan: 2,toolbar: '#barDemo'}
-
+                {field: 'time', title: '时间', width: 150,rowspan: 2}
+                ,{field:'type', title: '类型',width:80,sort: true,rowspan: 2}
+                ,{field:'outInfo', title: '转出信息', align:'center',colspan: 6}
+                , {field: 'enterInfo', title: '转入信息', align:'center',colspan:6}
+                , {field: 'cube', title: '方量',sort: true,width:80, rowspan: 2}
             ],[
-                {field: 'receivable', title: '应收金额', sort: true}
-                , {field: 'acceptedHT', title: '已收金额', sort: true}
-                , {field: 'uncollected', title: '应收未收金额', sort: true}
-                , {field: 'uncollectedTotal', title: '未收总额', sort: true}
-                , {field: 'acceptedXJ', title: '已收金额', sort: true}
-                , {field: 'uncollectedSpare', title: '未收余额', sort: true}
+                {field: 'orderNumber_1', title: '送货单号',width:100,  sort: true}
+                , {field: 'work_1', title: '工程',width:100, sort: true}
+                , {field: 'strong_1', title: '强度等级',width:100,sort: true}
+                , {field: 'special_1', title: '特殊要求',width:100, sort: true}
+                , {field: 'projectPart_1', title: '施工部位',width:100, sort: true}
+                , {field: 'unloadType_1', title: '卸料方式',width:100, sort: true}
+
+                , {field: 'orderNumber_2', title: '送货单号',width:100, sort: true}
+                , {field: 'work_2', title: '工程',width:100,  sort: true}
+                , {field: 'strong_2', title: '强度等级',width:100,sort: true}
+                , {field: 'special_2', title: '特殊要求',width:100,sort: true}
+                , {field: 'projectPart_2', title: '施工部位',width:100,sort: true}
+                , {field: 'unloadType_2', title: '卸料方式',width:100,sort: true}
             ]],
             data: [
                 {
-                    "count": 1,
-                    "customerName": "吴xx",
-                    "orderCube": 120,
-                    "saleCube": 0,
-                    "saleTotal": 0,
-                    "receivable": 0,
-                    "acceptedHT": 0,
-                    "uncollected": 0,
-                    "uncollectedTotal": 0,
-                    "acceptedXJ":0,
-                    "uncollectedSpare": 0,
-                    "operation": 0
+                    "time": "",
+                    "type": "",
+                    "cube": 0,
+                    "outInfo": 0,
+                    "enterInfo": 0,
+                    "orderNumber_1": 120,
+                    "work_1": 0,
+                    "strong_1": 0,
+                    "special_1": 0,
+                    "projectPart_1": 0,
+                    "unloadType_1": 0,
+                    "orderNumber_2": 120,
+                    "work_2": 0,
+                    "strong_2": 0,
+                    "special_2": 0,
+                    "projectPart_2": 0,
+                    "unloadType_2": 0
                 }
             ]
         });

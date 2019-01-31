@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" class="layui-bg-white">
+<head>
+    <meta charset="UTF-8">
+    <title>合同单</title>
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-tab layui-tab-brief no-margin-top" lay-filter="docDemoTabBrief">
+        <ul class="layui-tab-title" id="tabHeader">
+            <li class="layui-this">合同单</li>
+        </ul>
+    </div>
+    <form class="layui-form" action="" lay-filter="component-form-group">
+        <div class="layui-form-item no-margin">
+            <div class="layui-inline">
+                <input type="text" name="contractNumber" size="40"  placeholder="请输入工程名称进行查询" lay-verify="required" class="layui-input">
+            </div>
+            <div class="layui-inline">
+                <button class="layui-btn layui-btn-sm" lay-submit><i class="layui-icon layui-icon-search"></i>查询</button>
+            </div>
+        </div>
+    </form>
+    <table class="layui-hide" id="table-height"></table>
+</div>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['element','index', 'table', 'laydate'], function () {
+        var $ = layui.$
+                ,table = layui.table
+                ,element = layui.element
+                ,laydate = layui.laydate;
+        table.render({
+            elem: '#table-height',
+            height: 'full-100',
+            page: true,
+            cols: [[
+                {field: 'count', title: '', type: 'number', width: 40}
+                ,{field:'contractNumber', title: '合同编号',sort: true}
+                , {field: 'projectName', title: '工程名称', sort: true}
+                , {field: 'adjustmentTime', title: '客户名称'}
+            ]],
+            data: [
+                {
+                    "count": 1,
+                    "contractNumber": "",
+                    "projectName": "",
+                    "adjustmentTime": ""
+                }
+            ]
+        });
+
+        laydate.render({
+            elem: '#Start-date'
+            ,type:'datetime'
+        });
+        laydate.render({
+            elem: '#End-date'
+            ,type:'datetime'
+        });
+    })
+</script>
+</body>
+</html>

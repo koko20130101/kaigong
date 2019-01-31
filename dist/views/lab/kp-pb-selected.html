@@ -7,220 +7,223 @@
     <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
 </head>
 <body>
-<div class="layui-fluid">
-    <div class="layui-row my-inventory">
-        <div class="layui-col-md4 pb-select-left">
-            <form class="layui-form" action="" lay-filter="component-form-group">
-                <div class="layui-form-item">
-                    <label class="layui-form-label">生产线：</label>
-                    <div class="layui-input-block">
-                        <input type="checkbox" name="" title="全部" lay-skin="primary">
-                        <input type="checkbox" name="" title="1线" lay-skin="primary">
-                        <input type="checkbox" name="" title="2线" lay-skin="primary">
-                        <input type="checkbox" name="" title="3线" lay-skin="primary">
-                        <input type="checkbox" name="" title="4线" lay-skin="primary">
-                    </div>
-                </div>
-            </form>
-            <table class="my-table-1">
+<div class="pb-select-left">
+    <form class="layui-form" action="" lay-filter="component-form-group">
+        <div class="layui-form-item">
+            <label class="layui-form-label">生产线：</label>
+            <div class="layui-input-block">
+                <input type="checkbox" name="" title="全部" lay-skin="primary">
+                <input type="checkbox" name="" title="1线" lay-skin="primary">
+                <input type="checkbox" name="" title="2线" lay-skin="primary">
+                <input type="checkbox" name="" title="3线" lay-skin="primary">
+                <input type="checkbox" name="" title="4线" lay-skin="primary">
+            </div>
+        </div>
+    </form>
+    <table class="my-table-1">
+        <colgroup>
+            <col width="70%">
+            <col>
+        </colgroup>
+        <tr>
+            <th style="text-align: center">基准配比</th>
+            <th  style="text-align: center">通用调整</th>
+        </tr>
+    </table>
+    <table class="layui-hide" id="table-height"></table>
+    <div class="weight">
+        容重：3232
+    </div>
+</div>
+<div class="pb-select-right">
+    <div class="layui-row">
+        <div class="layui-col-md12">
+            <table class="my-table-2">
                 <colgroup>
-                    <col width="70%">
+                    <col>
+                    <col>
+                    <col>
+                    <col>
+                    <col>
                     <col>
                 </colgroup>
                 <tr>
-                    <th style="text-align: center">基准配比</th>
-                    <th  style="text-align: center">通用调整</th>
+                    <th>工程名称</th>
+                    <td>蜂蜜柚子茶工程</td>
+                    <th>客户名称</th>
+                    <td colspan="3">晓晓</td>
+                </tr>
+                <tr>
+                    <th>强度等级</th>
+                    <td>C30</td>
+                    <th>坍落度</th>
+                    <td>150±30</td>
+                    <th>卸料方式</th>
+                    <td>地泵</td>
+                </tr>
+                <tr>
+                    <th><span class="red">*</span>生产配比编号</th>
+                    <td><input type="text"></td>
+                    <th>施工部位</th>
+                    <td colspan="3">22层</td>
+                </tr>
+                <tr>
+                    <th>基准配比编号</th>
+                    <td colspan="5">ZQ30</td>
                 </tr>
             </table>
-            <table class="layui-hide" id="table-height"></table>
-            <div class="weight">
-                容重：3232
-            </div>
         </div>
-        <div class="layui-col-md8">
-            <div class="layui-row">
-                <div class="layui-col-md12">
-                    <table class="my-table-2">
-                        <tr>
-                            <th>工程名称</th>
-                            <td>蜂蜜柚子茶工程</td>
-                            <th>客户名称</th>
-                            <td>晓晓</td>
-                            <th></th>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th>强度等级</th>
-                            <td>C30</td>
-                            <th>坍落度</th>
-                            <td>150±30</td>
-                            <th>卸料方式</th>
-                            <td>地泵</td>
-                        </tr>
-                        <tr>
-                            <th>*生产配比编号</th>
-                            <td><input type="text"> 基准配比编号：ZQ30</td>
-                            <th>施工部位</th>
-                            <td>22层</td>
-                            <th></th>
-                            <td></td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="layui-col-md12">
-                    <div class="line-box">
-                        <div class="layui-row" style="width: 2400px;">
-                            <div class="layui-col-md3">
-                                <h2>1线</h2>
-                                <table class="layui-hide" id="Line1"></table>
-                                <table class="my-table-2">
-                                    <colgroup>
-                                        <col width="100">
-                                        <col>
-                                        <col width="100">
-                                        <col>
-                                    </colgroup>
-                                    <tr>
-                                        <th>基准容重</th>
-                                        <td>1488.14</td>
-                                        <th>总容重</th>
-                                        <td>1488.14</td>
-                                        <th>重量变化</th>
-                                        <td>321</td>
-                                    </tr>
-                                    <tr>
-                                        <th>总胶材(kg)</th>
-                                        <td>321</td>
-                                        <th>水胶比</th>
-                                        <td>321</td>
-                                        <th>砂率(%)</th>
-                                        <td>432</td>
-                                    </tr>
-                                    <tr>
-                                        <th>矿粉(%)</th>
-                                        <td>32</td>
-                                        <th>粉煤灰(%)</th>
-                                        <td>332</td>
-                                        <th>外加剂(%)</th>
-                                        <td>321</td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="layui-col-md3">
-                                <h2>2线</h2>
-                                <table class="layui-hide" id="Line2"></table>
-                                <table class="my-table-2">
-                                    <colgroup>
-                                        <col width="100">
-                                        <col>
-                                        <col width="100">
-                                        <col>
-                                    </colgroup>
-                                    <tr>
-                                        <th>基准容重</th>
-                                        <td>1488.14</td>
-                                        <th>总容重</th>
-                                        <td>1488.14</td>
-                                        <th>重量变化</th>
-                                        <td>321</td>
-                                    </tr>
-                                    <tr>
-                                        <th>总胶材(kg)</th>
-                                        <td>321</td>
-                                        <th>水胶比</th>
-                                        <td>321</td>
-                                        <th>砂率(%)</th>
-                                        <td>432</td>
-                                    </tr>
-                                    <tr>
-                                        <th>矿粉(%)</th>
-                                        <td>32</td>
-                                        <th>粉煤灰(%)</th>
-                                        <td>332</td>
-                                        <th>外加剂(%)</th>
-                                        <td>321</td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="layui-col-md3">
-                                <h2>3线</h2>
-                                <table class="layui-hide" id="Line3"></table>
-                                <table class="my-table-2">
-                                    <colgroup>
-                                        <col width="100">
-                                        <col>
-                                        <col width="100">
-                                        <col>
-                                    </colgroup>
-                                    <tr>
-                                        <th>基准容重</th>
-                                        <td>1488.14</td>
-                                        <th>总容重</th>
-                                        <td>1488.14</td>
-                                        <th>重量变化</th>
-                                        <td>321</td>
-                                    </tr>
-                                    <tr>
-                                        <th>总胶材(kg)</th>
-                                        <td>321</td>
-                                        <th>水胶比</th>
-                                        <td>321</td>
-                                        <th>砂率(%)</th>
-                                        <td>432</td>
-                                    </tr>
-                                    <tr>
-                                        <th>矿粉(%)</th>
-                                        <td>32</td>
-                                        <th>粉煤灰(%)</th>
-                                        <td>332</td>
-                                        <th>外加剂(%)</th>
-                                        <td>321</td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="layui-col-md3">
-                                <h2>4线</h2>
-                                <table class="layui-hide" id="Line4"></table>
-                                <table class="my-table-2">
-                                    <colgroup>
-                                        <col width="100">
-                                        <col>
-                                        <col width="100">
-                                        <col>
-                                    </colgroup>
-                                    <tr>
-                                        <th>基准容重</th>
-                                        <td>1488.14</td>
-                                        <th>总容重</th>
-                                        <td>1488.14</td>
-                                        <th>重量变化</th>
-                                        <td>321</td>
-                                    </tr>
-                                    <tr>
-                                        <th>总胶材(kg)</th>
-                                        <td>321</td>
-                                        <th>水胶比</th>
-                                        <td>321</td>
-                                        <th>砂率(%)</th>
-                                        <td>432</td>
-                                    </tr>
-                                    <tr>
-                                        <th>矿粉(%)</th>
-                                        <td>32</td>
-                                        <th>粉煤灰(%)</th>
-                                        <td>332</td>
-                                        <th>外加剂(%)</th>
-                                        <td>321</td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
+        <div class="layui-col-md12">
+            <div class="line-box">
+                <div class="layui-row" style="width: 2400px;">
+                    <div class="layui-col-md3">
+                        <h2>1线</h2>
+                        <table class="layui-hide" id="Line1"></table>
+                        <table class="my-table-2">
+                            <colgroup>
+                                <col width="100">
+                                <col>
+                                <col width="100">
+                                <col>
+                            </colgroup>
+                            <tr>
+                                <th>基准容重</th>
+                                <td>1488.14</td>
+                                <th>总容重</th>
+                                <td>1488.14</td>
+                                <th>重量变化</th>
+                                <td>321</td>
+                            </tr>
+                            <tr>
+                                <th>总胶材(kg)</th>
+                                <td>321</td>
+                                <th>水胶比</th>
+                                <td>321</td>
+                                <th>砂率(%)</th>
+                                <td>432</td>
+                            </tr>
+                            <tr>
+                                <th>矿粉(%)</th>
+                                <td>32</td>
+                                <th>粉煤灰(%)</th>
+                                <td>332</td>
+                                <th>外加剂(%)</th>
+                                <td>321</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="layui-col-md3">
+                        <h2>2线</h2>
+                        <table class="layui-hide" id="Line2"></table>
+                        <table class="my-table-2">
+                            <colgroup>
+                                <col width="100">
+                                <col>
+                                <col width="100">
+                                <col>
+                            </colgroup>
+                            <tr>
+                                <th>基准容重</th>
+                                <td>1488.14</td>
+                                <th>总容重</th>
+                                <td>1488.14</td>
+                                <th>重量变化</th>
+                                <td>321</td>
+                            </tr>
+                            <tr>
+                                <th>总胶材(kg)</th>
+                                <td>321</td>
+                                <th>水胶比</th>
+                                <td>321</td>
+                                <th>砂率(%)</th>
+                                <td>432</td>
+                            </tr>
+                            <tr>
+                                <th>矿粉(%)</th>
+                                <td>32</td>
+                                <th>粉煤灰(%)</th>
+                                <td>332</td>
+                                <th>外加剂(%)</th>
+                                <td>321</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="layui-col-md3">
+                        <h2>3线</h2>
+                        <table class="layui-hide" id="Line3"></table>
+                        <table class="my-table-2">
+                            <colgroup>
+                                <col width="100">
+                                <col>
+                                <col width="100">
+                                <col>
+                            </colgroup>
+                            <tr>
+                                <th>基准容重</th>
+                                <td>1488.14</td>
+                                <th>总容重</th>
+                                <td>1488.14</td>
+                                <th>重量变化</th>
+                                <td>321</td>
+                            </tr>
+                            <tr>
+                                <th>总胶材(kg)</th>
+                                <td>321</td>
+                                <th>水胶比</th>
+                                <td>321</td>
+                                <th>砂率(%)</th>
+                                <td>432</td>
+                            </tr>
+                            <tr>
+                                <th>矿粉(%)</th>
+                                <td>32</td>
+                                <th>粉煤灰(%)</th>
+                                <td>332</td>
+                                <th>外加剂(%)</th>
+                                <td>321</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="layui-col-md3">
+                        <h2>4线</h2>
+                        <table class="layui-hide" id="Line4"></table>
+                        <table class="my-table-2">
+                            <colgroup>
+                                <col width="100">
+                                <col>
+                                <col width="100">
+                                <col>
+                            </colgroup>
+                            <tr>
+                                <th>基准容重</th>
+                                <td>1488.14</td>
+                                <th>总容重</th>
+                                <td>1488.14</td>
+                                <th>重量变化</th>
+                                <td>321</td>
+                            </tr>
+                            <tr>
+                                <th>总胶材(kg)</th>
+                                <td>321</td>
+                                <th>水胶比</th>
+                                <td>321</td>
+                                <th>砂率(%)</th>
+                                <td>432</td>
+                            </tr>
+                            <tr>
+                                <th>矿粉(%)</th>
+                                <td>32</td>
+                                <th>粉煤灰(%)</th>
+                                <td>332</td>
+                                <th>外加剂(%)</th>
+                                <td>321</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
 <script src="../../layuiadmin/layui/layui.js"></script>
 <script>

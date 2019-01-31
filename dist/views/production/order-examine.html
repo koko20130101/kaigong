@@ -8,69 +8,65 @@
 </head>
 <body>
 <div class="layui-fluid">
-    <div class="layui-row layui-col-space15">
-        <div class="layui-col layui-col-md12">
-            <div class="layui-card">
-                <div class="layui-card-body">
-                    <form class="layui-form" action="" lay-filter="component-form-group">
-                        <div class="layui-form-item">
-                            <div class="layui-inline">
-                                <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
-                                    <ul class="layui-tab-title" id="tabHeader">
-                                        <li class="layui-this">昨天</li>
-                                        <li>今天</li>
-                                        <li>本月</li>
-                                        <li>自定义</li>
-                                    </ul>
-                                </div>
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <form class="layui-form" action="" lay-filter="component-form-group">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                            <ul class="layui-tab-title" id="tabHeader">
+                                <li class="layui-this">昨天</li>
+                                <li>今天</li>
+                                <li>本月</li>
+                                <li>自定义</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <div class="select-date">
+                            <div class="layui-input-inline">
+                                <input type="text" name="startDate" id="Start-date" lay-verify="date"
+                                       placeholder="年-月-日  时:分:秒" autocomplete="off" class="layui-input">
                             </div>
-                            <div class="layui-inline">
-                                <div id="tabBody">
-                                    <div class="tab-content-item"></div>
-                                    <div class="tab-content-item"></div>
-                                    <div class="tab-content-item"></div>
-                                    <div class="tab-content-item">
-                                        <div class="layui-input-inline">
-                                            <input type="text" name="startDate" id="Start-date" lay-verify="date"
-                                                   placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
-                                        </div>
-                                        <div class="layui-form-mid">-</div>
-                                        <div class="layui-input-inline">
-                                            <input type="text" name="endDate" id="End-date" lay-verify="date"
-                                                   placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="layui-inline">
-                                <!--<label class="layui-form-label">状态</label>-->
-                                <select name="modules" lay-search="">
-                                    <option value="">选择强度等级</option>
-                                    <option value="C10">C10</option>
-                                    <option value="C15">C15</option>
-                                    <option value="C20">C20</option>
-                                    <option value="C25">C25</option>
-                                </select>
-                            </div>
-                            <div class="layui-inline">
-                                <!--<label class="layui-form-label">状态</label>-->
-                                <select name="modules" lay-search="">
-                                    <option value="">选择坍落度</option>
-                                    <option value="100-120">100-120</option>
-                                    <option value="120-140">120-140</option>
-                                </select>
-                            </div>
-                            <div class="layui-inline">
-                                <input type="text" name="contractNumber" size="28"  placeholder="请输入工程名称、施工部位、强度等级、坍落度进行查询" lay-verify="required" class="layui-input">
-                            </div>
-                            <div class="layui-inline">
-                                <button class="layui-btn" lay-submit><i class="layui-icon layui-icon-search"></i>查询</button>
+                            <div class="layui-form-mid">-</div>
+                            <div class="layui-input-inline">
+                                <input type="text" name="endDate" id="End-date" lay-verify="date"
+                                       placeholder="年-月-日  时:分:秒" autocomplete="off" class="layui-input">
                             </div>
                         </div>
-                    </form>
-                    <table class="layui-hide" id="table-height"></table>
+                    </div>
+                    <div class="layui-inline w130">
+                        <select name="modules" lay-search="">
+                            <option value="">选择强度等级</option>
+                            <option value="C10">C10</option>
+                            <option value="C15">C15</option>
+                            <option value="C20">C20</option>
+                            <option value="C25">C25</option>
+                        </select>
+                    </div>
+                    <div class="layui-inline w120">
+                        <select name="modules" lay-search="">
+                            <option value="">选择坍落度</option>
+                            <option value="100-120">100-120</option>
+                            <option value="120-140">120-140</option>
+                        </select>
+                    </div>
+                    <div class="layui-inline">
+                        <input type="text" name="contractNumber" size="28"  placeholder="请输入工程名称、施工部位、强度等级、坍落度进行查询" lay-verify="required" class="layui-input">
+                    </div>
+                    <div class="layui-inline">
+                        <button class="layui-btn layui-btn-sm" lay-submit><i class="layui-icon layui-icon-search"></i>查询</button>
+                    </div>
                 </div>
-            </div>
+            </form>
+            <table class="layui-hide" id="table-height" lay-filter="orderExamine"></table>
+            <script type="text/html" id="barDemo">
+                <a class="layui-btn layui-btn-xs" lay-event="examine">审核</a>
+                <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="copy">复制</a>
+                <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
+                <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="cancel">取消</a>
+                <a class="layui-btn layui-btn-xs" lay-event="details">详情</a>
+            </script>
         </div>
     </div>
 </div>
@@ -81,15 +77,17 @@
     }).extend({
         index: 'lib/index' //主入口模块
     }).use(['element','index', 'table', 'laydate'], function () {
-        var table = layui.table
+        var $ = layui.$
+                ,table = layui.table
                 ,element = layui.element
                 ,laydate = layui.laydate;
         table.render({
             elem: '#table-height',
             height: 'full-100',
             page: true,
+            totalRow:true,
             cols: [[
-                {field: 'count', title: '', type: 'number', width: 40}
+                {field: 'count', title: '', type: 'number', totalRowText:'合计',width: 60}
                 ,{field:'order', title: '订单号',minWidth:150,sort: true}
                 , {field: 'adjustmentTime', title: '客户名称',width:88}
                 , {field: 'projectName', title: '工程名称', minWidth:150,sort: true}
@@ -99,10 +97,10 @@
                 , {field: 'slumps', title: '坍落度',width:88}
                 , {field: 'unloadType', title: '卸料方式',width:88}
                 , {field: 'salesman', title: '业务员',width:88}
-                , {field: 'planCube', title: '计划方量（m³）',width:110}
-                , {field: 'proTime', title: '生产时间'}
+                , {field: 'planCube', title: '计划方量（m³）',totalRow:true,width:132}
+                , {field: 'proTime', title: '生产时间',width:150}
                 , {field: 'state', title: '状态',width:88}
-                , {field: 'operation', title: '操作',toolbar: '#barDemo'}
+                , {field: 'operation', title: '操作',width:255,fixed: 'right',toolbar: '#barDemo'}
             ]],
             data: [
                 {
@@ -125,21 +123,81 @@
         });
         laydate.render({
             elem: '#Start-date'
+            ,type:'datetime'
         });
         laydate.render({
             elem: '#End-date'
+            ,type:'datetime'
         });
-        element.tab({
-            headerElem: '#tabHeader>li' //指定tab头元素项
-            ,bodyElem: '#tabBody>.tab-content-item' //指定tab主体元素项
+        element.on('tab(docDemoTabBrief)', function (obj) {
+            if (obj.index == 3) {
+                $('.select-date').show();
+            } else {
+                $('.select-date').hide();
+            }
         });
-        element.on('tab(docDemoTabBrief)', function(data){
-            console.log(data)
+
+        //监听工具条
+        table.on('tool(orderExamine)', function (obj) {
+            switch (obj.event) {
+                case 'examine':
+                    //弹出订单审核
+                    var index = layer.open({
+                        type: 2
+                        , title: '订单审核'
+                        , content: ['../production/layer-examine.html']
+                        , shadeClose: true
+                        , area: ['95%', '90%']
+                        , btn: ['通过', '不通过'] //按钮
+                        , yes: function (index, layero) {
+
+                        }
+                        , maxmin: true
+                    });
+                    break;
+                case 'copy':
+                    //复制提示
+                    layer.confirm('注：您确定要【复制】该项数据吗？？', {
+                        title: '系统提示',
+                        btn: ['确认', '取消'] //按钮
+                    });
+                    break;
+                case 'edit':
+                    //订单修改
+                    layer.open({
+                        type: 2
+                        , title: '订单修改'
+                        , content: ['../production/new-order.html']
+                        , shadeClose: true
+                        , area: ['95%', '90%']
+                        , btn: ['提交订单', '取消修改'] //按钮
+                        , maxmin: true
+                    });
+                    break;
+                case 'cancel':
+                    layer.confirm('注：您确定要【取消】该项数据吗？', {
+                        title: '系统提示',
+                        btn: ['确认', '取消'] //按钮
+                    });
+                    break;
+                case 'details':
+                    //弹出订单详情
+                    layer.open({
+                        type: 2
+                        , title: '订单详情'
+                        , content: ['../production/layer-examine.html']
+                        , shadeClose: true
+                        , area: ['95%', '90%']
+                        , maxmin: true
+                    });
+                    break;
+                case 'update':
+                    break;
+                default:
+                    break;
+            }
         });
     })
-</script>
-<script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-xs" lay-event="edit">明细</a>
 </script>
 </body>
 </html>

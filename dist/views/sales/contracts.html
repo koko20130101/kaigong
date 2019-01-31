@@ -8,42 +8,42 @@
 </head>
 <body>
 <div class="layui-fluid">
-    <div class="layui-row layui-col-space15">
-        <div class="layui-col layui-col-md12">
-            <div class="layui-card">
-                <div class="layui-card-body">
-                    <form class="layui-form" action="" lay-filter="component-form-group">
-                        <div class="layui-form-item">
-                            <div class="layui-inline">
-                                <!--<label class="layui-form-label">结算方式</label>-->
-                                <select name="quiz">
-                                    <option value="">选择结算方式</option>
-                                    <option value="固定价">固定价</option>
-                                    <option value="信息价">信息价</option>
-                                </select>
-                            </div>
-                            <div class="layui-inline">
-                                <!--<label class="layui-form-label">状态</label>-->
-                                <select name="modules"  lay-search="">
-                                    <option value="">选择状态</option>
-                                    <option value="1">正供</option>
-                                    <option value="2">停供</option>
-                                    <option value="3">供毕</option>
-                                    <option value="4">未供</option>
-                                </select>
-                            </div>
-                            <div class="layui-inline">
-                                <input type="text" name="contractNumber" size="28"  placeholder="请输入合同编号/工程名称进行查询" lay-verify="required" class="layui-input">
-                            </div>
-                            <div class="layui-inline">
-                                <button class="layui-btn" lay-submit><i class="layui-icon layui-icon-search"></i>查询</button>
-                                <button type="reset" class="layui-btn layui-btn-normal"><i class="layui-icon">&#xe608;</i>新增</button>
-                            </div>
-                        </div>
-                    </form>
-                    <table class="layui-hide" id="table-height"></table>
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <form class="layui-form" action="" lay-filter="component-form-group">
+                <div class="layui-form-item">
+                    <div class="layui-inline w130">
+                        <!--<label class="layui-form-label">结算方式</label>-->
+                        <select name="quiz">
+                            <option value="">选择结算方式</option>
+                            <option value="固定价">固定价</option>
+                            <option value="信息价">信息价</option>
+                        </select>
+                    </div>
+                    <div class="layui-inline w100">
+                        <!--<label class="layui-form-label">状态</label>-->
+                        <select name="modules"  lay-search="">
+                            <option value="">选择状态</option>
+                            <option value="1">正供</option>
+                            <option value="2">停供</option>
+                            <option value="3">供毕</option>
+                            <option value="4">未供</option>
+                        </select>
+                    </div>
+                    <div class="layui-inline">
+                        <input type="text" name="contractNumber" size="28"  placeholder="请输入合同编号/工程名称进行查询" lay-verify="required" class="layui-input">
+                    </div>
+                    <div class="layui-inline">
+                        <button class="layui-btn layui-btn-sm" lay-submit><i class="layui-icon layui-icon-search"></i>查询</button>
+                        <button type="reset" class="layui-btn layui-btn-sm layui-btn-normal"><i class="layui-icon">&#xe608;</i>新增</button>
+                    </div>
                 </div>
-            </div>
+            </form>
+            <table class="layui-hide" id="table-height" lay-filter="OrderTable"></table>
+            <script type="text/html" id="barDemo">
+                <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">正供</a>
+            </script>
         </div>
     </div>
 </div>
@@ -55,7 +55,8 @@
         index: 'lib/index' //主入口模块
     }).use(['index', 'table'],function () {
         var $ = layui.$;
-        var table = layui.table;
+        var table = layui.table
+                ,layer=layui.layer;
         table.render({
             elem: '#table-height',
             height: 'full-100',
@@ -71,7 +72,7 @@
                 , {field: 'tel', title: '联系电话'}
                 , {field: 'payType', title: '结算类型', width: 100, sort: true}
                 , {field: 'creationTime', title: '创建时间', width: 160, sort: true}
-                , {field: 'operation', title: '操作', toolbar: '#barDemo'}
+                , {field: 'operation', title: '操作',minWidth:110, toolbar: '#barDemo'}
             ]],
             data: [
                 {
@@ -102,12 +103,51 @@
                 }
             ]
         });
+        //监听工具条
+        table.on('tool(OrderTable)', function (obj) {
+            switch (obj.event) {
+                case 'edit':
+                    //弹出配比选择
+                    var index = layer.open({
+                        type: 2
+                        , title: '修改合同工程'
+                        , content: ['../edit/contract-edit.html']
+                        , shadeClose: true
+                        , area: ['100%', '100%']
+                        , btn: ['保存', '取消'] //按钮
+                        , yes: function (index, layero) {
+                            layer.closeAll();
+                            layer.open({
+                                type: 2
+                                , title: '配比选择'
+                                , content: ['../lab/kp-pb-selected.html']
+                                , shadeClose: true
+                                , area: ['100%', '100%']
+                                , btn: ['确认', '重选配比', '取消'] //按钮
+                                , btn2: function (index, layero) {
+                                    //按钮【按钮二】的回调
+                                    layer.open({
+                                        type: 2
+                                        , title: '配比选择'
+                                        , content: ['../lab/kp-pb-select.html']
+                                        , shadeClose: true
+                                        , area: ['95%', '90%']
+                                        , btn: ['确认', '取消'] //按钮
+                                    });
+                                }
+                            })
+                        }
+                        , maxmin: true
+                    });
+                    break;
+                case 'state':
+
+                    break;
+                default:
+                    break;
+            }
+        });
     })
-</script>
-<script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-xs" lay-href="edit/contract-edit.html">修改</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">正供</a>
-    <!--<a class="layui-btn layui-btn-xs" lay-event="check">审核</a>-->
 </script>
 </body>
 </html>
