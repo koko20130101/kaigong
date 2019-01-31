@@ -523,12 +523,6 @@ html{background-color: #f2f2f2; color: #666;}
 }
 
 /*2019-01-22*/
-.no-margin{
-  margin:0;
-}
-.no-margin-top{
-  margin-top:0;
-}
 .select-date{
   display: none;
 }
@@ -709,10 +703,223 @@ html{background-color: #f2f2f2; color: #666;}
   right:18px;
   background:#fff;
 }
+
+/*调度中心*/
+.car-center{
+  position: absolute;
+  top:66px;
+  left:0;
+  right:0;
+  bottom:0;
+  background: #FFF;
+}
+.car-center .left{
+  position: absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:168px;
+  border-right:1px solid #ddd;
+  background: #f9f9f9;
+}
+.car-center .right{
+  position: absolute;
+  left:168px;
+  right:0;
+  top:55px;
+  bottom:200px;
+  overflow: auto;
+}
+.car-center .top{
+  position: absolute;
+  left:168px;
+  right:0;
+  top:0;
+  height:55px;
+  box-shadow: 1px 1px 3px #ddd;
+}
+.car-center .bottom{
+  position: absolute;
+  left:168px;
+  right:0;
+  bottom:0;
+  height:200px;
+  border-top:1px solid #ddd;
+  border-left:1px solid #ddd;
+  background: #fff;
+  overflow: auto;
+}
+.car-center .layui-form-radio{
+  margin-right:0;
+}
+.car-center .car-state{
+  position: absolute;
+  right:20px;
+  top:20px;
+  font-size:12px;
+}
+.car-center .layui-badge-dot{
+  width:12px;
+  height:12px;
+  margin:0 4px 0 10px;
+}
+.car-number-list{
+  height: 100%;
+}
+.car-number-list > div{
+  height: 100%;
+}
+.car-number-list > div:first-child{
+  border-right:1px solid #eee;
+}
+.car-number-list .car-number{
+  float: left;
+  width:24px;
+  height:24px;
+  line-height: 24px;
+  text-align: center;
+  border-radius: 50%;
+  margin:10px 0 0 10px ;
+}
+
+.car-line{
+  margin-top:10px;
+  position: relative;
+  overflow: hidden;
+}
+.car-line .start{
+  height:60px;
+  width:60px;
+  float: left;
+  background: url('../images/car.png') center bottom no-repeat;
+}
+.car-line .start h3{
+  font-size:12px;
+  text-align: center;
+}
+.car-line .end{
+  height:60px;
+  width:60px;
+  float: right;
+  background: url('../images/building.png') center bottom no-repeat;
+}
+.car-line .way {
+  height: 2px;
+  background: #e2e2e2;
+  position: absolute;
+  left:60px;
+  right:60px;
+  bottom:2px;
+}
+.car-line .way .cars{
+  position: absolute;
+  text-align: center;
+  left:0;
+  top:-36px;
+  box-shadow: 0 0 2px #bbb;
+  border-radius:19px;
+  border:2px solid #fff;
+}
+
+.car-line .way .cars span{
+  width:28px;
+  height:28px;
+  line-height:28px;
+  border-radius:50%;
+  font-size:12px;
+  display: block;
+  position: relative;
+  z-index:2;
+}
+.car-line .way .car span{
+  width:24px;
+  height:24px;
+  line-height:24px;
+  font-size:14px;
+}
+.car-line .way .car:before {
+  content: '';
+  height: 14px;
+  width: 14px;
+  position: absolute;
+  left: 5px;
+  bottom: -5px;
+  background: #fff;
+  transform: rotate(45deg);
+  box-shadow: 1px 1px  2px #ddd;
+  z-index: 1;
+}
+.car-line .end .car{
+  width:24px;
+  height:24px;
+  line-height: 24px;
+  float: left;
+  text-align: center;
+  border-radius:50%;
+  box-shadow: 1px 1px  2px #bbb;
+  border:2px solid #fff;
+}
+.project-box{
+  padding:30px 10px;
+}
+.project-box .project-item{
+  border:1px solid #ddd;
+  box-shadow: 2px 2px 3px #eee;
+  padding:12px 10px 8px 10px;
+  border-radius:3px;
+  position: relative;
+  background:#fafafa;
+  float: left;
+  margin-bottom:15px;
+  margin-right:15px;
+}
+.project-box .project-item .stop{
+  position: absolute;
+  right:30px;
+  top:-12px;
+  display: none;
+}
+.project-box .project-item .close{
+  position: absolute;
+  right:-10px;
+  top:-12px;
+  display: none;
+}
+.project-box .project-item .layui-icon{
+  margin-right:0;
+}
+.project-box .project-item.mouse-hover{
+  border-color:#01AAED
+}
+.project-box .project-item.mouse-hover .stop,.project-box .project-item.mouse-hover .close{
+  display: block;
+}
+.project-box h2{
+  font-size:14px;
+  margin-bottom:2px;
+}
+.project-box h3{
+  font-size:12px;
+  color:#999;
+}
+.project-box .other{
+  position: absolute;
+  right:10px;
+  top:14px;
+  color:#999;
+  font-size:12px;
+}
+
+
 .align-center{
   text-align: center;
 }
-
+.no-margin{
+  margin:0;
+}
+.no-margin-top{
+  margin-top:0;
+}
 .w100{
   width:100px;
 }
