@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>业务销售统计</title>
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space8">
+        <div class="layui-col-md10">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    当前时间：2019/2/1 上午11:34:25
+                    <div class="car-state" style="top:0;">
+                        <span class="layui-badge-dot layui-bg-blue"></span>运输车次
+                        <span class="layui-badge-dot layui-bg-red"></span>进出证
+                        <span class="layui-badge-dot layui-bg-green"></span>外租车
+                        <span class="layui-badge-dot layui-bg-cyan"></span>车辆容量(m³)
+                    </div>
+                </div>
+                <div class="layui-card-body">
+                    <table class="my-table-1">
+                        <colgroup>
+                            <col width="100">
+                            <col width="100">
+                            <col width="250">
+                            <col>
+                        </colgroup>
+                        <tr>
+                            <th>生产线</th>
+                            <th>装料</th>
+                            <th>准备</th>
+                            <th>排队</th>
+                        </tr>
+                        <tr>
+                            <td align="center">1线</td>
+                            <td align="center">暂停</td>
+                            <td align="center">
+                                暂停
+                            </td>
+                            <td rowspan="4">
+                                <div class="car-sort-list">
+                                    <div class="item">
+                                        <p>1</p>
+                                    </div>
+                                    <div class="item">
+                                        <p>2</p>
+                                    </div>
+                                    <div class="item">
+                                        <p>3</p>
+                                    </div>
+                                    <div class="item">
+                                        <p>4</p>
+                                    </div>
+                                    <div class="item">
+                                        <p>5</p>
+                                    </div>
+                                    <div class="item">
+                                        <p>6</p>
+                                    </div>
+                                    <div class="item">
+                                        <p>7</p>
+                                    </div>
+                                    <div class="item">
+                                        <p>8</p>
+                                    </div>
+                                    <div class="item">
+                                        <p>9</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">2线</td>
+                            <td align="center">暂停</td>
+                            <td align="center">
+                                <div class="car-sort-list">
+                                    <div class="item">
+                                        <span class="layui-badge pos-1">进</span>
+                                        <span class="layui-badge layui-bg-green pos-2">外</span>
+                                        <span class="layui-badge layui-bg-green pos-2">外</span>
+                                        <span class="layui-badge layui-bg-cyan pos-3">15</span>
+                                        <span class="layui-badge layui-bg-blue pos-4">3</span>
+                                        <p>1</p>
+                                    </div>
+                                    <div class="item">
+                                        <span class="layui-badge pos-1">进</span>
+                                        <span class="layui-badge layui-bg-green pos-2">外</span>
+                                        <span class="layui-badge layui-bg-green pos-2">外</span>
+                                        <span class="layui-badge layui-bg-cyan pos-3">15</span>
+                                        <span class="layui-badge layui-bg-blue pos-4">3</span>
+                                        <p>2</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">3线</td>
+                            <td align="center"></td>
+                            <td align="center">
+                                <div class="car-sort-list">
+                                    <div class="item">
+                                        <p>1</p>
+                                    </div>
+                                    <div class="item">
+                                        <p>2</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">4线</td>
+                            <td align="center"></td>
+                            <td align="center">
+                                <div class="car-sort-list">
+                                    <div class="item">
+                                        <span class="layui-badge pos-1">进</span>
+                                        <span class="layui-badge layui-bg-green pos-2">外</span>
+                                        <span class="layui-badge layui-bg-green pos-2">外</span>
+                                        <span class="layui-badge layui-bg-cyan pos-3">15</span>
+                                        <span class="layui-badge layui-bg-blue pos-4">3</span>
+                                        <p>1</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <form action="" class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">滚动信息</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item layui-form-text">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">输入信息</label>
+                                <div class="layui-input-inline w300">
+                                    <textarea name="desc" class="layui-textarea"></textarea>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <a class="layui-btn">刷新显示</a>
+                                <a class="layui-btn layui-btn-normal">更多</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md2">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    生产线控制
+                </div>
+                <div class="layui-card-body pro-line-control">
+                    <form class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label"><span>1线</span></label>
+                            <div class="layui-input-line">
+                                <input type="checkbox" name="zzz" lay-skin="switch" lay-text="开启|暂停" checked>
+                            </div>
+                            <div class="layui-row pro-line-state">
+                                <div class="layui-col-md3 title">装料</div>
+                                <div class="layui-col-md9 num">3232</div>
+                                <div class="layui-col-md3 title">准备</div>
+                                <div class="layui-col-md9 num">3232</div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label"><span>2线</span></label>
+                            <div class="layui-input-line">
+                                <input type="checkbox" name="zzz" lay-skin="switch" lay-text="开启|暂停">
+                            </div>
+                            <div class="layui-row pro-line-state">
+                                <div class="layui-col-md3 title">装料</div>
+                                <div class="layui-col-md9 num">3232</div>
+                                <div class="layui-col-md3 title">准备</div>
+                                <div class="layui-col-md9 num">3232</div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label"><span>3线</span></label>
+                            <div class="layui-input-line">
+                                <input type="checkbox" name="zzz" lay-skin="switch" lay-text="开启|暂停">
+                            </div>
+                            <div class="layui-row pro-line-state">
+                                <div class="layui-col-md3 title">装料</div>
+                                <div class="layui-col-md9 num">3232</div>
+                                <div class="layui-col-md3 title">准备</div>
+                                <div class="layui-col-md9 num">3232</div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label"><span>4线</span></label>
+                            <div class="layui-input-line">
+                                <input type="checkbox" name="zzz" lay-skin="switch" lay-text="开启|暂停">
+                            </div>
+                            <div class="layui-row pro-line-state">
+                                <div class="layui-col-md3 title">装料</div>
+                                <div class="layui-col-md9 num">3232</div>
+                                <div class="layui-col-md3 title">准备</div>
+                                <div class="layui-col-md9 num">3232</div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="layui-btn-container btn-box">
+                        <a class="layui-btn">增加排队车辆</a>
+                        <a class="layui-btn layui-btn-danger">清除排队车辆</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['element', 'index', 'table'], function () {
+        var $ = layui.$
+                , table = layui.table
+                , element = layui.element
+                , laydate = layui.laydate;
+    })
+</script>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">明细</a>
+</script>
+</body>
+</html>
