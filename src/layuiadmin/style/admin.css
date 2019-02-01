@@ -906,6 +906,8 @@ html{background-color: #f2f2f2; color: #666;}
   position: absolute;
   padding:0;
   min-width:18px;
+  border-radius:50%;
+  opacity:.8;
 }
 .car-sort-list .item .pos-1{
   left:0;
