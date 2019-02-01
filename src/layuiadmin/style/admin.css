@@ -663,6 +663,35 @@ html{background-color: #f2f2f2; color: #666;}
   top:6px;
   right:10px;
 }
+.pro-line-control .layui-form-label{
+  width:40px;
+  padding:9px 0;
+  text-align: left;
+}
+.pro-line-control .layui-form-label span{
+  border-left:3px solid #fdbb08;
+  padding-left:6px;
+}
+.pro-line-control .pro-line-state > div{
+  margin-bottom:5px;
+}
+.pro-line-control .pro-line-state .title {
+  color: #999;
+}
+.pro-line-control .pro-line-state .num {
+  background: #eee;
+  padding-left:10px;
+}
+.pro-line-control .layui-form-item{
+  margin-bottom:5px;
+}
+.pro-line-control .btn-box{
+  padding-top:15px;
+  text-align: center;
+}
+.pro-line-control .btn-box .layui-btn{
+  margin-right:0;
+}
 
 .footer-buttons{
   text-align: center;
@@ -752,13 +781,13 @@ html{background-color: #f2f2f2; color: #666;}
 .car-center .layui-form-radio{
   margin-right:0;
 }
-.car-center .car-state{
+.car-state{
   position: absolute;
   right:20px;
   top:20px;
   font-size:12px;
 }
-.car-center .layui-badge-dot{
+.layui-badge-dot{
   width:12px;
   height:12px;
   margin:0 4px 0 10px;
@@ -859,6 +888,42 @@ html{background-color: #f2f2f2; color: #666;}
   box-shadow: 1px 1px  2px #bbb;
   border:2px solid #fff;
 }
+.car-sort-list .item{
+  width:50px;
+  height:50px;
+  float: left;
+  margin-right:10px;
+  position: relative;
+  background:url('../images/center_schedulable.png') center center no-repeat;
+}
+.car-sort-list .item p {
+  text-align: center;
+  line-height: 50px;
+  color:#fff;
+}
+.car-sort-list .item .layui-badge{
+  font-size:12px;
+  position: absolute;
+  padding:0;
+  min-width:18px;
+}
+.car-sort-list .item .pos-1{
+  left:0;
+  top:0;
+}
+.car-sort-list .item .pos-2{
+  right:0;
+  top:0;
+}
+.car-sort-list .item .pos-3{
+  right:0;
+  bottom:0;
+}
+.car-sort-list .item .pos-4{
+  left:0;
+  bottom:0;
+}
+
 .project-box{
   padding:30px 10px;
 }
@@ -952,6 +1017,12 @@ html{background-color: #f2f2f2; color: #666;}
 }
 .w200{
   width:200px;
+}
+.w300{
+  width:300px;
+}
+.w400{
+  width:400px;
 }
 .red {
   color: #FF5722;
