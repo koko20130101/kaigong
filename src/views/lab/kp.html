@@ -60,18 +60,30 @@
             </form>
             <table class="layui-hide" id="table-height" lay-filter="test-table-totalRow"></table>
             <script type="text/html" id="barDemo">
+                {{# if(d.operation.isExamine){ }}
+
                 {{#  if(d.operation.isMixture){ }}
                 <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="adjust">调整配比</a>
+                <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="reset">重选配比</a>
+                <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="detail">配比详情</a>
+
                 {{# if(d.operation.isLock){ }}
                 <a class="layui-btn layui-btn-xs" lay-event="unlock"><i class="layui-icon layui-icon-unlink"></i>解锁</a>
                 {{#  } else { }}
                 <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="lock"><i
                         class="layui-icon layui-icon-link"></i>锁定</a>
                 {{#  } }}
-                <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="detail">配比详情</a>
+
                 {{#  } else { }}
                 <a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="add">配比选择</a>
                 {{#  } }}
+
+
+                {{# }else{ }}
+                    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="examine">审核</a>
+                {{# } }}
+
+
                 <a class="layui-btn layui-btn-xs" lay-event="update">上传设置</a>
             </script>
         </div>
@@ -112,7 +124,7 @@
                 , {field: 'gaveCube', title: '已送方量', align: 'center', width: 88}
                 , {field: 'remark', title: '备注'}
                 , {field: 'kpState', title: '开盘状态', align: 'center', width: 88}
-                , {field: 'operation', title: '操作', minWidth: 350, templet: '#barDemo'}
+                , {field: 'operation', title: '操作', minWidth: 360, templet: '#barDemo'}
             ]],
             data: [
                 {
@@ -135,7 +147,8 @@
                     "kpState": "已审核",
                     "operation": {
                         isMixture: false,
-                        isLock: false
+                        isLock: false,
+                        isExamine: true
                     }
                 }, {
                     "count": 3,
@@ -157,7 +170,8 @@
                     "kpState": "已审核",
                     "operation": {
                         isMixture: true,
-                        isLock: true
+                        isLock: true,
+                        isExamine: true
                     }
                 }, {
                     "count": 3,
@@ -176,10 +190,11 @@
                     "gaveWagon": 2,
                     "gaveCube": 20,
                     "remark": 0,
-                    "kpState": "已审核",
+                    "kpState": "未审核",
                     "operation": {
                         isMixture: false,
-                        isLock: false
+                        isLock: false,
+                        isExamine: false
                     }
                 }
             ]
@@ -242,6 +257,12 @@
                         , maxmin: true
                     });
                     break;
+                case 'reset':
+                    layer.confirm('注：该订单已经开始生产！重选配比可能导致不可逆转生产事故，请与生产部沟通，确保该订单没在打料，请慎用！是否确定重选配比？', {
+                        title: '系统提示',
+                        btn: ['确认', '取消'] //按钮
+                    });
+                    break;
                 case 'adjust':
                     //弹出调整配比
                     layer.open({
@@ -251,6 +272,18 @@
                         , shadeClose: true
                         , area: ['95%', '90%']
                         , btn: ['确认', '取消'] //按钮
+                        , maxmin: true
+                    });
+                    break;
+                case 'examine':
+                    //弹出配比审核
+                    layer.open({
+                        type: 2
+                        , title: '配比审核'
+                        , content: ['../lab/kp-pb-examine.html']
+                        , shadeClose: true
+                        , area: ['95%', '90%']
+                        , btn: ['审核通过', '不通过'] //按钮
                         , maxmin: true
                     });
                     break;

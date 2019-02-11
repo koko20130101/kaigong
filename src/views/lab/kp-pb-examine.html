@@ -32,6 +32,14 @@
                     <td>2</td>
                 </tr>
             </table>
+            <form class="layui-form">
+               <div class="layui-form-item">
+                   <label class="layui-form-label">说明：</label>
+                   <div class="layui-input-block">
+                       <input type="text" name="" placeholder="请输入审核意见" autocomplete="off" class="layui-input">
+                   </div>
+               </div>
+            </form>
         </div>
         <div class="layui-col-md12">
             <div class="line-box">
@@ -168,11 +176,8 @@
     }).extend({
         index: 'lib/index' //主入口模块
     }).use(['element', 'index', 'table'], function () {
-        var $ = layui.jquery
-                , table = layui.table
-                , element = layui.element
-                , laydate = layui.laydate
-                , layer = layui.layer;
+        var $ = layui.$
+                , table = layui.table;
         table.render({
             elem: '#Line1',
             cols: [[
