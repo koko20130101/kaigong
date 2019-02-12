@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增车辆档案</title>
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+<div class="layui-fluid">
+    <form class="layui-form" action="" lay-filter="component-form-group">
+        <div class="layui-card grid-demo">
+            <div class="layui-card-header">
+                基本信息
+            </div>
+            <div class="layui-card-body">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label"><span class="red">*</span>车号：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input"
+                                   value="">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label"><span class="red">*</span>车牌号：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input"
+                                   value="">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label"><span class="red">*</span>IC号：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input"
+                                   value="">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">识别码：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">型号：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">发动机型号：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label"><span class="red">*</span>业务员：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="" autocomplete="off" class="layui-input" value="中山宏达" disabled>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label"><span class="red">*</span>所属车队：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="" autocomplete="off" class="layui-input" value="宏达车队" disabled>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">车辆皮重：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-dw">kg</div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">皮重更新：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="endDate" id="UpdateTime" lay-verify="date" placeholder="年-月-日  时:分:秒"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">登记日期：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="endDate" id="BookInTime" lay-verify="date" placeholder="年-月-日"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">出厂日期：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="endDate" id="DateOfProduction" lay-verify="date" placeholder="年-月-日"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">车辆容量：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-dw">m³</div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">生产厂商：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">外租车辆：</label>
+                        <div class="layui-input-inline">
+                            <input type="checkbox" name="" lay-skin="switch" lay-text="是|否">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">有进出证：</label>
+                        <div class="layui-input-inline">
+                            <input type="checkbox" name="" lay-skin="switch" lay-text="是|否">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">行驶证：</label>
+                    <div class="layui-input-block">
+                        <a class="layui-btn layui-btn-sm layui-btn-normal">
+                            <i class="layui-icon">&#xe67c;</i>上传行驶证图片
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card grid-demo">
+            <div class="layui-card-header">
+                营运信息
+            </div>
+            <div class="layui-card-body">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">投保公司：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="" placeholder="" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">保费：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="" placeholder="" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">投保日期：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="endDate" id="InsureDate" lay-verify="date" placeholder="年-月-日"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">投保到期提醒：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="endDate" id="InsureDateRemind" lay-verify="date" placeholder="年-月-日"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">年检时间：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="endDate" id="YearlyInspectionDate" lay-verify="date" placeholder="年-月-日"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">年检到期提醒：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="endDate" id="YearlyInspectionDateRemind" lay-verify="date" placeholder="年-月-日"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">年审时间：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="endDate" id="AnnualReviewDate" lay-verify="date" placeholder="年-月-日"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">年审到期提醒：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="endDate" id="AnnualReviewDateRemind" lay-verify="date" placeholder="年-月-日"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card grid-demo">
+            <div class="layui-card-header">
+                备注
+            </div>
+            <div class="layui-card-body">
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">备注</label>
+                    <div class="layui-input-block">
+                        <textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['element', 'index', 'table', 'laydate', 'upload'], function () {
+        var table = layui.table
+                , element = layui.element
+                , laydate = layui.laydate
+                , upload = layui.upload;
+        laydate.render({
+            elem: '#UpdateTime',
+            type:'datetime'
+        });
+        laydate.render({
+            elem: '#BookInTime'
+        });
+        laydate.render({
+            elem: '#DateOfProduction'
+        });
+        //投保日期
+        laydate.render({
+            elem: '#InsureDate'
+        });
+        //投保到期日期
+        laydate.render({
+            elem: '#InsureDateRemind'
+        });
+        //年检时间
+        laydate.render({
+            elem: '#YearlyInspectionDate'
+        });
+        //年检到期时间
+        laydate.render({
+            elem: '#YearlyInspectionDateRemind'
+        });
+        //年审时间
+        laydate.render({
+            elem: '#AnnualReviewDate'
+        });
+        //年审到期时间
+        laydate.render({
+            elem: '#AnnualReviewDateRemind'
+        });
+
+        //执行实例
+        var uploadInst = upload.render({
+            elem: '#test1' //绑定元素
+            , url: '/upload/' //上传接口
+            , done: function (res) {
+                //上传完毕回调
+            }
+            , error: function () {
+                //请求异常回调
+            }
+        });
+    })
+</script>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">明细</a>
+</script>
+</body>
+</html>

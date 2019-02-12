@@ -582,6 +582,7 @@ html{background-color: #f2f2f2; color: #666;}
 }
 .my-table-2 .table-title{
   position: relative;
+  text-align: left;
 }
 .my-table-2 .table-title span{
   position: absolute;
@@ -590,10 +591,10 @@ html{background-color: #f2f2f2; color: #666;}
   color:#999;
 }
 .layui-form-label{
-  width:90px;
+  width:100px;
 }
 .layui-input-block{
-  margin-left:120px;
+  margin-left:130px;
 }
 .line-box{
   position: absolute;
@@ -731,6 +732,11 @@ html{background-color: #f2f2f2; color: #666;}
   top:8px;
   right:18px;
   background:#fff;
+}
+
+/*库存监控*/
+.my-inventory .my-table-2{
+  width:98%
 }
 
 /*调度中心*/
