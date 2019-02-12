@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>角色设置</title>
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <form class="layui-form" action="" lay-filter="component-form-group">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <input type="text" name="contractNumber" size="28"  placeholder="请输入角色名称查询" lay-verify="required" class="layui-input">
+                    </div>
+                    <div class="layui-inline">
+                        <a class="layui-btn layui-btn-sm layui-btn-normal" lay-submit><i class="layui-icon layui-icon-search"></i>查询</a>
+                        <a class="layui-btn layui-btn-sm" data-type="add"><i class="layui-icon">&#xe608;</i>新增</a>
+                    </div>
+                </div>
+            </form>
+            <table class="layui-hidden" id="treeTable" lay-filter="treeTable"></table>
+            <script type="text/html" id="barDemo">
+                <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
+                <a class="layui-btn layui-btn-xs" lay-event="setBtn">按钮管理</a>
+                <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+            </script>
+        </div>
+    </div>
+</div>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'table', 'treeGrid'], function () {
+        var $ = layui.$;
+        var table = layui.table
+                , layer = layui.layer
+                , treeGrid = layui.treeGrid;
+        //树表格
+        treeGrid.render({
+            id: 'treeTable'
+            , elem: '#treeTable'
+            //,url:'./json/treeData.json'
+            , cellMinWidth: 100
+            , idField: 'id'//必須字段
+            , treeId: 'id'//树形id字段名称
+            , treeUpId: 'pId'//树形父id字段名称
+            , treeShowName: 'name'//以树形式显示的字段
+            , heightRemove: [".dHead", 10]//不计算的高度,表格设定的是固定高度，此项不生效
+            , height: '100%'
+            , isFilter: false
+            , iconOpen: true//是否显示图标【默认显示】
+            , isOpenDefault: true//节点默认是展开还是折叠【默认展开】
+            , loading: true
+            , method: 'get'
+            , limit: 100    //每页条数
+            , isPage: false
+            , cols: [[
+                {type:'numbers'}
+                ,{field: 'name', title: '名称'}
+                ,{field:'link',title:'链接'}
+                ,{field:'explain',title:'介绍'}
+                ,{title:'操作',align:'center',toolbar: '#barDemo'}
+            ]]
+            , data: [
+                {"id": "1", "pId": null, "name": "企业设置",link:'/',explain:'无'},
+                {"id": "2", "pId": null, "name": "销售中心"},
+                {"id": "3", "pId": null, "name": "车队管理"},
+                {"id": "4", "pId": null, "name": "材料管理"},
+                {"id": "5", "pId": null, "name": "实验室管理"},
+                {"id": "6", "pId": null, "name": "生产中心"},
+                {"id": "7", "pId": null, "name": "风控管理"},
+                {"id": "8", "pId": null, "name": "报表中心"},
+                {"id": "9", "pId": null, "name": "管理看板"},
+                {"id": "10", "pId": null, "name": "辅料管理"},
+
+                {"id": "101", "pId": "1", "name": "用户管理",link:'/EnterpriseSetting/User/UserIndex'},
+                {"id": "10101", "pId": "101", "name": "新增"},
+                {"id": "10102", "pId": "101", "name": "修改"},
+                {"id": "10103", "pId": "101", "name": "删除"},
+                {"id": "10104", "pId": "101", "name": "修改密码"},
+                {"id": "10105", "pId": "101", "name": "查看"},
+
+                {"id": "102", "pId": "1", "name": "角色设置"},
+                {"id": "103", "pId": "1", "name": "系统菜单"},
+                {"id": "104", "pId": "1", "name": "组织架构"},
+                {"id": "105", "pId": "1", "name": "基础参数设置"},
+                {"id": "106", "pId": "1", "name": "业务员管理"},
+
+                {"id": "107", "pId": "1", "name": "地磅设置"},
+                {"id": "10701", "pId": "107", "name": "新增"},
+                {"id": "10702", "pId": "107", "name": "修改"},
+                {"id": "10703", "pId": "107", "name": "打印"},
+                {"id": "10704", "pId": "107", "name": "手动"},
+                {"id": "10705", "pId": "107", "name": "时间"},
+
+                {"id": "108", "pId": "1", "name": "商砼端账号管理"},
+                {"id": "109", "pId": "1", "name": "公众号账号管理"},
+                {"id": "110", "pId": "1", "name": "司机端账号管理"},
+                {"id": "111", "pId": "1", "name": "站点人数配置"},
+                {"id": "201", "pId": "2", "name": "客户信息管理"},
+                {"id": "202", "pId": "2", "name": "合同单管理"}
+
+            ]
+            , parseData: function (res) {//数据加载后回调
+                return res;
+            }
+            , onClickRow: function (index, o) {
+                console.log(index, o, "单击！");
+            }
+            , onDblClickRow: function (index, o) {
+                console.log(index, o, "双击");
+            }
+            , onCheck: function (obj, checked, isAll) {//复选事件
+                console.log(obj, checked, isAll);
+            }
+            , onRadio: function (obj) {//单选事件
+                console.log(obj);
+            }
+        });
+
+        //监听工具条
+        treeGrid.on('tool(treeTable)', function (obj) {
+            switch (obj.event) {
+                case 'edit':
+                    //弹出调整配比
+                    layer.open({
+                        type: 2
+                        , title: '修改菜单'
+                        , content: ['']
+                        , shadeClose: true
+                        , area: ['95%', '90%']
+                        , maxmin: true
+                        , btn: ['确认','关闭'] //按钮
+                    });
+                    break;
+                case 'setBtn':
+                    //弹出调整配比
+                    layer.open({
+                        type: 2
+                        , title: '系统按钮'
+                        , content: ['']
+                        , shadeClose: true
+                        , area: ['95%', '90%']
+                        , maxmin: true
+                    });
+
+                    break;
+                case 'del':
+                    layer.confirm('注：您确定要删除该项数据吗？', {
+                        title: '系统提示',
+                        btn: ['确认', '取消'] //按钮
+                    });
+                    break;
+                default:
+                    break;
+            }
+        });
+
+        //按钮事件
+        var active = {
+            add: function(){
+                layer.open({
+                    type: 2
+                    ,title:'新增菜单'
+                    ,content: ['']
+                    ,shadeClose: true
+                    ,area: ['90%', '90%']
+                    ,maxmin: true
+                    ,btn: ['确认','关闭'] //按钮
+                });
+            }
+        };
+
+        $('.layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] && active[type].call(this);
+        });
+
+    })
+</script>
+</body>
+</html>
