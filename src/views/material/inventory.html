@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>仓位期未盘点</title>
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <form class="layui-form" action="" lay-filter="component-form-group">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <input type="text" name="contractNumber" size="28"  placeholder="请输入盘点单号进行查询" lay-verify="required" class="layui-input">
+                    </div>
+                    <div class="layui-inline">
+                        <a class="layui-btn layui-btn-sm layui-btn-normal" lay-submit><i class="layui-icon layui-icon-search"></i>查询</a>
+                        <a class="layui-btn layui-btn-sm" data-type="add"><i class="layui-icon">&#xe608;</i>新增</a>
+                    </div>
+                </div>
+            </form>
+            <table class="layui-hide" id="table-height" lay-filter="PDTable"></table>
+        </div>
+    </div>
+    <div class="layui-card">
+        <div class="layui-card-header">
+            盘点详情
+        </div>
+        <div class="layui-card-body">
+            <table class="layui-hide" id="DetailsTalbe" lay-filter="DetailsTalbe"></table>
+        </div>
+    </div>
+</div>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base:'../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'table'],function () {
+        var $ = layui.$;
+        var table = layui.table
+                ,layer=layui.layer;
+        table.render({
+            elem: '#table-height',
+            //height: 'full-100',
+            page: true,
+            cols: [[
+                {field: 'count', title: '', type: 'number', width: 40, align: 'center'}
+                , {field: 'orderNumber', title: '盘点单号', sort: true}
+                , {field: 'inventoryTime', title: '盘点时间', sort: true}
+                , {field: 'master', title: '盘点人'}
+                , {field: 'remarks', title: '备注', sort: true}
+            ]],
+            data: [
+                {
+                    "count": 1,
+                    "orderNumber": "007",
+                    "inventoryTime": "13888888888",
+                    "master": "王勇",
+                    "remarks": ""
+                },
+                {
+                    "count": 1,
+                    "orderNumber": "007",
+                    "inventoryTime": "13888888888",
+                    "master": "王勇",
+                    "remarks": ""
+                },
+                {
+                    "count": 1,
+                    "orderNumber": "007",
+                    "inventoryTime": "13888888888",
+                    "master": "王勇",
+                    "remarks": ""
+                }
+            ]
+        });
+
+        table.render({
+            elem: '#DetailsTalbe',
+            //height: 'full-100',
+            cols: [[
+                { type: 'numbers'}
+                , {field: 'warehouseNumber', title: '仓位编号', sort: true}
+                , {field: 'warehouseName', title: '仓位名称', sort: true}
+                , {field: 'proLine', title: '生产线'}
+                , {field: 'stock', title: '库存数量', sort: true}
+                , {field: 'inventory', title: '盘点数量', sort: true}
+                , {field: 'isSurplus', title: '盘盈盘亏', sort: true}
+            ]],
+            data: [
+                {
+                    "warehouseNumber": "007",
+                    "warehouseName": "B7",
+                    "proLine": "2线",
+                    "stock": 13332,
+                    "inventory": 3882,
+                    "isSurplus": ""
+                },
+                {
+                    "warehouseNumber": "007",
+                    "warehouseName": "B7",
+                    "proLine": "2线",
+                    "stock": 13332,
+                    "inventory": 3882,
+                    "isSurplus": ""
+                }
+            ]
+        });
+
+        //按钮事件
+        var active = {
+            add: function(){
+                layer.open({
+                    type: 2
+                    ,title:'新增盘点'
+                    ,content: ['../material/layer-inventory-add.html']
+                    ,shadeClose: true
+                    ,area: ['100%', '100%']
+                    ,maxmin: true
+                });
+            }
+        };
+
+        $('.layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] && active[type].call(this);
+        });
+
+        table.on('row(PDTable)', function (obj) {
+            obj.tr.addClass('current').siblings().removeClass('current');
+        });
+    })
+</script>
+</body>
+</html>

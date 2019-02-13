@@ -2301,8 +2301,9 @@ layui.config({
         bodytr.unbind('click').on('click',function (e) {
             var index=$(this).attr("data-index");
             var list=table.getDataList(that.config.id);
+            var tr = bodytr[index]
             var o=list[index];
-            typeof options.onClickRow === 'function' && options.onClickRow(index,o);
+            typeof options.onClickRow === 'function' && options.onClickRow(index,o,$(this));
         });
         //行双击事件
         bodytr.unbind('dblclick').on('dblclick',function (e) {

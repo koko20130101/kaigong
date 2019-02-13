@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增盘点</title>
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space8">
+
+        <div class="layui-col-md4">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <form class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label"><span class="red">*</span>盘点单号:</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="" placeholder="" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label"><span class="red">*</span>盘点时间:</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="endDate" id="InventoryTime" lay-verify="date"
+                                       placeholder="年-月-日  时:分:秒" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">备注:</label>
+                            <div class="layui-input-block">
+                                <textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md8">
+            <div class="layui-card">
+                <div class="layui-card-header">盘点明细</div>
+                <div class="layui-card-body">
+                    <table class="layui-hide" id="table-height"></table>
+                    <div class="align-center padding">
+                        <a href="javascript:;" class="layui-btn" data-type="save">保存</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'table','laydate'], function () {
+        var $ = layui.$
+                ,table = layui.table
+                ,laydate = layui.laydate
+                ,layer=layui.layer;
+        table.render({
+            elem: '#table-height',
+            //height: 'full-100',
+            page: true,
+            cols: [[
+                { type: 'numbers'}
+                , {field: 'warehouseNumber', title: '仓位编号', sort: true}
+                , {field: 'warehouseName', title: '仓位名称', sort: true}
+                , {field: 'proLine', title: '生产线'}
+                , {field: 'stock', title: '库存数量', sort: true}
+                , {field: 'inventory', title: '盘点数量', sort: true}
+                , {field: 'isSurplus', title: '盘盈盘亏', sort: true}
+            ]],
+            data: [
+                {
+                    "warehouseNumber": "007",
+                    "warehouseName": "B7",
+                    "proLine": "2线",
+                    "stock": 13332,
+                    "inventory": 3882,
+                    "isSurplus": ""
+                },
+                {
+                    "warehouseNumber": "007",
+                    "warehouseName": "B7",
+                    "proLine": "2线",
+                    "stock": 13332,
+                    "inventory": 3882,
+                    "isSurplus": ""
+                }
+            ]
+        });
+
+        laydate.render({
+            elem: '#InventoryTime'
+            , type: 'datetime'
+        });
+
+        var active = {
+            save: function(){
+
+            }
+        };
+
+        $('.layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] && active[type].call(this);
+        });
+    })
+</script>
+</body>
+</html>

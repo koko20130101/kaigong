@@ -993,6 +993,9 @@ html{background-color: #f2f2f2; color: #666;}
 .no-margin-top{
   margin-top:0;
 }
+.padding{
+  padding:10px;
+}
 .w100{
   width:100px;
 }
