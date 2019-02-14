@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>车辆调度计划</title>
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <form class="layui-form" action="" lay-filter="component-form-group">
+                <div class="layui-form-item">
+                    <div class="layui-inline w100">
+                        <input type="text" name="endDate" id="Start-date" lay-verify="date"
+                               placeholder="年-月-日" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-inline">
+                        <div class="layui-input-inline">
+                            <a class="layui-btn layui-btn-sm layui-btn-normal" lay-submit><i
+                                    class="layui-icon layui-icon-search"></i>查询</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <table class="layui-hide" id="table-height" lay-filter="FleetTable"></table>
+            <script type="text/html" id="barDemo">
+                <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="edit">修改</a>
+            </script>
+        </div>
+    </div>
+    <div class="layui-card">
+        <div class="layui-card-header">
+            计划图表
+        </div>
+        <div class="layui-card-body">
+
+            <div class="layui-carousel layadmin-carousel layadmin-dataview" data-anim="fade" lay-filter="LAY-index-normline">
+                <div carousel-item id="LAY-index-normline">
+                    <div><i class="layui-icon layui-icon-loading1 layadmin-loading"></i></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'admin','table', 'laydate', 'element','carousel','echarts'], function () {
+        var $ = layui.$;
+        var table = layui.table
+                , admin = layui.admin
+                , element = layui.element
+                , layer = layui.layer
+                , laydate = layui.laydate
+                , carousel = layui.carousel
+                , device = layui.device()
+                , echarts = layui.echarts;
+
+        table.render({
+            elem: '#table-height',
+            page: true,
+            cols: [[
+                {field: 'count', title: '', type: 'number', width: 40, align: 'center'}
+                , {field: 'kpTime', title: '开盘时间', width: 100, sort: true}
+                , {field: 'projectName', title: '工程名称', width: 100, sort: true}
+                , {field: 'address', title: '工程地址', minWidth: 200}
+                , {field: 'unloadType', title: '卸料方式', width: 100, sort: true}
+                , {field: 'cube', title: '方量', width: 80, sort: true}
+                , {field: 'startTime', title: '发车时间', width: 100, sort: true}
+                , {field: 'startEndTime', title: '往返时间', width: 100, sort: true}
+                , {field: 'unloadTime', title: '卸料时间', width: 100, sort: true}
+                , {field: 'needNumber', title: '车辆需求', width: 100, sort: true}
+                , {field: 'operation', title: '操作', minWidth: 65, align: 'center', fixed: 'right', toolbar: '#barDemo'}
+            ]],
+            data: [
+                {
+                    "count": 1,
+                    "kpTime": "11:00",
+                    "projectName": "恒大花园",
+                    "address": "广州市天河区领汇创展商业中心",
+                    "unloadType": "泵送",
+                    "cube": 120,
+                    "startTime": 39,
+                    "startEndTime": 39,
+                    "unloadTime": 38,
+                    "needNumber": 3,
+                    "operation": null
+                },
+                {
+                    "count": 2,
+                    "kpTime": "11:00",
+                    "projectName": "恒大花园",
+                    "address": "广州市天河区领汇创展商业中心",
+                    "unloadType": "泵送",
+                    "cube": 120,
+                    "startTime": 39,
+                    "startEndTime": 39,
+                    "unloadTime": 38,
+                    "needNumber": 3,
+                    "operation": null
+                }
+            ]
+        });
+
+        laydate.render({
+            elem: '#Start-date'
+        });
+
+        //按钮事件
+        var active = {
+            add: function () {
+                layer.open({
+                    type: 2
+                    , title: '新增车辆档案'
+                    , content: ['../fleets/layer-new-truck.html']
+                    , shadeClose: true
+                    , area: ['95%', '90%']
+                    , maxmin: true
+                    , btn: ['确定', '关闭'] //按钮
+                });
+            },
+            reset: function () {
+                layer.open({
+                    type: 2
+                    , title: '修改基准配比'
+                    , content: ['../lab/ratio-library-base-edit.html']
+                    , shadeClose: true
+                    , area: ['100%', '100%']
+                    , maxmin: true
+                    , btn: ['保存', '取消'] //按钮
+                });
+            }
+        };
+
+        $('.layui-btn').on('click', function () {
+            var type = $(this).data('type');
+            active[type] && active[type].call(this);
+        });
+
+        //监听工具条
+        table.on('tool(FleetTable)', function (obj) {
+            switch (obj.event) {
+                case 'add':
+                    //弹出配比选择
+                    active[obj.event] && active[obj.event].call(this);
+                    break;
+                case 'state':
+
+                    break;
+                default:
+                    break;
+            }
+        });
+
+        //轮播切换
+        $('.layadmin-carousel').each(function(){
+            var othis = $(this);
+            carousel.render({
+                elem: this
+                ,width: '100%'
+                ,arrow: 'none'
+                ,interval: othis.data('interval')
+                ,autoplay: othis.data('autoplay') === true
+                ,trigger: (device.ios || device.android) ? 'click' : 'hover'
+                ,anim: othis.data('anim')
+            });
+        });
+
+        element.render('progress');
+
+
+        //标准折线图
+        var echnormline = [], normline = [
+            {
+                title: {
+                    text: '车辆需求(辆)',
+                    x: 'left',
+                    textStyle: {
+                        fontSize: 14
+                    }
+                },
+                tooltip : {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data:['实际','需求']
+                },
+                xAxis : [{
+                    type : 'category',
+                    boundaryGap : false,
+                    data: ['00:00','01:00','02:00','03:00','04:00','05:00','06:00','07:00','8:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00','22:00','23:00']
+                }],
+                yAxis : [{
+                    type : 'value'
+                }],
+                series : [{
+                    name:'实际',
+                    type:'line',
+                    smooth:true,
+                    itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    data: [1,2,1,0,0,2,5,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                },{
+                    name:'需求',
+                    type:'line',
+                    smooth:true,
+                    itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    data: [1,6,1,0,0,2,2,3,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,5]
+                }]
+            }
+        ]
+                ,elemnormline = $('#LAY-index-normline').children('div')
+                ,rendernormline = function(index){
+            echnormline[index] = echarts.init(elemnormline[index], layui.echartsTheme);
+            echnormline[index].setOption(normline[index]);
+            window.onresize = echnormline[index].resize;
+        };
+        if(!elemnormline[0]) return;
+        rendernormline(0);
+    })
+</script>
+</body>
+</html>

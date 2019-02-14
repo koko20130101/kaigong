@@ -86,9 +86,9 @@ layui.define(function(exports){
           data: [11,22,33,44,55,66,333,3333,5555,12666,3333,333,666,1188,2666,3888,6666,4222,3999,2888,1777,966,655,555,333,222,311,699,588,277,166,99,88,77]
         }]
       },
-      
+
       //访客浏览器分布
-      { 
+      {
         title : {
           text: '访客浏览器分布',
           x: 'center',
@@ -119,7 +119,7 @@ layui.define(function(exports){
           ]
         }]
       },
-      
+
       //新增的用户量
       {
         title: {
@@ -163,20 +163,20 @@ layui.define(function(exports){
     
     
     renderDataView(0);
-    
+
     //监听数据概览轮播
     var carouselIndex = 0;
     carousel.on('change(LAY-index-dataview)', function(obj){
       renderDataView(carouselIndex = obj.index);
     });
-    
+
     //监听侧边伸缩
     layui.admin.on('side', function(){
       setTimeout(function(){
         renderDataView(carouselIndex);
       }, 300);
     });
-    
+
     //监听路由
     layui.admin.on('hash(tab)', function(){
       layui.router().path.join('') || renderDataView(carouselIndex);
