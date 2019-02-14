@@ -51,7 +51,17 @@
                 , {field: 'master', title: '负责人', sort: true}
                 , {field: 'tel', title: '联系电话'}
                 , {field: 'isRented', title: '是否外租车队', sort: true}
-                , {field: 'state', title: '状态', width: 160, sort: true}
+                , {field: 'state', title: '状态', width: 160, sort: true,
+                    templet:function (d) {
+                        var input = null
+                        if(d.state){
+                            input = '<input type="checkbox" name="aaa" lay-skin="switch" disabled checked>'
+                        }else{
+                            input = '<input type="checkbox" name="aaa" lay-skin="switch" disabled>'
+                        }
+                        return input;
+                    }
+                }
                 , {field: 'operation', title: '操作',minWidth:110, toolbar: '#barDemo'}
             ]],
             data: [
