@@ -554,6 +554,12 @@ html{background-color: #f2f2f2; color: #666;}
 .my-table-1 td{
   background:#fff;
 }
+.my-table-1 .no-border{
+  border:0;
+}
+.my-table-1 .border-top{
+  border-top:1px solid #e6e6e6;
+}
 
 .my-table-2{
   width:100%;
@@ -984,8 +990,56 @@ html{background-color: #f2f2f2; color: #666;}
 }
 
 
+/*风控管理*/
+.account-statement h2 {
+  padding: 15px 0;
+  text-align: center;
+  font-size:18px;
+}
+.account-statement .top-info{
+  padding:10px;
+}
+.account-statement .my-table-1 th,.account-statement .my-table-1 td{
+  text-align: center;
+  white-space:nowrap;
+  padding:4px;
+}
+
+/*我的数据表格*/
+/*.my-data-table .layui-table-box,.my-data-table .layui-table-body {
+   overflow: auto;
+}
+.my-data-table .layui-table-view .layui-table td:last-child .layui-table-cell{
+  overflow: unset;
+}
+.my-data-table .table-inner-select{
+  width:60px;
+  display: inline-block;
+}
+.my-data-table .table-inner-select .layui-input{
+  height:24px;
+  font-size:12px;
+  padding-right:10px;
+}
+.table-inner-select .layui-form-select dl{
+  top:24px;
+}
+.table-inner-select .layui-form-selectup dl{
+  bottom:24px;
+  top:auto;
+}*/
+
+.buttons-box{
+  text-align: center;
+  padding:20px 0;
+}
+
+
 .align-center{
   text-align: center;
+}
+.align-right{
+  text-align: right;
 }
 .no-margin{
   margin:0;
@@ -995,6 +1049,9 @@ html{background-color: #f2f2f2; color: #666;}
 }
 .padding{
   padding:10px;
+}
+.padding-top{
+  padding-top:10px;
 }
 .w100{
   width:100px;

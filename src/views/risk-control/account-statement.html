@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>仓位信息设置</title>
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <form class="layui-form" action="" lay-filter="component-form-group">
+                <div class="layui-form-item">
+                    <div class="layui-inline w100">
+                        <input type="text" name="endDate" id="Start-date" lay-verify="date"
+                               placeholder="年-月-日" autocomplete="off" value="2019-02-14" class="layui-input">
+                    </div>
+                    <div class="layui-inline w100">
+                        <select name="quiz">
+                            <option value="all">全部状态</option>
+                            <option value="启用">未确认</option>
+                            <option value="禁用">已确认</option>
+                        </select>
+                    </div>
+                    <div class="layui-inline">
+                        <input type="text" name="contractNumber" size="25" placeholder="输入客户名称、业务员查询！"
+                               lay-verify="required"
+                               class="layui-input">
+                    </div>
+                    <div class="layui-inline">
+                        <a class="layui-btn layui-btn-sm layui-btn-normal" data-type="search"><i
+                                class="layui-icon layui-icon-search"></i>查询</a>
+                    </div>
+                </div>
+            </form>
+            <table class="layui-hide" id="table-height" lay-filter="FleetTable"></table>
+            <script type="text/html" id="barDemo">
+                <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="adjust">内部调账</a>
+                <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="detail">对账清单</a>
+                <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="accounting">内部核算</a>
+            </script>
+        </div>
+    </div>
+</div>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'table', 'laydate'], function () {
+        var $ = layui.$;
+        var table = layui.table
+                , laydate = layui.laydate
+                , layer = layui.layer;
+        table.render({
+            elem: '#table-height',
+            height: 'full-100',
+            page: true,
+            cols: [[
+                {type: 'numbers'}
+                , {field: 'month', title: '月份', width: 100, sort: true}
+                , {field: 'customerName', title: '客户名称', sort: true}
+                , {field: 'projectName', title: '工程名称', sort: true}
+                , {field: 'salesmen', title: '业务员', width: 100, sort: true}
+                , {field: 'salesAmount', title: '销售金额', sort: true}
+                , {field: 'priceAdjustment', title: '是否调价', width: 120, sort: true}
+                , {field: 'state', title: '状态', sort: true}
+                , {field: 'operation', title: '操作', fixed: 'right', minWidth: 225, toolbar: '#barDemo'}
+            ]],
+            data: [
+                {
+                    "month": "2019-02",
+                    "customerName": "恒大集团",
+                    "projectName": "恒大花园",
+                    "salesmen": "小孔",
+                    "salesAmount": "15300",
+                    "priceAdjustment": "否",
+                    "state": "确认"
+                }, {
+                    "month": "2019-02",
+                    "customerName": "恒大集团",
+                    "projectName": "恒大花园",
+                    "salesmen": "小孔",
+                    "salesAmount": "15300",
+                    "priceAdjustment": "否",
+                    "state": "确认"
+                }
+            ]
+        });
+
+        laydate.render({
+            elem: '#Start-date'
+        });
+
+        //按钮事件
+        var active = {
+            search: function () {
+                console.log('查询操作')
+            }
+        };
+
+        $('.layui-btn').on('click', function () {
+            var type = $(this).data('type');
+            active[type] && active[type].call(this);
+        });
+
+        //监听工具条
+        table.on('tool(FleetTable)', function (obj) {
+            switch (obj.event) {
+                case 'adjust':
+                    //弹出新增仓位
+                    layer.open({
+                        type: 2
+                        , title: '编辑扣款'
+                        , content: ['../risk-control/layer-edit-deduct.html']
+                        , shadeClose: true
+                        , area: ['95%', '90%']
+                        , btn: ['确认', '关闭'] //按钮
+                        , maxmin: true
+                    });
+                    break;
+                case 'detail':
+                    //弹出新增仓位
+                    layer.open({
+                        type: 2
+                        , title: '对账单管理明细'
+                        , content: ['../risk-control/layer-account-statement-details.html']
+                        , shadeClose: true
+                        , area: ['100%', '100%']
+                        , maxmin: true
+                    });
+                    break;
+                case 'accounting':
+                    layer.open({
+                        type: 2
+                        , title: '对账单管理明细'
+                        , content: ['../risk-control/layer-account-statement-details.html']
+                        , shadeClose: true
+                        , area: ['100%', '100%']
+                        , maxmin: true
+                    });
+                    break;
+                default:
+                    break;
+            }
+        });
+    })
+</script>
+</body>
+</html>

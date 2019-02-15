@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" class="layui-bg-white">
+<head>
+    <meta charset="UTF-8">
+    <title>对账单管理明细</title>
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+<div class="layui-fluid account-statement">
+    <h2>销售结算清单</h2>
+    <div class="layui-row top-info">
+        <div class="layui-col-md7">供方：中山宏达</div>
+        <div class="layui-col-md5">结算日期：2019-02-15 至 2019-03-14</div>
+        <div class="layui-col-md7">需方：恒大集团</div>
+        <div class="layui-col-md5">制表人：test</div>
+    </div>
+    <table class="my-table-1">
+        <tr>
+            <th>供砼时间</th>
+            <th>施工单位</th>
+            <th>工程名称</th>
+            <th>部位</th>
+            <th>级别</th>
+            <th>特殊要求</th>
+            <th>卸料方式</th>
+            <th>业务员</th>
+            <th>坍落度</th>
+            <th>销售量(m³)</th>
+            <th>单价(元/m³)</th>
+            <th>补运费(元)</th>
+            <th>泵送费(元)</th>
+            <th>超时费(元)</th>
+            <th>超公里费(元)</th>
+            <th>结鼓费(元)</th>
+            <th>降级费(元)</th>
+            <th>其他费用(元)</th>
+            <th>销售金额(元)</th>
+            <th>车数(张)</th>
+            <th>编号</th>
+            <th>备注</th>
+        </tr>
+        <tr>
+            <td>2019-02-13</td>
+            <td>恒大集团</td>
+            <td>恒大花园</td>
+            <td>桥面	</td>
+            <td>C45</td>
+            <td>150±30</td>
+            <td>钢纤维</td>
+            <td>泵送</td>
+            <td>小孔</td>
+            <td>8.00</td>
+            <td>600.00</td>
+            <td>0.00</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>合计</td>
+            <td colspan="5">/</td>
+            <td>25.00</td>
+            <td colspan="8">/</td>
+            <td>15300.00</td>
+            <td></td>
+            <td></td>
+            <td colspan="4"></td>
+        </tr>
+        <tr>
+            <th>扣款项</th>
+            <th colspan="21"></th>
+        </tr>
+        <tr>
+            <td colspan="9">吃饭</td>
+            <td colspan="8">200.00</td>
+            <td>元</td>
+            <td colspan="4"></td>
+        </tr>
+        <tr>
+            <td colspan="9">合计</td>
+            <td colspan="8">200.00</td>
+            <td>元</td>
+            <td colspan="4"></td>
+        </tr>
+        <tr>
+            <th>付款明细</th>
+            <th colspan="21"></th>
+        </tr>
+        <tr>
+            <td colspan="9">付款小计</td>
+            <td colspan="8">0.00</td>
+            <td></td>
+            <td colspan="4"></td>
+        </tr>
+        <tr>
+            <td colspan="22" class="no-border">&nbsp;</td>
+        </tr>
+        <tr class="border-top">
+            <td colspan="9" >截止至2019-02-15未付款</td>
+            <td colspan="8">-10000.00</td>
+            <td>元</td>
+            <td colspan="4"></td>
+        </tr>
+        <tr>
+            <td colspan="9">截止至2019-03-14未付款</td>
+            <td colspan="8">-10200.00</td>
+            <td>元</td>
+            <td colspan="4"></td>
+        </tr>
+    </table>
+    <div class="buttons-box">
+        <a class="layui-btn layui-btn-sm">打印</a>
+        <a class="layui-btn layui-btn-sm layui-btn-normal"><i
+                class="layui-icon layui-icon-download-circle"></i>导出</a>
+    </div>
+</div>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'table'], function () {
+        var $ = layui.$;
+
+        //按钮事件
+        var active = {
+            search: function () {
+                console.log('查询操作')
+            }
+        };
+
+        $('.layui-btn').on('click', function () {
+            var type = $(this).data('type');
+            active[type] && active[type].call(this);
+        });
+    })
+</script>
+</body>
+</html>
