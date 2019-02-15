@@ -22,7 +22,7 @@
                     </div>
                     <div class="layui-inline w100">
                         <!--<label class="layui-form-label">状态</label>-->
-                        <select name="modules"  lay-search="">
+                        <select name="modules" lay-search="">
                             <option value="">选择状态</option>
                             <option value="1">正供</option>
                             <option value="2">停供</option>
@@ -31,32 +31,43 @@
                         </select>
                     </div>
                     <div class="layui-inline">
-                        <input type="text" name="contractNumber" size="28"  placeholder="请输入合同编号/工程名称进行查询" lay-verify="required" class="layui-input">
+                        <input type="text" name="contractNumber" size="28" placeholder="请输入合同编号/工程名称进行查询"
+                               lay-verify="required" class="layui-input">
                     </div>
                     <div class="layui-inline">
-                        <button class="layui-btn layui-btn-sm" lay-submit><i class="layui-icon layui-icon-search"></i>查询</button>
-                        <button type="reset" class="layui-btn layui-btn-sm layui-btn-normal"><i class="layui-icon">&#xe608;</i>新增</button>
+                        <button class="layui-btn layui-btn-sm" lay-submit><i class="layui-icon layui-icon-search"></i>查询
+                        </button>
+                        <button type="reset" class="layui-btn layui-btn-sm layui-btn-normal"><i class="layui-icon">
+                            &#xe608;</i>新增
+                        </button>
                     </div>
                 </div>
             </form>
-            <table class="layui-hide" id="table-height" lay-filter="OrderTable"></table>
-            <script type="text/html" id="barDemo">
-                <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
-                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">正供</a>
-            </script>
+            <div class="my-data-table">
+                <table class="layui-hide" id="table-height" lay-filter="OrderTable"></table>
+                <script type="text/html" id="barDemo">
+                    <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
+                    <a class="layui-btn layui-btn-xs" lay-event="edit">正供<i class="layui-icon layui-icon-down"></i></a>
+                    <div class="my-select">
+                        <a value="all">正供</a>
+                        <a value="启用">停供</a>
+                        <a value="禁用">供毕</a>
+                    </div>
+                </script>
+            </div>
         </div>
     </div>
 </div>
 <script src="../../layuiadmin/layui/layui.js"></script>
 <script>
     layui.config({
-        base:'../../layuiadmin/' //静态资源所在路径
+        base: '../../layuiadmin/' //静态资源所在路径
     }).extend({
         index: 'lib/index' //主入口模块
-    }).use(['index', 'table'],function () {
+    }).use(['index', 'table'], function () {
         var $ = layui.$;
         var table = layui.table
-                ,layer=layui.layer;
+                , layer = layui.layer;
         table.render({
             elem: '#table-height',
             height: 'full-100',
@@ -72,7 +83,7 @@
                 , {field: 'tel', title: '联系电话'}
                 , {field: 'payType', title: '结算类型', width: 100, sort: true}
                 , {field: 'creationTime', title: '创建时间', width: 160, sort: true}
-                , {field: 'operation', title: '操作',minWidth:110, toolbar: '#barDemo'}
+                , {field: 'operation', title: '操作', minWidth: 140, toolbar: '#barDemo'}
             ]],
             data: [
                 {

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" class="layui-bg-white">
+<head>
+    <meta charset="UTF-8">
+    <title>对账单管理明细</title>
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="padding-top align-right">
+        <a class="layui-btn layui-btn-sm layui-btn-normal"><i class="layui-icon layui-icon-add-1"></i>新增扣款项</a>
+    </div>
+    <table class="layui-hide" id="table-height" lay-filter="FleetTable"></table>
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+    </script>
+
+</div>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'table'], function () {
+        var $ = layui.$
+                ,table = layui.table;
+
+
+        table.render({
+            elem: '#table-height',
+            cols: [[
+                {field: 'count', title: '', type: 'numbers'}
+                , {field: 'details', title: '扣款明细'}
+                , {field: 'money', title: '扣款金额',}
+                , {field: 'operation', title: '操作',width:100,templet: '#barDemo'}
+            ]],
+            data: [
+                {
+                    "details": "吃饭",
+                    "money": "200.00",
+                    "operation": null
+                }
+            ]
+        });
+
+    })
+</script>
+</body>
+</html>

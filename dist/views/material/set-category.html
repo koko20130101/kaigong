@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>材料二级种类设置</title>
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space8">
+        <div class="layui-col-md4">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <table class="layui-hidden" id="treeTable" lay-filter="treeTable"></table>
+                    <script type="text/html" id="barDemo">
+                        {{# if(d.id.length == 1){ }}
+                            <a class="layui-btn layui-btn-xs" lay-event="add">添加</a>
+                        {{# }else{ }}
+                            <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+                        {{# } }}
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md8">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    材料详情
+                </div>
+                <div class="layui-card-body">
+                    <table class="layui-hidden" id="MaterialTable" lay-filter="MaterialTable"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'table', 'treeGrid'], function () {
+        var $ = layui.$;
+        var table = layui.table
+                , layer = layui.layer
+                , treeGrid = layui.treeGrid;
+        table.render({
+            elem: '#MaterialTable',
+            //height: 'full-100',
+            cols: [[
+                { type: 'numbers'}
+                , {field: 'materialOrder', title: '材料编号', sort: true}
+                , {field: 'materialName', title: '材料名称', sort: true}
+            ]],
+            data: [
+                {
+                    "materialOrder": "S001",
+                    "materialName": "中砂",
+                },
+                {
+                    "materialOrder": "S001",
+                    "materialName": "中砂",
+                }
+            ]
+        });
+
+        //树表格
+        treeGrid.render({
+            id: 'treeTable'
+            , elem: '#treeTable'
+            //,url:'./json/treeData.json'
+            , cellMinWidth: 100
+            , idField: 'id'//必須字段
+            , treeId: 'id'//树形id字段名称
+            , treeUpId: 'pId'//树形父id字段名称
+            , treeShowName: 'name'//以树形式显示的字段
+            , heightRemove: [".dHead", 10]//不计算的高度,表格设定的是固定高度，此项不生效
+            , height: '100%'
+            , isFilter: false
+            , iconOpen: true//是否显示图标【默认显示】
+            , isOpenDefault: true//节点默认是展开还是折叠【默认展开】
+            , loading: true
+            , method: 'get'
+            , limit: 100    //每页条数
+            , isPage: false
+            , cols: [[
+                {field: 'name', title: '材料种类',edit:'text'}
+                ,{title:'操作',align:'center',width:140,toolbar: '#barDemo'}
+            ]]
+            , data: [
+                {"id": "1", "pId": null, "name": "砂子"},
+                {"id": "2", "pId": null, "name": "石子"},
+                {"id": "3", "pId": null, "name": "矿粉"},
+                {"id": "4", "pId": null, "name": "水泥"},
+                {"id": "5", "pId": null, "name": "粉煤灰"},
+                {"id": "6", "pId": null, "name": "膨胀剂"},
+                {"id": "7", "pId": null, "name": "外加剂"},
+                {"id": "8", "pId": null, "name": "水"},
+                {"id": "9", "pId": null, "name": "其他"},
+
+                {"id": "10", "pId": "1", "name": "砂子"},
+                {"id": "21", "pId": "2", "name": "1-3石子"},
+                {"id": "22", "pId": "2", "name": "瓜米石"},
+                {"id": "23", "pId": "2", "name": "1-2石子"},
+
+
+            ]
+            , parseData: function (res) {//数据加载后回调
+                return res;
+            }
+            , onClickRow: function (index, o,tr) {
+                console.log(index, o, "单击！");
+                tr.addClass('current').siblings().removeClass('current');
+            }
+            , onDblClickRow: function (index, o) {
+                console.log(index, o, "双击");
+            }
+            , onCheck: function (obj, checked, isAll) {//复选事件
+                console.log(obj, checked, isAll);
+            }
+            , onRadio: function (obj) {//单选事件
+                console.log(obj);
+            }
+        });
+
+        treeGrid.on('tool(treeTable)', function (obj) {
+            if(obj.event === 'add'){  //添加行
+                add(obj);
+            }else if(obj.event === 'del'){  //删除行
+                del(obj);
+            }
+        });
+
+        //删除操作
+        function del(obj){
+            layer.confirm('注：您确定要删除该项数据吗？',{
+                icon:3,
+                title:'系统提示'},
+                function(index){  //确定回调
+                    obj.del();
+                    layer.close(index);
+                },function(index){  //取消回调
+                    layer.close(index)
+                }
+            )
+        }
+
+        //添加操作
+        function add(pObj) {
+            var pData = pObj ? pObj.data : null;
+            var param = {};
+            param.pId = pData ? pData.id : null;
+            param.id = param.pId + pData.children.length;
+            treeGrid.addRow('treeTable', pData ? pData[treeGrid.config.indexName] + 1 : 0, param);
+        }
+
+    })
+</script>
+</body>
+</html>

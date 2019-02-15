@@ -32,6 +32,14 @@
                     <td>2</td>
                 </tr>
             </table>
+            <form class="layui-form">
+               <div class="layui-form-item">
+                   <label class="layui-form-label">说明：</label>
+                   <div class="layui-input-block">
+                       <input type="text" name="" placeholder="请输入审核意见" autocomplete="off" class="layui-input">
+                   </div>
+               </div>
+            </form>
         </div>
         <div class="layui-col-md12">
             <div class="line-box">
@@ -168,11 +176,8 @@
     }).extend({
         index: 'lib/index' //主入口模块
     }).use(['element', 'index', 'table'], function () {
-        var $ = layui.jquery
-                , table = layui.table
-                , element = layui.element
-                , laydate = layui.laydate
-                , layer = layui.layer;
+        var $ = layui.$
+                , table = layui.table;
         table.render({
             elem: '#Line1',
             cols: [[
@@ -181,7 +186,7 @@
                 , {field: 'locationName', title: '仓位名称', align: 'center'}
                 , {field: 'materialType', title: '材料种类', align: 'center', sort: true}
                 , {field: 'materialName', title: '材料名称', align: 'center', sort: true}
-                , {field: 'ratioNumber', title: '配比值(kg)', align: 'center',edit:true,sort: true}
+                , {field: 'ratioNumber', title: '配比值(kg)', align: 'center',sort: true}
             ]],
             data: [
                 {
@@ -216,7 +221,7 @@
                 , {field: 'locationName', title: '仓位名称', align: 'center'}
                 , {field: 'materialType', title: '材料种类', align: 'center', sort: true}
                 , {field: 'materialName', title: '材料名称', align: 'center', sort: true}
-                , {field: 'ratioNumber', title: '配比值(kg)', align: 'center',edit:true,sort: true}
+                , {field: 'ratioNumber', title: '配比值(kg)', align: 'center',sort: true}
             ]],
             data: [
                 {
@@ -251,7 +256,7 @@
                 , {field: 'locationName', title: '仓位名称', align: 'center'}
                 , {field: 'materialType', title: '材料种类', align: 'center', sort: true}
                 , {field: 'materialName', title: '材料名称', align: 'center', sort: true}
-                , {field: 'ratioNumber', title: '配比值(kg)', align: 'center',edit:true,sort: true}
+                , {field: 'ratioNumber', title: '配比值(kg)', align: 'center',sort: true}
             ]],
             data: [
                 {
@@ -286,7 +291,7 @@
                 , {field: 'locationName', title: '仓位名称', align: 'center'}
                 , {field: 'materialType', title: '材料种类', align: 'center', sort: true}
                 , {field: 'materialName', title: '材料名称', align: 'center', sort: true}
-                , {field: 'ratioNumber', title: '配比值(kg)', align: 'center',edit:true,sort: true}
+                , {field: 'ratioNumber', title: '配比值(kg)', align: 'center',sort: true}
             ]],
             data: [
                 {

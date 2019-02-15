@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>车队档案管理</title>
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <form class="layui-form" action="" lay-filter="component-form-group">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <input type="text" name="contractNumber" size="28"  placeholder="请输入车队名称查询" lay-verify="required" class="layui-input">
+                    </div>
+                    <div class="layui-inline">
+                        <a class="layui-btn layui-btn-sm layui-btn-normal" lay-submit><i class="layui-icon layui-icon-search"></i>查询</a>
+                        <a class="layui-btn layui-btn-sm" data-type="add"><i class="layui-icon">&#xe608;</i>新增</a>
+                        <a class="layui-btn layui-btn-sm layui-btn-normal">车辆标签设置</a>
+                        <a class="layui-btn layui-btn-sm layui-btn-normal"><i class="layui-icon layui-icon-download-circle"></i>导出</a>
+                    </div>
+                </div>
+            </form>
+            <table class="layui-hide" id="table-height" lay-filter="FleetTable"></table>
+            <script type="text/html" id="barDemo">
+                <a class="layui-btn layui-btn-xs" lay-event="add">新增车辆</a>
+                <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="edit">修改</a>
+            </script>
+        </div>
+    </div>
+</div>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base:'../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'table'],function () {
+        var $ = layui.$;
+        var table = layui.table
+                ,layer=layui.layer;
+        table.render({
+            elem: '#table-height',
+            height: 'full-100',
+            page: true,
+            cols: [[
+                {field: 'count', title: '', type: 'number', width: 40, align: 'center'}
+                , {field: 'fleetName', title: '车队名称', sort: true}
+                , {field: 'master', title: '负责人', sort: true}
+                , {field: 'tel', title: '联系电话'}
+                , {field: 'isRented', title: '是否外租车队', sort: true}
+                , {field: 'state', title: '状态', width: 160, sort: true,
+                    templet:function (d) {
+                        var input = null
+                        if(d.state){
+                            input = '<input type="checkbox" name="aaa" lay-skin="switch" disabled checked>'
+                        }else{
+                            input = '<input type="checkbox" name="aaa" lay-skin="switch" disabled>'
+                        }
+                        return input;
+                    }
+                }
+                , {field: 'operation', title: '操作',minWidth:110, toolbar: '#barDemo'}
+            ]],
+            data: [
+                {
+                    "count": 1,
+                    "fleetName": "007",
+                    "master": "王勇",
+                    "tel": "13888888888",
+                    "isRented": "是",
+                    "state": true,
+                    "operation": ""
+                },
+                {
+                    "count": 1,
+                    "fleetName": "007",
+                    "master": "王勇",
+                    "tel": "13888888888",
+                    "isRented": "否",
+                    "state": false,
+                    "operation": ""
+                }
+            ]
+        });
+
+        //按钮事件
+        var active = {
+            add: function(){
+                layer.open({
+                    type: 2
+                    ,title:'新增车辆档案'
+                    ,content: ['../fleets/layer-new-truck.html']
+                    ,shadeClose: true
+                    ,area: ['95%', '90%']
+                    ,maxmin: true
+                    ,btn: ['确定','关闭'] //按钮
+                });
+            },
+            reset: function(){
+                layer.open({
+                    type: 2
+                    ,title:'修改基准配比'
+                    ,content: ['../lab/ratio-library-base-edit.html']
+                    ,shadeClose: true
+                    ,area: ['100%', '100%']
+                    ,maxmin: true
+                    ,btn: ['保存','取消'] //按钮
+                });
+            }
+        };
+
+        $('.layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] && active[type].call(this);
+        });
+
+        //监听工具条
+        table.on('tool(FleetTable)', function (obj) {
+            switch (obj.event) {
+                case 'add':
+                    //弹出配比选择
+                    active[obj.event] && active[obj.event].call(this);
+                    break;
+                case 'state':
+
+                    break;
+                default:
+                    break;
+            }
+        });
+    })
+</script>
+</body>
+</html>
