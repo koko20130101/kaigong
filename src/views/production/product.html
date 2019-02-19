@@ -112,8 +112,9 @@
             ,parseData:function (res) {//数据加载后回调
                 return res;
             }
-            ,onClickRow:function (index, o) {
+            ,onClickRow:function (index, o,tr) {
                 console.log(index,o,"单击！");
+                tr.addClass('current').siblings().removeClass('current');
             }
             ,onDblClickRow:function (index, o) {
                 console.log(index,o,"双击");
@@ -126,23 +127,11 @@
             }
         });
 
-        treeGrid.on('tool('+tableId+')',function (obj) {
-            if(obj.event === 'del'){//删除行
-                del(obj);
-            }else if(obj.event==="add"){//添加行
-                add(obj);
-            }
-        });
-
         laydate.render({
             elem: '#Start-date'
         });
         laydate.render({
             elem: '#End-date'
-        });
-        element.tab({
-            headerElem: '#tabHeader>li' //指定tab头元素项
-            , bodyElem: '#tabBody>.tab-content-item' //指定tab主体元素项
         });
     })
 </script>
