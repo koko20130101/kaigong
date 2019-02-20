@@ -24,48 +24,26 @@
         </div>
     </div>
 </div>
-<div class="car-center">
-    <div class="left">
+<div class="car-center" id="LAY_app">
+    <div class="left hide-left">
         <div class="layui-row car-number-list">
-            <div class="layui-col-md6">
-                <div class="car-number layui-bg-gray">
-                    1
-                </div>
-                <div class="car-number layui-bg-gray">
-                    2
-                </div>
-                <div class="car-number layui-bg-gray">
-                    3
-                </div>
-                <div class="car-number layui-bg-gray">
-                    4
-                </div>
-                <div class="car-number layui-bg-gray">
-                    5
-                </div>
-                <div class="car-number layui-bg-gray">
-                    6
-                </div>
+            <div class="car-number layui-bg-red">
+                1
             </div>
-            <div class="layui-col-md6">
-                <div class="car-number layui-bg-red">
-                    1
-                </div>
-                <div class="car-number layui-bg-red">
-                    2
-                </div>
-                <div class="car-number layui-bg-red">
-                    3
-                </div>
-                <div class="car-number layui-bg-red">
-                    4
-                </div>
-                <div class="car-number layui-bg-red">
-                    5
-                </div>
-                <div class="car-number layui-bg-red">
-                    6
-                </div>
+            <div class="car-number layui-bg-red">
+                2
+            </div>
+            <div class="car-number layui-bg-red">
+                3
+            </div>
+            <div class="car-number layui-bg-red">
+                4
+            </div>
+            <div class="car-number layui-bg-red">
+                5
+            </div>
+            <div class="car-number layui-bg-red">
+                6
             </div>
         </div>
     </div>
@@ -73,7 +51,7 @@
         <div class="layui-fluid">
             <form class="layui-form" action="" lay-filter="component-form-group">
                 <div class="layui-form-item no-margin">
-                    <div class="layui-inline">
+                    <!--<div class="layui-inline">
                         <div class="layui-input-block no-margin">
                             <input type="radio" name="col" title="一列" value="1">
                             <input type="radio" name="col" title="二列" value="2" checked>
@@ -81,6 +59,20 @@
                             <input type="radio" name="col" title="四列" value="4">
                             <input type="radio" name="col" title="五列" value="5">
                         </div>
+                    </div>-->
+                    <div class="layui-inline align-center w60">
+                        <a href="javascript:;" class="" layadmin-event="leftFlexible" title="侧边伸缩">
+                            <i class="layui-icon layui-icon-shrink-right" id="LAY_app_flexible"></i>
+                        </a>
+                    </div>
+                    <div class="layui-inline w80">
+                        <select name="" lay-search="">
+                            <option value="1">一列</option>
+                            <option value="2">二列</option>
+                            <option value="3">三列</option>
+                            <option value="4">四列</option>
+                            <option value="4">五列</option>
+                        </select>
                     </div>
                     <div class="layui-inline w100">
                         <select name="" lay-search="">
@@ -90,7 +82,7 @@
                             <option value="C20">客户等级</option>
                         </select>
                     </div>
-                    <div class="layui-inline w100">
+                    <div class="layui-inline w90">
                         <select name="" lay-search="">
                             <option value="">类型</option>
                             <option value="C10">混凝土</option>
@@ -142,6 +134,7 @@
                     </div>
                     <div class="way">
                         <div class="cars car" style="left:1%;"><span class="layui-bg-red">12</span></div>
+                        <div class="cars" style="left:20%"><span class="layui-bg-black">12辆</span></div>
                         <div class="cars car" style="left:80%"><span class="layui-bg-orange">15</span></div>
                         <div class="cars car" style="left:90%"><span class="layui-bg-green">50</span></div>
                     </div>
@@ -277,6 +270,9 @@
                     <li>3线</li>
                     <li>4线</li>
                 </ul>
+                <a href="javascript:;" layadmin-event="bottomFlexible" title="底部伸缩" class="bottom-flexible">
+                    <i class="layui-icon layui-icon-shrink-right layui-icon-shrink-down" id="LAY_app_flexible_bottom"></i>
+                </a>
             </div>
             <table class="layui-hide" id="MyTable" lay-filter="test-table-totalRow"></table>
         </div>
@@ -374,6 +370,56 @@
                 }
             ]
         });
+
+        var ICON_SHRINK = 'layui-icon-shrink-right'
+                ,ICON_SPREAD = 'layui-icon-spread-left'
+                ,ICON_SHRINK_BOTTOM = 'layui-icon-shrink-down'
+                ,ICON_SPREAD_BOTTOM = 'layui-icon-spread-up'
+                ,LEFT_SHRINK = 'layadmin-side-shrink'
+                ,BOTTOM_SHRINK = 'layadmin-bottom-shrink';
+
+        var myEvents = {
+            leftFlexible: function (othis) {
+                var app = $('#LAY_app');
+                var iconElem = othis.find('#LAY_app_flexible')
+                        , isSpread = iconElem.hasClass(ICON_SPREAD) ? 'spread':null;
+
+                //设置状态，PC：默认展开、移动：默认收缩
+                if(isSpread === 'spread'){
+                    //切换到展开状态的 icon，箭头：←
+                    iconElem.removeClass(ICON_SPREAD).addClass(ICON_SHRINK);
+                    app.removeClass(LEFT_SHRINK)
+                } else {
+                    //切换到搜索状态的 icon，箭头：→
+                    iconElem.removeClass(ICON_SHRINK).addClass(ICON_SPREAD);
+                    app.addClass(LEFT_SHRINK)
+                }
+            },
+            bottomFlexible: function (othis) {
+                var app = $('#LAY_app');
+                var iconElem = othis.find('#LAY_app_flexible_bottom')
+                        , isSpread = iconElem.hasClass(ICON_SPREAD_BOTTOM) ? 'spreadBottom':null;
+
+                //设置状态，PC：默认展开、移动：默认收缩
+                if(isSpread === 'spreadBottom'){
+                    //切换到展开状态的 icon，箭头：←
+                    iconElem.removeClass(ICON_SPREAD_BOTTOM).addClass(ICON_SHRINK_BOTTOM);
+                    app.removeClass(BOTTOM_SHRINK)
+                } else {
+                    //切换到搜索状态的 icon，箭头：→
+                    iconElem.removeClass(ICON_SHRINK_BOTTOM).addClass(ICON_SPREAD_BOTTOM);
+                    app.addClass(BOTTOM_SHRINK)
+                }
+            }
+        };
+
+        //点击事件
+        $('body').on('click', '*[layadmin-event]', function(){
+            var othis = $(this)
+                    ,attrEvent = othis.attr('layadmin-event');
+            myEvents[attrEvent] && myEvents[attrEvent].call(this, othis);
+        });
+
     })
 </script>
 </body>

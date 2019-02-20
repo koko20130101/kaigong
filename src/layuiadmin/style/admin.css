@@ -260,7 +260,7 @@ html{background-color: #f2f2f2; color: #666;}
  
 */
 
-.layui-fluid{padding: 8px;}
+.layui-fluid{padding: 0 8px;}
 .layadmin-header{display: none; height: 50px; line-height: 50px; margin-bottom: 0; border-radius: 0;}
 .layadmin-header .layui-breadcrumb{padding: 0 15px;}
 .layui-card-header{position: relative;}
@@ -771,50 +771,93 @@ html{background-color: #f2f2f2; color: #666;}
   right:0;
   bottom:0;
   background: #FFF;
+  overflow: hidden;
 }
 .car-center .left{
   position: absolute;
   left:0;
   top:0;
   bottom:0;
-  width:168px;
+  width:148px;
   border-right:1px solid #ddd;
   background: #f9f9f9;
 }
 .car-center .right{
   position: absolute;
-  left:168px;
+  left:148px;
   right:0;
-  top:55px;
+  top:46px;
   bottom:200px;
   overflow: auto;
 }
 .car-center .top{
   position: absolute;
-  left:168px;
+  left:148px;
   right:0;
   top:0;
-  height:55px;
+  height:46px;
   box-shadow: 1px 1px 3px #ddd;
 }
 .car-center .bottom{
   position: absolute;
-  left:168px;
+  left:148px;
   right:0;
   bottom:0;
-  height:200px;
+  height:250px;
   border-top:1px solid #ddd;
   border-left:1px solid #ddd;
   background: #fff;
   overflow: auto;
 }
+.car-center .top .layui-fluid{
+  padding:4px 8px;
+}
+.car-center .bottom .layui-fluid{
+  padding:0px 8px;
+}
+.car-center .bottom .bottom-flexible{
+  position: absolute;
+  right:40px;
+  top:12px;
+}
+.car-center .bottom .layui-icon-shrink-down{
+  position: inherit;
+  transform:rotate(-90deg);
+  -ms-transform:rotate(-90deg); 	/* IE 9 */
+  -moz-transform:rotate(-90deg); 	/* Firefox */
+  -webkit-transform:rotate(-90deg); /* Safari 和 Chrome */
+  -o-transform:rotate(-90deg); 	/* Opera */
+}
+.car-center .bottom .layui-icon-spread-up{
+  position: inherit;
+  transform:rotate(90deg);
+  -ms-transform:rotate(90deg); 	/* IE 9 */
+  -moz-transform:rotate(90deg); 	/* Firefox */
+  -webkit-transform:rotate(90deg); /* Safari 和 Chrome */
+  -o-transform:rotate(90deg); 	/* Opera */
+}
 .car-center .layui-form-radio{
   margin-right:0;
 }
+.layadmin-side-shrink .left{
+  width :0;
+  overflow: hidden;
+}
+.layadmin-side-shrink .right,.layadmin-side-shrink .top,.layadmin-side-shrink .bottom{
+  left:0;
+}
+.layadmin-bottom-shrink .bottom{
+  height:42px;
+  overflow: hidden;
+}
+.layadmin-bottom-shrink .right{
+  bottom:42px;
+}
+.car-center .left,.car-center .right,.car-center .top,.car-center .bottom{transition: all .3s; -webkit-transition: all .3s;}
 .car-state{
   position: absolute;
   right:20px;
-  top:20px;
+  top:16px;
   font-size:12px;
 }
 .layui-badge-dot{
@@ -955,7 +998,6 @@ html{background-color: #f2f2f2; color: #666;}
   left:0;
   bottom:0;
 }
-
 .project-box{
   padding:30px 10px;
 }
@@ -1006,6 +1048,7 @@ html{background-color: #f2f2f2; color: #666;}
   color:#999;
   font-size:12px;
 }
+
 
 
 /*风控管理*/
@@ -1070,6 +1113,18 @@ html{background-color: #f2f2f2; color: #666;}
 }
 .padding-top{
   padding-top:10px;
+}
+.w60{
+  width:60px;
+}
+.w70{
+  width:70px;
+}
+.w80{
+  width:80px;
+}
+.w90{
+  width:90px;
 }
 .w100{
   width:100px;
