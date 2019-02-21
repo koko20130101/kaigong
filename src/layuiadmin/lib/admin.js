@@ -394,6 +394,10 @@ layui.define('view', function(exports){
     ,message: function(othis){
       othis.find('.layui-badge-dot').remove();
     }
+    ,btnSelect:function (othis) {
+      console.log(othis)
+      othis.parent().append('<p>无匹配项</p>');
+    }
     
     //弹出主题面板
     ,theme: function(){

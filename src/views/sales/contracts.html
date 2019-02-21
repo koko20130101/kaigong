@@ -47,12 +47,7 @@
                 <table class="layui-hide" id="table-height" lay-filter="OrderTable"></table>
                 <script type="text/html" id="barDemo">
                     <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
-                    <a class="layui-btn layui-btn-xs" lay-event="edit">正供<i class="layui-icon layui-icon-down"></i></a>
-                    <div class="my-select">
-                        <a value="all">正供</a>
-                        <a value="启用">停供</a>
-                        <a value="禁用">供毕</a>
-                    </div>
+                    <a class="layui-btn layui-btn-xs" data-type="state">正供<i class="layui-icon layui-icon-down"></i></a>
                 </script>
             </div>
         </div>
@@ -151,14 +146,32 @@
                         , maxmin: true
                     });
                     break;
-                case 'state':
-
-                    break;
                 default:
                     break;
             }
         });
+
+        //按钮事件
+        var active = {
+            state: function(){
+                var $body = $('body');
+                var mySelect = $body.find('.my-select');
+                
+                var _this= this;
+                $('body').append('<p>haha </p>')
+            }
+        };
+
+        $('.layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] && active[type].call(this);
+        });
     })
 </script>
+<div class="my-select">
+    <a value="all">正供</a>
+    <a value="启用">停供</a>
+    <a value="禁用">供毕</a>
+</div>
 </body>
 </html>
