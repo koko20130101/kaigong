@@ -153,25 +153,40 @@
 
         //按钮事件
         var active = {
-            state: function(){
+            state: function(obj){
                 var $body = $('body');
                 var mySelect = $body.find('.my-select');
-                
-                var _this= this;
-                $('body').append('<p>haha </p>')
+                var top = obj.offset().top + obj.outerHeight()
+                    ,left = obj.offset().left
+                        ,width = obj.outerWidth();
+
+                mySelect.show();
+                mySelect.css({'top':top,'left':left,'width':width});
             }
         };
 
-        $('.layui-btn').on('click', function(){
+
+        var hide = function () {
+            var mySelect = $('.my-select');
+            mySelect.hide();
+        };
+
+        $('.layui-btn').on('click', function(event){
             var type = $(this).data('type');
-            active[type] && active[type].call(this);
+            active[type] && active[type].call(this,$(this));
+            event.stopPropagation();
         });
+        $('.my-select a').on('click', function (event) {
+            $(this).parent().hide();
+            event.stopPropagation();
+        });
+        $(document).off('click', hide).on('click', hide);
     })
 </script>
 <div class="my-select">
-    <a value="all">正供</a>
-    <a value="启用">停供</a>
-    <a value="禁用">供毕</a>
+    <a href="javascript:;" value="all">正供</a>
+    <a href="javascript:;" value="启用">停供</a>
+    <a href="javascript:;" value="禁用">供毕</a>
 </div>
 </body>
 </html>
