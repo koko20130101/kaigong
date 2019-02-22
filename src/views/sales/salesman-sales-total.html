@@ -23,30 +23,27 @@
                         </div>
                     </div>
                     <div class="layui-inline">
-                        <div id="tabBody">
-                            <div class="tab-content-item"></div>
-                            <div class="tab-content-item"></div>
-                            <div class="tab-content-item"></div>
-                            <div class="tab-content-item">
-                                <div class="layui-input-inline">
-                                    <input type="text" name="startDate" id="Start-date" lay-verify="date"
-                                           placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
-                                </div>
-                                <div class="layui-form-mid">-</div>
-                                <div class="layui-input-inline">
-                                    <input type="text" name="endDate" id="End-date" lay-verify="date"
-                                           placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
-                                </div>
+                        <div class="select-date">
+                            <div class="layui-input-inline">
+                                <input type="text" name="startDate" id="Start-date" lay-verify="date"
+                                       placeholder="年-月-日  时:分:秒" autocomplete="off" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid">-</div>
+                            <div class="layui-input-inline">
+                                <input type="text" name="endDate" id="End-date" lay-verify="date"
+                                       placeholder="年-月-日  时:分:秒" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                     </div>
                     <div class="layui-inline">
-                        <input type="text" name="contractNumber" size="28"  placeholder="请输入业务员名称进行查询" lay-verify="required" class="layui-input">
+                        <input type="text" name="contractNumber" size="28" placeholder="请输入业务员名称进行查询"
+                               lay-verify="required" class="layui-input">
                     </div>
                     <div class="layui-inline">
-                        <button class="layui-btn" lay-submit><i class="layui-icon layui-icon-search"></i>查询</button>
-                        <button type="reset" class="layui-btn layui-btn-normal"><i class="layui-icon layui-icon-download-circle"></i>导出
-                        </button>
+                        <a class="layui-btn layui-btn-sm" lay-submit><i class="layui-icon layui-icon-search"></i>查询</a>
+                        <a class="layui-btn layui-btn-sm layui-btn-normal"><i
+                                class="layui-icon layui-icon-download-circle"></i>导出
+                        </a>
                     </div>
                 </div>
             </form>
@@ -60,25 +57,26 @@
         base: '../../layuiadmin/' //静态资源所在路径
     }).extend({
         index: 'lib/index' //主入口模块
-    }).use(['element','index', 'table', 'laydate'], function () {
-        var table = layui.table
-                ,element = layui.element
-                ,laydate = layui.laydate;
+    }).use(['element', 'index', 'table', 'laydate'], function () {
+        var $ = layui.$
+                , table = layui.table
+                , element = layui.element
+                , laydate = layui.laydate;
         table.render({
             elem: '#table-height',
             height: 'full-100',
             page: true,
             cols: [[
-                {field: 'count', title: '', type: 'number', width: 40,rowspan: 2}
-                ,{field:'salesmen', title: '业务员',minWidth:150,sort: true,rowspan: 2}
-                ,{field:'orderCube', title: '订单方量', sort: true,rowspan: 2}
-                , {field: 'saleCube', title: '销售方量',sort: true,rowspan: 2}
-                , {field: 'saleTotal', title: '销售总额', sort: true,rowspan: 2}
-                , {field: 'order', title: '合同单',align:'center',colspan:4}
-                , {field: 'cash', title: '现金单',align:'center', colspan:2}
-                ,{field:'operation', title: '操作',align:'center',rowspan: 2,toolbar: '#barDemo'}
+                {field: 'count', title: '', type: 'number', width: 40, rowspan: 2}
+                , {field: 'salesmen', title: '业务员', minWidth: 150, sort: true, rowspan: 2}
+                , {field: 'orderCube', title: '订单方量', sort: true, rowspan: 2}
+                , {field: 'saleCube', title: '销售方量', sort: true, rowspan: 2}
+                , {field: 'saleTotal', title: '销售总额', sort: true, rowspan: 2}
+                , {field: 'order', title: '合同单', align: 'center', colspan: 4}
+                , {field: 'cash', title: '现金单', align: 'center', colspan: 2}
+                , {field: 'operation', title: '操作', align: 'center', rowspan: 2, toolbar: '#barDemo'}
 
-            ],[
+            ], [
                 {field: 'receivable', title: '应收金额', sort: true}
                 , {field: 'acceptedHT', title: '已收金额', sort: true}
                 , {field: 'uncollected', title: '应收未收金额', sort: true}
@@ -97,7 +95,7 @@
                     "acceptedHT": 0,
                     "uncollected": 0,
                     "uncollectedTotal": 0,
-                    "acceptedXJ":0,
+                    "acceptedXJ": 0,
                     "uncollectedSpare": 0,
                     "operation": 0
                 }
@@ -105,16 +103,18 @@
         });
         laydate.render({
             elem: '#Start-date'
+            ,type:'datetime'
         });
         laydate.render({
             elem: '#End-date'
+            ,type:'datetime'
         });
-        element.tab({
-            headerElem: '#tabHeader>li' //指定tab头元素项
-            ,bodyElem: '#tabBody>.tab-content-item' //指定tab主体元素项
-        });
-        element.on('tab(docDemoTabBrief)', function(data){
-            console.log(data)
+        element.on('tab(docDemoTabBrief)', function (obj) {
+            if (obj.index == 3) {
+                $('.select-date').show();
+            } else {
+                $('.select-date').hide();
+            }
         });
     })
 </script>

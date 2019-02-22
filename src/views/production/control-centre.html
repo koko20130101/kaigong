@@ -15,7 +15,7 @@
             <a class="layui-btn layui-btn-sm" lay-href="./production/car-sort.html">车辆排队</a>
             <a class="layui-btn layui-btn-sm">报警信息</a>
             <a class="layui-btn layui-btn-sm">剩料处理</a>
-            <a class="layui-btn layui-btn-sm">地图中心</a>
+            <a class="layui-btn layui-btn-sm" lay-href="./production/map.html">地图中心</a>
             <a class="layui-btn layui-btn-sm">全部</a>
             <a class="layui-btn layui-btn-sm">未生产</a>
             <a class="layui-btn layui-btn-sm">生产中</a>
@@ -27,24 +27,24 @@
 <div class="car-center" id="LAY_app">
     <div class="left hide-left">
         <div class="layui-row car-number-list">
-            <div class="car-number layui-bg-red">
+            <a class="my-car car-number layui-bg-red">
                 1232
-            </div>
-            <div class="car-number layui-bg-red">
+            </a>
+            <a class="my-car car-number layui-bg-red">
                 2
-            </div>
-            <div class="car-number layui-bg-red">
+            </a>
+            <a class="my-car car-number layui-bg-red">
                 3
-            </div>
-            <div class="car-number layui-bg-red">
+            </a>
+            <a class="my-car car-number layui-bg-red">
                 4
-            </div>
-            <div class="car-number layui-bg-red">
+            </a>
+            <a class="my-car car-number layui-bg-red">
                 5
-            </div>
-            <div class="car-number layui-bg-red">
+            </a>
+            <a class="my-car car-number layui-bg-red">
                 6
-            </div>
+            </a>
         </div>
     </div>
     <div class="top">
@@ -93,20 +93,29 @@
         </div>
     </div>
     <div class="layui-fluid right">
-        <div class="car-line">
+        <div class="car-line car-line-top">
             <div class="start">
                 <h3>无单出厂</h3>
             </div>
             <div class="way">
-                <div class="cars car" style="left:1%;"><span class="layui-bg-red">12</span></div>
-                <div class="cars" style="left:20%"><span class="layui-bg-black">12辆</span></div>
-                <div class="cars car" style="left:80%"><span class="layui-bg-orange">15</span></div>
-                <div class="cars car" style="left:90%"><span class="layui-bg-green">50</span></div>
+                <div class="my-car car" style="left:1%;"><span class="layui-bg-red">12</span></div>
+                <div class="cars-gather cars" style="left:20%"><span class="layui-bg-black">12辆</span>
+                    <div class="cars-box">
+                        <div class="my-car car"><span class="layui-bg-red">12</span></div>
+                        <div class="my-car car"><span class="layui-bg-red">12</span></div>
+                        <div class="my-car car"><span class="layui-bg-red">12</span></div>
+                        <div class="my-car car"><span class="layui-bg-red">12</span></div>
+                        <div class="my-car car"><span class="layui-bg-red">12</span></div>
+                        <div class="my-car car"><span class="layui-bg-red">12</span></div>
+                    </div>
+                </div>
+                <div class="my-car car" style="left:80%"><span class="layui-bg-orange">15</span></div>
+                <div class="my-car car" style="left:90%"><span class="layui-bg-green">50</span></div>
             </div>
             <div class="end">
-                <div class="car layui-bg-blue">12</div>
-                <div class="car layui-bg-blue">12</div>
-                <div class="car layui-bg-blue">12</div>
+                <div class="my-car car layui-bg-blue">12</div>
+                <div class="my-car car layui-bg-blue">12</div>
+                <div class="my-car car layui-bg-blue">12</div>
             </div>
         </div>
         <div class="project-box">
@@ -115,21 +124,33 @@
                     <h2>[蜂蜜柚子茶工程]</h2>
                     <h3>[C30P6.1膨胀剂20%抗渗S6七天早强] [160±20] [地泵]</h3>
                     <div class="other">[23层] [2.7 公里] [未知] 23.5/563</div>
-                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal stop"><i
+                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal stop" data-type="stop"><i
                             class="layui-icon layui-icon-pause"></i></a>
-                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal close"><i
+                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal close" data-type="finish"><i
                             class="layui-icon layui-icon-close"></i></a>
                     <div class="car-line">
                         <div class="start">
-                            <a class="layui-btn layui-btn-normal layui-btn-xs"><i
+                            <a class="start-btn" data-type="start"></a>
+                            <a class="layui-btn layui-btn-normal layui-btn-xs" data-type="add"><i
                                     class="layui-icon layui-icon-add-1"></i></a>
                         </div>
                         <div class="way">
-                            <div class="cars car" style="left:1%;"><span class="layui-bg-red">12</span></div>
-                            <div class="cars car" style="left:80%"><span class="layui-bg-orange">15</span></div>
-                            <div class="cars car" style="left:90%"><span class="layui-bg-green">50</span></div>
+                            <div class="my-car  car" style="left:1%;"><span class="layui-bg-red">12</span></div>
+                            <div class="cars-gather cars" style="left:20%"><span class="layui-bg-black">12辆</span>
+                                <div class="cars-box">
+                                    <div class="my-car car"><span class="layui-bg-red">12</span></div>
+                                    <div class="my-car car"><span class="layui-bg-red">12</span></div>
+                                    <div class="my-car car"><span class="layui-bg-red">12</span></div>
+                                    <div class="my-car car"><span class="layui-bg-red">12</span></div>
+                                    <div class="my-car car"><span class="layui-bg-red">12</span></div>
+                                    <div class="my-car car"><span class="layui-bg-red">12</span></div>
+                                </div>
+                            </div>
+                            <div class="my-car  car" style="left:80%"><span class="layui-bg-orange">15</span></div>
+                            <div class="my-car  car" style="left:90%"><span class="layui-bg-green">50</span></div>
                         </div>
                         <div class="end">
+                            <a class="end-btn" lay-href="./production/map.html">地图中心</a>
                         </div>
                     </div>
                 </div>
@@ -139,21 +160,23 @@
                     <h2>[蜂蜜柚子茶工程]</h2>
                     <h3>[C30P6.1膨胀剂20%抗渗S6七天早强] [160±20] [地泵]</h3>
                     <div class="other">[23层] [2.7 公里] [未知] 23.5/563</div>
-                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal stop"><i
+                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal stop" data-type="stop"><i
                             class="layui-icon layui-icon-pause"></i></a>
-                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal close"><i
+                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal close" data-type="finish"><i
                             class="layui-icon layui-icon-close"></i></a>
                     <div class="car-line">
                         <div class="start">
-                            <a class="layui-btn layui-btn-normal layui-btn-xs"><i
+                            <a class="start-btn" data-type="start"></a>
+                            <a class="layui-btn layui-btn-normal layui-btn-xs" data-type="add"><i
                                     class="layui-icon layui-icon-add-1"></i></a>
                         </div>
                         <div class="way">
-                            <div class="cars car" style="left:1%;"><span class="layui-bg-red">12</span></div>
-                            <div class="cars car" style="left:80%"><span class="layui-bg-orange">15</span></div>
-                            <div class="cars car" style="left:90%"><span class="layui-bg-green">50</span></div>
+                            <div class="my-car  car" style="left:1%;"><span class="layui-bg-red">12</span></div>
+                            <div class="my-car  car" style="left:80%"><span class="layui-bg-orange">15</span></div>
+                            <div class="my-car  car" style="left:90%"><span class="layui-bg-green">50</span></div>
                         </div>
                         <div class="end">
+                            <a class="end-btn" lay-href="./production/map.html"></a>
                         </div>
                     </div>
                 </div>
@@ -163,21 +186,23 @@
                     <h2>[蜂蜜柚子茶工程]</h2>
                     <h3>[C30P6.1膨胀剂20%抗渗S6七天早强] [160±20] [地泵]</h3>
                     <div class="other">[23层] [2.7 公里] [未知] 23.5/563</div>
-                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal stop"><i
+                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal stop" data-type="stop"><i
                             class="layui-icon layui-icon-pause"></i></a>
-                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal close"><i
+                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal close" data-type="finish"><i
                             class="layui-icon layui-icon-close"></i></a>
                     <div class="car-line">
                         <div class="start">
-                            <a class="layui-btn layui-btn-normal layui-btn-xs"><i
+                            <a class="start-btn" data-type="start"></a>
+                            <a class="layui-btn layui-btn-normal layui-btn-xs" data-type="add"><i
                                     class="layui-icon layui-icon-add-1"></i></a>
                         </div>
                         <div class="way">
-                            <div class="cars car" style="left:1%;"><span class="layui-bg-red">12</span></div>
-                            <div class="cars car" style="left:80%"><span class="layui-bg-orange">15</span></div>
-                            <div class="cars car" style="left:90%"><span class="layui-bg-green">50</span></div>
+                            <div class="my-car  car" style="left:1%;"><span class="layui-bg-red">12</span></div>
+                            <div class="my-car  car" style="left:80%"><span class="layui-bg-orange">15</span></div>
+                            <div class="my-car  car" style="left:90%"><span class="layui-bg-green">50</span></div>
                         </div>
                         <div class="end">
+                            <a class="end-btn" lay-href="./production/map.html"></a>
                         </div>
                     </div>
                 </div>
@@ -187,21 +212,23 @@
                     <h2>[蜂蜜柚子茶工程]</h2>
                     <h3>[C30P6.1膨胀剂20%抗渗S6七天早强] [160±20] [地泵]</h3>
                     <div class="other">[23层] [2.7 公里] [未知] 23.5/563</div>
-                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal stop"><i
+                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal stop" data-type="stop"><i
                             class="layui-icon layui-icon-pause"></i></a>
-                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal close"><i
+                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal close" data-type="finish"><i
                             class="layui-icon layui-icon-close"></i></a>
                     <div class="car-line">
                         <div class="start">
-                            <a class="layui-btn layui-btn-normal layui-btn-xs"><i
+                            <a class="start-btn" data-type="start"></a>
+                            <a class="layui-btn layui-btn-normal layui-btn-xs" data-type="add"><i
                                     class="layui-icon layui-icon-add-1"></i></a>
                         </div>
                         <div class="way">
-                            <div class="cars car" style="left:1%;"><span class="layui-bg-red">12</span></div>
-                            <div class="cars car" style="left:80%"><span class="layui-bg-orange">15</span></div>
-                            <div class="cars car" style="left:90%"><span class="layui-bg-green">50</span></div>
+                            <div class="my-car  car" style="left:1%;"><span class="layui-bg-red">12</span></div>
+                            <div class="my-car  car" style="left:80%"><span class="layui-bg-orange">15</span></div>
+                            <div class="my-car  car" style="left:90%"><span class="layui-bg-green">50</span></div>
                         </div>
                         <div class="end">
+                            <a class="end-btn" lay-href="./production/map.html"></a>
                         </div>
                     </div>
                 </div>
@@ -211,21 +238,23 @@
                     <h2>[蜂蜜柚子茶工程]</h2>
                     <h3>[C30P6.1膨胀剂20%抗渗S6七天早强] [160±20] [地泵]</h3>
                     <div class="other">[23层] [2.7 公里] [未知] 23.5/563</div>
-                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal stop"><i
+                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal stop" data-type="stop"><i
                             class="layui-icon layui-icon-pause"></i></a>
-                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal close"><i
+                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal close" data-type="finish"><i
                             class="layui-icon layui-icon-close"></i></a>
                     <div class="car-line">
                         <div class="start">
-                            <a class="layui-btn layui-btn-normal layui-btn-xs"><i
+                            <a class="start-btn" data-type="start"></a>
+                            <a class="layui-btn layui-btn-normal layui-btn-xs" data-type="add"><i
                                     class="layui-icon layui-icon-add-1"></i></a>
                         </div>
                         <div class="way">
-                            <div class="cars car" style="left:1%;"><span class="layui-bg-red">12</span></div>
-                            <div class="cars car" style="left:80%"><span class="layui-bg-orange">15</span></div>
-                            <div class="cars car" style="left:90%"><span class="layui-bg-green">50</span></div>
+                            <div class="my-car  car" style="left:1%;"><span class="layui-bg-red">12</span></div>
+                            <div class="my-car  car" style="left:80%"><span class="layui-bg-orange">15</span></div>
+                            <div class="my-car  car" style="left:90%"><span class="layui-bg-green">50</span></div>
                         </div>
                         <div class="end">
+                            <a class="end-btn" lay-href="./production/map.html"></a>
                         </div>
                     </div>
                 </div>
@@ -235,21 +264,23 @@
                     <h2>[蜂蜜柚子茶工程]</h2>
                     <h3>[C30P6.1膨胀剂20%抗渗S6七天早强] [160±20] [地泵]</h3>
                     <div class="other">[23层] [2.7 公里] [未知] 23.5/563</div>
-                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal stop"><i
+                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal stop" data-type="stop"><i
                             class="layui-icon layui-icon-pause"></i></a>
-                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal close"><i
+                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal close" data-type="finish"><i
                             class="layui-icon layui-icon-close"></i></a>
                     <div class="car-line">
                         <div class="start">
-                            <a class="layui-btn layui-btn-normal layui-btn-xs"><i
+                            <a class="start-btn" data-type="start"></a>
+                            <a class="layui-btn layui-btn-normal layui-btn-xs" data-type="add"><i
                                     class="layui-icon layui-icon-add-1"></i></a>
                         </div>
                         <div class="way">
-                            <div class="cars car" style="left:1%;"><span class="layui-bg-red">12</span></div>
-                            <div class="cars car" style="left:80%"><span class="layui-bg-orange">15</span></div>
-                            <div class="cars car" style="left:90%"><span class="layui-bg-green">50</span></div>
+                            <div class="my-car  car" style="left:1%;"><span class="layui-bg-red">12</span></div>
+                            <div class="my-car  car" style="left:80%"><span class="layui-bg-orange">15</span></div>
+                            <div class="my-car  car" style="left:90%"><span class="layui-bg-green">50</span></div>
                         </div>
                         <div class="end">
+                            <a class="end-btn" lay-href="./production/map.html"></a>
                         </div>
                     </div>
                 </div>
@@ -259,21 +290,23 @@
                     <h2>[蜂蜜柚子茶工程]</h2>
                     <h3>[C30P6.1膨胀剂20%抗渗S6七天早强] [160±20] [地泵]</h3>
                     <div class="other">[23层] [2.7 公里] [未知] 23.5/563</div>
-                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal stop"><i
+                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal stop" data-type="stop"><i
                             class="layui-icon layui-icon-pause"></i></a>
-                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal close"><i
+                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal close" data-type="finish"><i
                             class="layui-icon layui-icon-close"></i></a>
                     <div class="car-line">
                         <div class="start">
-                            <a class="layui-btn layui-btn-normal layui-btn-xs"><i
+                            <a class="start-btn" data-type="start"></a>
+                            <a class="layui-btn layui-btn-normal layui-btn-xs" data-type="add"><i
                                     class="layui-icon layui-icon-add-1"></i></a>
                         </div>
                         <div class="way">
-                            <div class="cars car" style="left:1%;"><span class="layui-bg-red">12</span></div>
-                            <div class="cars car" style="left:80%"><span class="layui-bg-orange">15</span></div>
-                            <div class="cars car" style="left:90%"><span class="layui-bg-green">50</span></div>
+                            <div class="my-car  car" style="left:1%;"><span class="layui-bg-red">12</span></div>
+                            <div class="my-car  car" style="left:80%"><span class="layui-bg-orange">15</span></div>
+                            <div class="my-car  car" style="left:90%"><span class="layui-bg-green">50</span></div>
                         </div>
                         <div class="end">
+                            <a class="end-btn" lay-href="./production/map.html"></a>
                         </div>
                     </div>
                 </div>
@@ -283,21 +316,23 @@
                     <h2>[蜂蜜柚子茶工程]</h2>
                     <h3>[C30P6.1膨胀剂20%抗渗S6七天早强] [160±20] [地泵]</h3>
                     <div class="other">[23层] [2.7 公里] [未知] 23.5/563</div>
-                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal stop"><i
+                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal stop" data-type="stop"><i
                             class="layui-icon layui-icon-pause"></i></a>
-                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal close"><i
+                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal close" data-type="finish"><i
                             class="layui-icon layui-icon-close"></i></a>
                     <div class="car-line">
                         <div class="start">
-                            <a class="layui-btn layui-btn-normal layui-btn-xs"><i
+                            <a class="start-btn" data-type="start"></a>
+                            <a class="layui-btn layui-btn-normal layui-btn-xs" data-type="add"><i
                                     class="layui-icon layui-icon-add-1"></i></a>
                         </div>
                         <div class="way">
-                            <div class="cars car" style="left:1%;"><span class="layui-bg-red">12</span></div>
-                            <div class="cars car" style="left:80%"><span class="layui-bg-orange">15</span></div>
-                            <div class="cars car" style="left:90%"><span class="layui-bg-green">50</span></div>
+                            <div class="my-car  car" style="left:1%;"><span class="layui-bg-red">12</span></div>
+                            <div class="my-car  car" style="left:80%"><span class="layui-bg-orange">15</span></div>
+                            <div class="my-car  car" style="left:90%"><span class="layui-bg-green">50</span></div>
                         </div>
                         <div class="end">
+                            <a class="end-btn" lay-href="./production/map.html"></a>
                         </div>
                     </div>
                 </div>
@@ -307,21 +342,23 @@
                     <h2>[蜂蜜柚子茶工程]</h2>
                     <h3>[C30P6.1膨胀剂20%抗渗S6七天早强] [160±20] [地泵]</h3>
                     <div class="other">[23层] [2.7 公里] [未知] 23.5/563</div>
-                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal stop"><i
+                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal stop" data-type="stop"><i
                             class="layui-icon layui-icon-pause"></i></a>
-                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal close"><i
+                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal close" data-type="finish"><i
                             class="layui-icon layui-icon-close"></i></a>
                     <div class="car-line">
                         <div class="start">
-                            <a class="layui-btn layui-btn-normal layui-btn-xs"><i
+                            <a class="start-btn" data-type="start"></a>
+                            <a class="layui-btn layui-btn-normal layui-btn-xs" data-type="add"><i
                                     class="layui-icon layui-icon-add-1"></i></a>
                         </div>
                         <div class="way">
-                            <div class="cars car" style="left:1%;"><span class="layui-bg-red">12</span></div>
-                            <div class="cars car" style="left:80%"><span class="layui-bg-orange">15</span></div>
-                            <div class="cars car" style="left:90%"><span class="layui-bg-green">50</span></div>
+                            <div class="my-car  car" style="left:1%;"><span class="layui-bg-red">12</span></div>
+                            <div class="my-car  car" style="left:80%"><span class="layui-bg-orange">15</span></div>
+                            <div class="my-car  car" style="left:90%"><span class="layui-bg-green">50</span></div>
                         </div>
                         <div class="end">
+                            <a class="end-btn" lay-href="./production/map.html"></a>
                         </div>
                     </div>
                 </div>
@@ -331,21 +368,23 @@
                     <h2>[蜂蜜柚子茶工程]</h2>
                     <h3>[C30P6.1膨胀剂20%抗渗S6七天早强] [160±20] [地泵]</h3>
                     <div class="other">[23层] [2.7 公里] [未知] 23.5/563</div>
-                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal stop"><i
+                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal stop" data-type="stop"><i
                             class="layui-icon layui-icon-pause"></i></a>
-                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal close"><i
+                    <a class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal close" data-type="finish"><i
                             class="layui-icon layui-icon-close"></i></a>
                     <div class="car-line">
                         <div class="start">
-                            <a class="layui-btn layui-btn-normal layui-btn-xs"><i
+                            <a class="start-btn" data-type="start"></a>
+                            <a class="layui-btn layui-btn-normal layui-btn-xs" data-type="add"><i
                                     class="layui-icon layui-icon-add-1"></i></a>
                         </div>
                         <div class="way">
-                            <div class="cars car" style="left:1%;"><span class="layui-bg-red">12</span></div>
-                            <div class="cars car" style="left:80%"><span class="layui-bg-orange">15</span></div>
-                            <div class="cars car" style="left:90%"><span class="layui-bg-green">50</span></div>
+                            <div class="my-car  car" style="left:1%;"><span class="layui-bg-red">12</span></div>
+                            <div class="my-car  car" style="left:80%"><span class="layui-bg-orange">15</span></div>
+                            <div class="my-car  car" style="left:90%"><span class="layui-bg-green">50</span></div>
                         </div>
                         <div class="end">
+                            <a class="end-btn" lay-href="./production/map.html"></a>
                         </div>
                     </div>
                 </div>
@@ -358,7 +397,7 @@
             <div class="layui-tab layui-tab-brief no-margin-top" lay-filter="docDemoTabBrief">
                 <ul class="layui-tab-title" id="tabHeader">
                     <li class="layui-this">全部</li>
-                    <li>1线</li>
+                    <li>1线<span class="layui-badge">9</span></li>
                     <li>2线</li>
                     <li>3线</li>
                     <li>4线</li>
@@ -370,6 +409,21 @@
             </div>
             <table class="layui-hide" id="MyTable" lay-filter="test-table-totalRow"></table>
         </div>
+    </div>
+</div>
+<div class="my-select">
+    <a href="javascript:;">查看信息</a>
+    <a href="javascript:;" data-type="reset">修改状态</a>
+    <a lay-href="./production/map.html">查看位置</a>
+    <a href="javascript:;" data-type="total">车辆统计</a>
+
+</div>
+
+<div class="layui-form" id="TruckState" style="display: none">
+    <div class="layui-form-item padding">
+        <input type="radio" name="role" value="" title="检修"> <br>
+        <input type="radio" name="role" value="" title="休息-车辆不可调度"> <br>
+        <input type="radio" name="role" value="" title="待命-车辆可调度" checked>
     </div>
 </div>
 <script src="../../layuiadmin/layui/layui.js"></script>
@@ -529,6 +583,99 @@
             myEvents[attrEvent] && myEvents[attrEvent].call(this, othis);
         });
 
+
+        $('.my-car').on('click', function(event){
+            var $body = $('body');
+            var $this = $(this);
+            var mySelect = $body.find('.my-select');
+            var top = $this.offset().top
+                    ,left = $this.offset().left;
+            mySelect.show();
+            mySelect.css({'top': top, 'left': left});
+            event.stopPropagation();
+        });
+        $('.cars-gather').on('mouseover', function () {
+            $(this).find('.cars-box').show();
+        });
+        $('.cars-box').on('mouseleave', function () {
+            $(this).hide();
+        });
+
+        $('.my-select a').on('click', function (event) {
+            $(this).parent().hide();
+        });
+        $('.my-select').on('mouseleave', function () {
+            $(this).hide();
+        });
+        $('.project-item').on('mouseover', function () {
+            $(this).addClass('mouse-hover');
+        });
+        $('.project-item').on('mouseleave', function () {
+            $(this).removeClass('mouse-hover');
+        });
+
+
+        //按钮事件
+        var active = {
+            start: function(){
+                layer.open({
+                    type: 2
+                    , title: '送货单'
+                    , content: ['../production/layer-delivery-note.html']
+                    , shadeClose: true
+                    , area: ['95%', '90%']
+                    , maxmin: true
+                });
+            },
+            add:function () {
+                layer.open({
+                    type: 2
+                    , title: '新增配送'
+                    , content: ['../production/layer-new-delivery.html']
+                    , shadeClose: true
+                    , area: ['50%', '90%']
+                    , btn: ['确认','关闭'] //按钮
+                    , maxmin: true
+                });
+            },
+            stop:function () {
+                layer.confirm('注：确认暂停生产该订单吗？', {
+                    title: '系统提示',
+                    icon:3,
+                    btn: ['确认', '取消'] //按钮
+                });
+            },
+            finish:function () {
+                layer.confirm('注：确认结束生产该订单吗?？', {
+                    title: '系统提示',
+                    icon:3,
+                    btn: ['确认', '取消'] //按钮
+                });
+            },
+            reset:function () {
+                layer.open({
+                    title:'修改车辆状态'
+                    ,type: 1
+                    ,shadeClose: true
+                    ,content: $('#TruckState')
+                    ,btn: ['确认', '关闭'] //按钮
+                });
+            },
+            total:function () {
+                layer.open({
+                    type: 2
+                    , title: '车辆统计'
+                    , content: ['../production/layer-truck-total.html']
+                    , shadeClose: true
+                    , area: ['95%', '90%']
+                    , maxmin: true
+                });
+            }
+        };
+        $('.layui-btn,.my-select a,.start-btn').on('click', function(event){
+            var type = $(this).data('type');
+            active[type] && active[type].call(this,$(this));
+        });
     })
 </script>
 </body>

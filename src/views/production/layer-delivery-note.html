@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>送货单</title>
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-card-header">
+            送货单
+        </div>
+        <div class="layui-card-body">
+            <table class="my-table-2">
+                <colgroup>
+                    <col width="120">
+                    <col>
+                    <col width="120">
+                    <col>
+                </colgroup>
+                <tr>
+                    <th>订单号</th>
+                    <td>1901280001</td>
+                    <th>客户名称</th>
+                    <td>2/21</td>
+                    <th>工程名称</th>
+                    <td>减水剂工程</td>
+                    <th>施工部位</th>
+                    <td>25层</td>
+                    <th>强度等级</th>
+                    <td>C30 P6聚丙烯纤维6%Z4.0</td>
+                </tr>
+                <tr>
+                    <th>坍落度</th>
+                    <td>150±30</td>
+                    <th>计划方量(m³)</th>
+                    <td>23.00</td>
+                    <th>卸料方式</th>
+                    <td>地泵</td>
+                    <th>业务员</th>
+                    <td>何小</td>
+                    <th>打印抬头</th>
+                    <td>调度</td>
+                </tr>
+                <tr>
+                    <th>生产时间</th>
+                    <td>2019/2/21 15:21:08</td>
+                    <th>备注</th>
+                    <td></td>
+                    <th>联系人</th>
+                    <td>小咯</td>
+                    <th>联系电话</th>
+                    <td>13632473394</td>
+                    <th>工程地址</th>
+                    <td>广东省中山市康乐四街</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="layui-card">
+        <div class="layui-card-header">
+            <div class="layui-row">
+                <div class="layui-col-md5">送货记录</div>
+                <div class="layui-col-md7" align="right">
+                    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="edit">设计提醒方量</a>
+                    <a class="layui-btn layui-btn-xs" data-type="reset">补单</a>
+                    <a class="layui-btn layui-btn-xs layui-btn-normal">修改订单</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="layui-card-body">
+            <table class="layui-hide" id="table-height" lay-filter="orderExamine"></table>
+            <script type="text/html" id="barDemo">
+                <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="copy">修改车号</a>
+            </script>
+        </div>
+    </div>
+
+</div>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'table'], function () {
+        var $ = layui.$
+                , table = layui.table;
+        table.render({
+            elem: '#table-height',
+            cols: [[
+                {type: 'numbers'}
+                , {field: 'operation', title: '操作', width: 88, toolbar: '#barDemo'}
+                , {field: 'order', title: '送货单号', width: 100, sort: true}
+                , {field: 'truckNumber', title: '车号', width: 60}
+                , {field: 'driver', title: '司机', width: 80}
+                , {field: 'orderCube', title: '打单方量', width: 100, sort: true}
+                , {field: 'returnCube', title: '退货方量', width: 100}
+                , {field: 'totalCube', title: '累计方量', width: 100}
+                , {field: 'count', title: '车数', width: 60}
+                , {field: 'proLine', title: '生产线', width: 80}
+                , {field: 'actualProTime', title: '实际生产时间', width: 160}
+                , {field: 'createTime', title: '创建时间', width: 160}
+                , {field: 'remarks', title: '备注', width: 120}
+                , {field: 'factoryTime', title: '出厂时间', width: 160}
+                , {field: 'arriveTime', title: '到工地时间', width: 160}
+                , {field: 'uploadTime', title: '卸料时间', width: 160}
+                , {field: 'setOutTime', title: '出工地时间', width: 160}
+                , {field: 'getBackTime', title: '回到厂区时间', width: 160}
+                , {field: 'setOutMinute', title: '出厂运输时间(分钟)', width: 150}
+                , {field: 'uploadMinute', title: '卸料时间(分钟)', width: 130}
+                , {field: 'getBackMinute', title: '回厂运输时间(分钟)', width: 150}
+            ]],
+            data: [
+                {
+                    "operation": null,
+                    "order": "",
+                    "truckNumber": "",
+                    "driver": "呵呆呆",
+                    "orderCube": "",
+                    "returnCube": "",
+                    "totalCube": "",
+                    "count": "",
+                    "proLine": "",
+                    "actualProTime": "2019/2/21 15:21:08",
+                    "createTime": "",
+                    "remarks": "",
+                    "factoryTime": "",
+                    "arriveTime": "",
+                    "uploadTime": "",
+                    "setOutTime": "",
+                    "getBackTime": "",
+                    "setOutMinute": "211",
+                    "uploadMinute": "43",
+                    "getBackMinute": "123"
+                }, {
+                    "operation": null,
+                    "order": "",
+                    "truckNumber": "",
+                    "driver": "呵呆呆",
+                    "orderCube": "",
+                    "returnCube": "",
+                    "totalCube": "",
+                    "count": "",
+                    "proLine": "",
+                    "actualProTime": "2019/2/21 15:21:08",
+                    "createTime": "",
+                    "remarks": "",
+                    "factoryTime": "",
+                    "arriveTime": "",
+                    "uploadTime": "",
+                    "setOutTime": "",
+                    "getBackTime": "",
+                    "setOutMinute": "211",
+                    "uploadMinute": "43",
+                    "getBackMinute": "123"
+                }
+            ]
+        });
+    })
+</script>
+</body>
+</html>

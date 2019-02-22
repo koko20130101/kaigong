@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" class="layui-bg-white">
+<head>
+    <meta charset="UTF-8">
+    <title>新增配送</title>
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+<div class="layui-fluid">
+    <table class="my-table-2">
+        <colgroup>
+            <col width="120">
+            <col>
+            <col width="120">
+            <col>
+        </colgroup>
+        <tr>
+            <th>订单号</th>
+            <td>1901280001</td>
+            <th>工程名称</th>
+            <td>减水剂工程</td>
+
+        </tr>
+        <tr>
+            <th>施工部位</th>
+            <td>25层</td>
+            <th>强度等级</th>
+            <td>C30 P6聚丙烯纤维6%Z4.0</td>
+        </tr>
+        <tr>
+            <th>坍落度</th>
+            <td>150±30</td>
+            <th>卸料方式</th>
+            <td>地泵</td>
+        </tr>
+    </table>
+    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+        <ul class="layui-tab-title" id="tabHeader">
+            <li class="layui-this">新增配送</li>
+            <li>剩料/退料回转</li>
+            <li>临时车</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <form class="layui-form">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span class="red">*</span>生产线</label>
+                        <div class="layui-input-block">
+                            <select name="">
+                                <option value="1">1线</option>
+                                <option value="2">2线</option>
+                                <option value="3">3线</option>
+                                <option value="4">4线</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span class="red">*</span>车号</label>
+                        <div class="layui-input-block">
+                            <select name="modules" lay-search="">
+                                <option value="1">23</option>
+                                <option value="2">24</option>
+                                <option value="3">1</option>
+                                <option value="4">3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span class="red">*</span>方量</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">备注</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="layui-tab-item">
+                <form class="layui-form">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span class="red">*</span>生产线</label>
+                        <div class="layui-input-block">
+                            <select name="">
+                                <option value="1">1线</option>
+                                <option value="2">2线</option>
+                                <option value="3">3线</option>
+                                <option value="4">4线</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span class="red">*</span>车号</label>
+                        <div class="layui-input-block">
+                            <select name="modules" lay-search="">
+                                <option value="1">23</option>
+                                <option value="2">24</option>
+                                <option value="3">1</option>
+                                <option value="4">3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span class="red">*</span>回料方量</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span class="red">*</span>打单方量</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="" placeholder="请输入方量" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span class="red">*</span>生产方量</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="" placeholder="请输入方量" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">备注</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="layui-tab-item">
+                <form class="layui-form">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span class="red">*</span>生产线</label>
+                        <div class="layui-input-block">
+                            <select name="">
+                                <option value="1">1线</option>
+                                <option value="2">2线</option>
+                                <option value="3">3线</option>
+                                <option value="4">4线</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span class="red">*</span>车号</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="" placeholder="请输入车号" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span class="red">*</span>方量</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="" placeholder="请输入方量" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">备注</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'table'], function () {
+        var $ = layui.$
+                , layer = layui.layer
+                , table = layui.table;
+    })
+</script>
+</body>
+</html>
