@@ -47,7 +47,7 @@
                 <table class="layui-hide" id="table-height" lay-filter="OrderTable"></table>
                 <script type="text/html" id="barDemo">
                     <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
-                    <a class="layui-btn layui-btn-xs state-btn">正供<i class="layui-icon layui-icon-down"></i></a>
+                    <a class="layui-btn layui-btn-xs layui-btn-normal state-btn">正供<i class="layui-icon layui-icon-down"></i></a>
                 </script>
             </div>
         </div>
@@ -198,9 +198,13 @@
             var type = $(this).data('type');
             active[type] && active[type].call(this,$(this));
         });
+
+        //当前点击按钮
+        var currentBtn;
         $('.state-btn').on('click', function(event){
             var $body = $('body');
             var $this = $(this);
+            currentBtn = $this;
             var mySelect = $body.find('.my-select');
             var top = $this.offset().top + $this.outerHeight()
                     ,left = $this.offset().left
@@ -209,17 +213,34 @@
             mySelect.css({'top': top, 'left': left,'width':width});
             event.stopPropagation();
         });
+
         $('.my-select a').on('click', function (event) {
             $(this).parent().hide();
+            var $this = $(this);
+            var state = $this.data('state');
+            switch (state){
+                case 1:
+                    currentBtn.removeAttr('class');
+                    currentBtn.addClass('layui-btn layui-btn-xs layui-btn-normal');
+                    break;
+                case 2:
+                    currentBtn.removeAttr('class');
+                    currentBtn.addClass('layui-btn layui-btn-xs layui-btn-danger');
+                    break;
+                case 3:
+                    currentBtn.removeAttr('class');
+                    currentBtn.addClass('layui-btn layui-btn-xs layui-btn-warm');
+                    break;
+            }
             event.stopPropagation();
         });
         $(document).off('click', hide).on('click', hide);
     })
 </script>
 <div class="my-select">
-    <a href="javascript:;" value="all">正供</a>
-    <a href="javascript:;" value="启用">停供</a>
-    <a href="javascript:;" value="禁用">供毕</a>
+    <a href="javascript:;" data-state="1">正供</a>
+    <a href="javascript:;" data-state="2">停供</a>
+    <a href="javascript:;" data-state="3">供毕</a>
 </div>
 </body>
 </html>
