@@ -638,8 +638,8 @@
         //车辆路程进度及重叠集合
         function setSort() {
             $('.way').each(function () {
-                var temp = 0;
-                var tempEl;
+                var temp = 0;  //参照点
+                var tempEl;  //参照元素
                 var assemble = [];  //重叠集合
 
                 //设置位置
@@ -655,30 +655,39 @@
                     var thisLeft = Math.round($this.offset().left);
                     var thisWidth = Math.round($this.outerWidth());
 
+                    //如果该元素的左侧坐标小于重叠的第一个元素最右边的坐标
                     if(thisLeft < temp){
+                        //删除style
                         $this.removeAttr('style');
+                        //集体box
                         var text = $('<div class="cars-gather cars">' +
                                 '<span class="layui-bg-black"></span> ' +
                                 '<div class="cars-box">' +
                                 '</div></div>');
+                        //如果重叠的第一个元素后面没有box
                         if(!tempEl.next().hasClass('cars-gather')){
                             tempEl.after(text);
                             tempEl.next().css({'left': tempEl.data('journey') + '%'});
                         }
+                        //记录集合的元素
                         assemble.push($this);
 
                     }else if(thisLeft > temp){
+                        //设置参照点
                         temp = thisLeft+thisWidth;
+                        //设置参照元素
                         tempEl = $this;
                         assemble = [];
+                        //不论是否重叠，都压入数组
                         assemble.push(tempEl);
                     }
                     //把集合写入dome
                     if(!$next.offset() || (!!$next.offset() && $next.offset().left > temp)){
+                        //如果数组大于1个，则说明这一段有重叠，在DOME中写出集合box
                         if(assemble.length > 1){
                             assemble[0].removeAttr('style');
                             tempEl.next().find('.layui-bg-black').html(assemble.length + '辆');
-                            tempEl.next().find('.cars-box').append(assemble)
+                            tempEl.next().find('.cars-box').append(assemble);
                         }
                     }
                 });

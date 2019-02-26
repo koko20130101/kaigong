@@ -54,21 +54,6 @@
                                     <div class="item">
                                         <p>4</p>
                                     </div>
-                                    <div class="item">
-                                        <p>5</p>
-                                    </div>
-                                    <div class="item">
-                                        <p>6</p>
-                                    </div>
-                                    <div class="item">
-                                        <p>7</p>
-                                    </div>
-                                    <div class="item">
-                                        <p>8</p>
-                                    </div>
-                                    <div class="item">
-                                        <p>9</p>
-                                    </div>
                                 </div>
                             </td>
                         </tr>
@@ -231,16 +216,33 @@
         var $ = layui.$
                 , table = layui.table
                 , element = layui.element
-                , laydate = layui.laydate;
+                , layer = layui.layer;
+
+        //拖拽插件
+        $(".car-sort-list").dragsort({
+            dragSelector: "div",
+            dragBetween: true,
+            dragEnd: saveOrder,
+            placeHolderTemplate: "<div class='outline'></div>",
+            scrollContainer: $(".car-sort-list")
+        });
 
 
+        //拖曳调用
+        function saveOrder() {
+            layer.confirm('注：请提醒生产人员，【付款条例测试（勿动）】【38】优先准备生产。', {
+                title: '系统提示',
+                icon:7,
+                btn: ['确认', '取消'], //按钮
+                yes: function(index){
+                    layer.close(index);
+                    //点击确认回调
+                    layer.msg('更新成功 !');
+                }
+            });
+        };
     });
-    $(".car-sort-list").dragsort({
-        dragSelector: "li",
-        dragBetween: true,
-        dragEnd: null, //拖拽完成后回调函数
-        placeHolderTemplate: "<li class='placeHolder'><div></div></li>" //拖动是阴影
-    });
+
 </script>
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-xs" lay-event="edit">明细</a>
