@@ -5,6 +5,7 @@
     <title>订单录入</title>
     <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/formSelects-v4.css" media="all">
 </head>
 <body>
 <div class="layui-fluid">
@@ -101,9 +102,9 @@
                         <label class="layui-form-label">特殊要求：</label>
                         <div class="layui-input-inline">
                             <!--<input type="checkbox" name="" title="需要" lay-skin="primary">-->
-                            <select name="">
-                                <option value="no">不需要</option>
-                                <option value="yes">需要</option>
+                            <select name="city" xm-select="select1">
+                                <option value="1">不需要</option>
+                                <option value="2">需要</option>
                             </select>
                         </div>
                     </div>
@@ -244,10 +245,11 @@
         base: '../../layuiadmin/' //静态资源所在路径
     }).extend({
         index: 'lib/index' //主入口模块
-    }).use(['element', 'index', 'table', 'laydate'], function () {
+    }).use(['element', 'index', 'table', 'laydate','formSelects'], function () {
         var $ = layui.$
                 , table = layui.table
                 , layer = layui.layer
+                , formSelects = layui.formSelects
                 , laydate = layui.laydate;
         table.render({
             elem: '#table-height',
@@ -348,6 +350,15 @@
             var type = $(this).data('type');
             active[type] && active[type].call(this);
         });
+
+        formSelects.on('select1', function(id, vals, val, isAdd, isDisabled){
+            //id:           点击select的id
+            //vals:         当前select已选中的值
+            //val:          当前select点击的值
+            //isAdd:        当前操作选中or取消
+            //isDisabled:   当前选项是否是disabled
+            alert("当前选择了: " + JSON.stringify(vals));
+        }, true);
     })
 </script>
 <script type="text/html" id="barDemo">

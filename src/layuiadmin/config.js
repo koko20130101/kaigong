@@ -43,7 +43,7 @@ layui.define(['laytpl', 'layer', 'element', 'util'], function(exports){
       'echarts', //echarts 核心包
       'echartsTheme', //echarts 主题
       'treeGrid',  //树表格
-      // 'dragsort'  //拖拽排序
+      'formSelects'  //
     ]
 
     //主题配置
