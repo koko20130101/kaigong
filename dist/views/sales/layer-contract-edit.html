@@ -36,13 +36,13 @@
                                    value="33">
                         </div>
                     </div>
-                    <div class="layui-inline">
+                    <div class="layui-inline" style="width:720px">
                         <label class="layui-form-label"><span class="red">*</span>工程地址：</label>
-                        <div class="layui-input-inline">
+                        <div class="layui-input-inline" style="width:535px">
                             <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
                         </div>
                         <div class="layui-form-mid layui-word-aux">
-                            <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="edit">标注</a>
+                            <a class="layui-btn layui-btn-xs layui-btn-normal" data-type="tag">标注</a>
                         </div>
                     </div>
                 </div>
@@ -112,19 +112,30 @@
                 </div>
                 <div class="layui-row my-row">
                     <div class="layui-col-md4">
-                        <button type="button" class="layui-btn layui-btn-normal" id="test1">
+                        <a type="button" class="layui-btn layui-btn-normal" id="test1">
                             <i class="layui-icon">&#xe67c;</i>上传合同PDF
-                        </button>
+                        </a>
+                        <div class="default-img">
+                            <img src="../../layuiadmin/images/noImg_pdf.png" alt="">
+                        </div>
                     </div>
                     <div class="layui-col-md4">
-                        <button type="button" class="layui-btn layui-btn-normal" id="test1">
+                        <a type="button" class="layui-btn layui-btn-normal" id="test2">
                             <i class="layui-icon">&#xe67c;</i>授权签名图片
-                        </button>
+                        </a>
+                        <div class="default-img">
+                            <img src="../../layuiadmin/images/noImg.png" alt="">
+                            <a href="javascript:;" class="layui-btn" data-type="show">占击查看大图</a>
+                        </div>
                     </div>
                     <div class="layui-col-md4">
-                        <button type="button" class="layui-btn layui-btn-normal" id="test1">
+                        <a type="button" class="layui-btn layui-btn-normal" id="test3">
                             <i class="layui-icon">&#xe67c;</i>授权证明图片
-                        </button>
+                        </a>
+                        <div class="default-img">
+                            <img src="../../layuiadmin/images/noImg.png" alt="">
+                            <a href="javascript:;" >占击查看大图</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -233,8 +244,10 @@
     }).extend({
         index: 'lib/index' //主入口模块
     }).use(['element', 'index', 'table', 'laydate', 'upload'], function () {
-        var table = layui.table
+        var $ = layui.$
+                ,table = layui.table
                 , element = layui.element
+                , layer = layui.layer
                 , laydate = layui.laydate
                 , upload = layui.upload;
         laydate.render({
@@ -243,16 +256,68 @@
         laydate.render({
             elem: '#End-date'
         });
-        //执行实例
+
+        //普通图片上传
         var uploadInst = upload.render({
-            elem: '#test1' //绑定元素
-            , url: '/upload/' //上传接口
-            , done: function (res) {
-                //上传完毕回调
+            elem: '#test1'
+            ,url: '/upload/'
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#test-upload-normal-img').attr('src', result); //图片链接（base64）
+                });
             }
-            , error: function () {
-                //请求异常回调
+            ,done: function(res){
+                //如果上传失败
+                if(res.code > 0){
+                    return layer.msg('上传失败');
+                }
+                //上传成功
             }
+            ,error: function(){
+                //演示失败状态，并实现重传
+                var demoText = $('#test-upload-demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function(){
+                    uploadInst.upload();
+                });
+            }
+        });
+
+        //按钮事件
+        var active = {
+            'tag': function(){
+                layer.open({
+                    type: 2
+                    , title: '位置标注'
+                    , content: ['../edit/layer-tagging.html']
+                    , shadeClose: true
+                    , area: ['95%', '90%']
+                    , btn: ['确认', '关闭'] //按钮
+                    , maxmin: true
+                })
+            },
+            'show':function () {
+                layer.photos({
+                    photos: {
+                        "title": "", //相册标题
+                        "id": 123, //相册id
+                        "start": 0, //初始显示的图片序号，默认0
+                        "data": [   //相册包含的图片，数组格式
+                            {
+                                "alt": "图片名",
+                                "pid": 666, //图片id
+                                "src": "../../layuiadmin/images/noImg.png/", //原图地址
+                                "thumb": "" //缩略图地址
+                            }
+                        ]
+                    }
+                });
+            }
+        };
+        $('.layui-btn').on('click', function(event){
+            var type = $(this).data('type');
+            active[type] && active[type].call(this,$(this));
         });
     })
 </script>
