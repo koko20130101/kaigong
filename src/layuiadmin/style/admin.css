@@ -968,14 +968,14 @@ html{background-color: #f2f2f2; color: #666;}
 .cars-box {
   display: none;
   position: absolute;
-  left:0;
-  top:0;
+  left:-5px;
+  top:-5px;
   background: #FFF;
   box-shadow: 0 2px 3px #bbb;
   border:1px solid #ddd;
   border-radius:4px;
   padding:5px;
-  z-index: 2;
+  z-index: 3;
   width:85px;
 }
 .car-line .way .cars-box .car{

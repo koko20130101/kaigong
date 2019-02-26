@@ -220,6 +220,8 @@
     </div>
 </div>
 <script src="../../layuiadmin/layui/layui.js"></script>
+<script src="../../layuiadmin/js/jquery-2.1.1.min.js"></script>
+<script src="../../layuiadmin/js/dragsort.js"></script>
 <script>
     layui.config({
         base: '../../layuiadmin/' //静态资源所在路径
@@ -230,7 +232,15 @@
                 , table = layui.table
                 , element = layui.element
                 , laydate = layui.laydate;
-    })
+
+
+    });
+    $(".car-sort-list").dragsort({
+        dragSelector: "li",
+        dragBetween: true,
+        dragEnd: null, //拖拽完成后回调函数
+        placeHolderTemplate: "<li class='placeHolder'><div></div></li>" //拖动是阴影
+    });
 </script>
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-xs" lay-event="edit">明细</a>
