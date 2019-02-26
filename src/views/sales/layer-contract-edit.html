@@ -134,7 +134,7 @@
                         </a>
                         <div class="default-img">
                             <img src="../../layuiadmin/images/noImg.png" alt="">
-                            <a href="javascript:;" class="layui-btn" data-type="show">占击查看大图</a>
+                            <a href="javascript:;" >占击查看大图</a>
                         </div>
                     </div>
                 </div>
@@ -270,7 +270,7 @@
 
         //按钮事件
         var active = {
-            tag: function(){
+            'tag': function(){
                 layer.open({
                     type: 2
                     , title: '位置标注'
@@ -281,7 +281,7 @@
                     , maxmin: true
                 })
             },
-            show:function () {
+            'show':function () {
                 layer.photos({
                     photos: {
                         "title": "", //相册标题

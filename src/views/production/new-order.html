@@ -34,20 +34,21 @@
         <div class="layui-card-body">
             <form class="layui-form" action="" lay-filter="component-form-group">
                 <div class="layui-form-item no-margin">
-                    <div class="layui-inline">
+                    <div class="layui-inline w400">
                         <label class="layui-form-label"><span class="red">*</span>工程名称：</label>
-                        <div class="layui-input-inline">
+                        <div class="layui-input-block">
                             <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
                         </div>
                     </div>
-                    <div class="layui-inline">
+                    <div class="layui-inline w400">
                         <label class="layui-form-label"><span class="red">*</span>客户名称：</label>
-                        <div class="layui-input-inline">
+                        <div class="layui-input-block">
                             <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-inline">
-                        <a class="layui-btn layui-btn-sm layui-btn-normal" data-type="reelect"><i class="layui-icon layui-icon-refresh-1"></i>重选工程
+                        <a class="layui-btn layui-btn-sm layui-btn-normal" data-type="reelect"><i
+                                class="layui-icon layui-icon-refresh-1"></i>重选工程
                         </a>
                     </div>
                 </div>
@@ -184,11 +185,11 @@
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label"><span class="red">*</span>工程地址：</label>
-                    <div class="layui-input-inline">
+                    <div class="layui-input-inline" style="width:535px">
                         <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
                     </div>
                     <div class="layui-form-mid layui-word-aux">
-                        <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="edit">标注</a>
+                        <a class="layui-btn layui-btn-xs layui-btn-normal" data-type="tag">标注</a>
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -319,7 +320,7 @@
                     , btn: ['确认', '关闭'] //按钮
                 });
             },
-            'reelect':function () {
+            'reelect': function () {
                 layer.open({
                     type: 2
                     , title: '选择工程'
@@ -329,7 +330,18 @@
                     , maxmin: true
                     , btn: ['确认', '关闭'] //按钮
                 });
-            }
+            },
+            'tag': function () {
+                layer.open({
+                    type: 2
+                    , title: '位置标注'
+                    , content: ['../edit/layer-tagging.html']
+                    , shadeClose: true
+                    , area: ['95%', '90%']
+                    , btn: ['确认', '关闭'] //按钮
+                    , maxmin: true
+                })
+            },
         };
 
         $('.layui-btn').on('click', function () {
