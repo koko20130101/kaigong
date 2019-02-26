@@ -76,7 +76,8 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">皮重更新：</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="endDate" id="UpdateTime" lay-verify="date" placeholder="年-月-日  时:分:秒"
+                            <input type="text" name="endDate" id="UpdateTime" lay-verify="date"
+                                   placeholder="年-月-日  时:分:秒"
                                    autocomplete="off" class="layui-input">
                         </div>
                     </div>
@@ -90,7 +91,8 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">出厂日期：</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="endDate" id="DateOfProduction" lay-verify="date" placeholder="年-月-日"
+                            <input type="text" name="endDate" id="DateOfProduction" lay-verify="date"
+                                   placeholder="年-月-日"
                                    autocomplete="off" class="layui-input">
                         </div>
                     </div>
@@ -124,7 +126,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">行驶证：</label>
                     <div class="layui-input-block">
-                        <a class="layui-btn layui-btn-sm layui-btn-normal">
+                        <a class="layui-btn layui-btn-sm layui-btn-normal" id="test1">
                             <i class="layui-icon">&#xe67c;</i>上传行驶证图片
                         </a>
                         <div class="default-img">
@@ -162,35 +164,40 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">投保到期提醒：</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="endDate" id="InsureDateRemind" lay-verify="date" placeholder="年-月-日"
+                            <input type="text" name="endDate" id="InsureDateRemind" lay-verify="date"
+                                   placeholder="年-月-日"
                                    autocomplete="off" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-inline">
                         <label class="layui-form-label">年检时间：</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="endDate" id="YearlyInspectionDate" lay-verify="date" placeholder="年-月-日"
+                            <input type="text" name="endDate" id="YearlyInspectionDate" lay-verify="date"
+                                   placeholder="年-月-日"
                                    autocomplete="off" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-inline">
                         <label class="layui-form-label">年检到期提醒：</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="endDate" id="YearlyInspectionDateRemind" lay-verify="date" placeholder="年-月-日"
+                            <input type="text" name="endDate" id="YearlyInspectionDateRemind" lay-verify="date"
+                                   placeholder="年-月-日"
                                    autocomplete="off" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-inline">
                         <label class="layui-form-label">年审时间：</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="endDate" id="AnnualReviewDate" lay-verify="date" placeholder="年-月-日"
+                            <input type="text" name="endDate" id="AnnualReviewDate" lay-verify="date"
+                                   placeholder="年-月-日"
                                    autocomplete="off" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-inline">
                         <label class="layui-form-label">年审到期提醒：</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="endDate" id="AnnualReviewDateRemind" lay-verify="date" placeholder="年-月-日"
+                            <input type="text" name="endDate" id="AnnualReviewDateRemind" lay-verify="date"
+                                   placeholder="年-月-日"
                                    autocomplete="off" class="layui-input">
                         </div>
                     </div>
@@ -225,7 +232,7 @@
                 , upload = layui.upload;
         laydate.render({
             elem: '#UpdateTime',
-            type:'datetime'
+            type: 'datetime'
         });
         laydate.render({
             elem: '#BookInTime'
@@ -267,6 +274,32 @@
             }
             , error: function () {
                 //请求异常回调
+            }
+        });
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#test1'
+            ,url: '/upload/'
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#test-upload-normal-img').attr('src', result); //图片链接（base64）
+                });
+            }
+            ,done: function(res){
+                //如果上传失败
+                if(res.code > 0){
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+            }
+            ,error: function(){
+                //演示失败状态，并实现重传
+                var demoText = $('#test-upload-demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function(){
+                    uploadInst.upload();
+                });
             }
         });
     })
