@@ -126,7 +126,7 @@
                         <div class="layui-form-item layui-form-text">
                             <div class="layui-inline">
                                 <label class="layui-form-label">输入信息</label>
-                                <div class="layui-input-inline w300">
+                                <div class="layui-input-block w450">
                                     <textarea name="desc" class="layui-textarea"></textarea>
                                 </div>
                             </div>
@@ -196,8 +196,8 @@
                         </div>
                     </form>
                     <div class="layui-btn-container btn-box">
-                        <a class="layui-btn">增加排队车辆</a>
-                        <a class="layui-btn layui-btn-danger">清除排队车辆</a>
+                        <a class="layui-btn" data-type="add">增加排队车辆</a> <br>
+                        <a class="layui-btn layui-btn-danger" data-type="del">清除排队车辆</a>
                     </div>
                 </div>
             </div>
@@ -217,6 +217,36 @@
                 , table = layui.table
                 , element = layui.element
                 , layer = layui.layer;
+
+        var active = {
+            'add': function () {
+                layer.open({
+                    type: 2
+                    , title: '批量－增加排队车辆'
+                    , content: ['../production/layer-add-car.html']
+                    , shadeClose: true
+                    , area: ['65%', '80%']
+                    , maxmin: true
+                    , btn: ['确认', '关闭'] //按钮
+                });
+            },
+            'del': function () {
+                layer.open({
+                    type: 2
+                    , title: '批量－删除排队车辆'
+                    , content: ['../production/layer-add-car.html']
+                    , shadeClose: true
+                    , area: ['65%', '80%']
+                    , maxmin: true
+                    , btn: ['确认', '关闭'] //按钮
+                });
+            }
+        };
+
+        $('.layui-btn').on('click', function () {
+            var type = $(this).data('type');
+            active[type] && active[type].call(this);
+        });
 
         //拖拽插件
         $(".car-sort-list").dragsort({
