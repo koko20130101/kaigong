@@ -11,13 +11,26 @@
     <div class="padding">请点击地图上的位置进行标注或者输入搜索</div>
     <div class="map-box-1">
         <div id="allmap"></div>
-        <!--<iframe src="https://map.baidu.com/" frameborder="0"></iframe>-->
+        <div class="layui-form map-search">
+            <div class="layui-form-item no-margin">
+                <div class="layui-inline w400">
+                    <input type="text" name="title" required="" lay-verify="required" placeholder="请输入要搜索的地点名称"
+                           autocomplete="off" class="layui-input" id="txtAddress">
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn layui-btn-normal" id="seacrch" onclick="doSearch();">搜索</button>
+                </div>
+                <div id="searchResultPanel"></div>
+            </div>
+        </div>
+
     </div>
 </div>
 <script src="../../layuiadmin/layui/layui.js"></script>
 <script src="../../layuiadmin/js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=2&amp;ak=gxoEbH7Fj52wc1LVwRsGGOC5"></script>
-<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&amp;ak=gxoEbH7Fj52wc1LVwRsGGOC5&amp;services=&amp;t=20190123111209"></script>
+<script type="text/javascript"
+        src="http://api.map.baidu.com/getscript?v=2.0&amp;ak=gxoEbH7Fj52wc1LVwRsGGOC5&amp;services=&amp;t=20190123111209"></script>
 
 <script>
     layui.config({
@@ -46,8 +59,7 @@
     var lat = '22.9772870';
 
     map.addEventListener("click", showInfo);
-    if (lng == '' || lat == '')
-    {
+    if (lng == '' || lat == '') {
         map.centerAndZoom('广州', 15); // 初始化地图,设置城市和地图级别。
     }
     else {
@@ -101,6 +113,7 @@
             map.centerAndZoom(pp, 18);
             map.addOverlay(new BMap.Marker(pp)); //添加备注
         }
+
         var local = new BMap.LocalSearch(map, {
             onSearchComplete: myFun
         });
