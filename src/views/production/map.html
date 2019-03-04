@@ -80,13 +80,29 @@
                 </script>
             </div>
             <div class="map-box">
-                <iframe src="https://map.baidu.com/" frameborder="0"></iframe>
+                <div id="allmap"></div>
+                <div class="layui-form map-search">
+                    <div class="layui-form-item no-margin">
+                        <div class="layui-inline w400">
+                            <input type="text" name="title" required="" lay-verify="required" placeholder="请输入要搜索的地点名称"
+                                   autocomplete="off" class="layui-input" id="txtAddress">
+                        </div>
+                        <div class="layui-inline">
+                            <button class="layui-btn layui-btn-normal" id="seacrch" onclick="doSearch();">搜索</button>
+                        </div>
+                        <div id="searchResultPanel"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
 </div>
 <script src="../../layuiadmin/layui/layui.js"></script>
+<script src="../../layuiadmin/js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2&amp;ak=gxoEbH7Fj52wc1LVwRsGGOC5"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&amp;ak=gxoEbH7Fj52wc1LVwRsGGOC5&amp;services=&amp;t=20190123111209"></script>
+
 <script>
     layui.config({
         base: '../../layuiadmin/' //静态资源所在路径
@@ -134,6 +150,146 @@
             ]
         });
     })
+</script>
+<script type="text/javascript">
+    $(function () {
+        $('#allmap').css('height', $(window).height() - 60 + 'px');
+    });
+
+    var _point; //存储坐标的地址对象
+    // 百度地图API功能
+    function G(id) {
+        return document.getElementById(id);
+    }
+
+    var map = new BMap.Map("allmap");
+    var lng = '113.2603470';
+    var lat = '22.9772870';
+
+    map.addEventListener("click", showInfo);
+    if (lng == '' || lat == '') {
+        map.centerAndZoom('广州', 15); // 初始化地图,设置城市和地图级别。
+    }
+    else {
+        var point = new BMap.Point(lng, lat);  // 创建点坐标
+        var marker = new BMap.Marker(point);  // 创建标注
+        map.addOverlay(marker);              // 将标注添加到地图中
+        map.centerAndZoom(point, 15); // 初始化地图,设置城市和地图级别。
+    }
+    map.enableScrollWheelZoom(); //启动滚轮放大缩小
+    map.addControl(new BMap.NavigationControl({
+        anchor: BMAP_ANCHOR_TOP_RIGHT,
+        type: BMAP_NAVIGATION_CONTROL_SMALL
+    })); //右上角，仅包含平移和缩放按钮
+    var ac = new BMap.Autocomplete( //建立一个自动完成的对象
+            {
+                "input": "txtAddress",
+                "location": map
+            });
+
+    ac.addEventListener("onhighlight", function (e) { //鼠标放在下拉列表上的事件
+        var str = "";
+        var _value = e.fromitem.value;
+        var value = "";
+        if (e.fromitem.index > -1) {
+            value = _value.province + _value.city + _value.district + _value.street + _value.business;
+        }
+        str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
+
+        value = "";
+        if (e.toitem.index > -1) {
+            _value = e.toitem.value;
+            value = _value.province + _value.city + _value.district + _value.street + _value.business;
+        }
+        str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
+        G("searchResultPanel").innerHTML = str;
+    });
+
+    var myValue;
+    ac.addEventListener("onconfirm", function (e) { //鼠标点击下拉列表后的事件
+        var _value = e.item.value;
+        myValue = _value.province + _value.city + _value.district + _value.street + _value.business;
+        G("searchResultPanel").innerHTML = "onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
+        _point = e.target.yd.src.BC;
+        setPlace();
+    });
+
+    function setPlace() {
+        map.clearOverlays(); //清除地图上所有覆盖物
+        function myFun() {
+            var pp = local.getResults().getPoi(0).point; //获取第一个智能搜索的结果
+            map.centerAndZoom(pp, 18);
+            map.addOverlay(new BMap.Marker(pp)); //添加备注
+        }
+
+        var local = new BMap.LocalSearch(map, {
+            onSearchComplete: myFun
+        });
+        local.search(myValue);
+    }
+    var marker;
+    var geoc = new BMap.Geocoder();
+
+    function showInfo(e) {
+        if (marker) {
+            map.removeOverlay(marker);
+        }
+        marker = new BMap.Marker(new BMap.Point(e.point.lng, e.point.lat));
+        lng = e.point.lng;
+        lat = e.point.lat;
+        _point = e.point;
+        console.log(_point);
+        map.addOverlay(marker); // 将标注添加到地图中
+        //通过点击百度地图，可以获取到对应的point, 由point的lng、lat属性就可以获取对应的经度纬度
+        var pt = e.point;
+        geoc.getLocation(pt, function (rs) {
+            //addressComponents对象可以获取到详细的地址信息
+            var addComp = rs.addressComponents;
+            var site = addComp.province + "" + addComp.city + "" + addComp.district + "" + addComp.street + "" + addComp.streetNumber;
+            //将对应的HTML元素设置值
+            console.log('hajaja' + site)
+            $('#txtAddress').val(site);
+        });
+    }
+
+    //map展现结果的地图实例
+    //autoViewport检索结束后是否自动调整地图视野
+    var local = new BMap.LocalSearch(map, {
+        renderOptions: {
+            map: map,
+            autoViewport: true
+        }
+    });
+    //地址检索
+    function doSearch() {
+        var address = document.getElementById("txtAddress").value;
+        local.search(address);
+
+        //检索结束后的回调方法
+        local.setSearchCompleteCallback(function (results) {
+            // 判断状态是否正确
+            if (local.getStatus() == BMAP_STATUS_SUCCESS) {
+                _point = results.Br[0].point;
+            }
+        });
+    }
+
+
+    function getMap() {
+        var win = top.frames["Form"];
+        if (!win) {
+            win = top.CashForm;
+        }
+        if (!win) {
+            win = $.parentWindow();
+        }
+        var lng = _point.lng;
+        var lat = _point.lat;
+        console.log(_point);
+        win.setMap($('#txtAddress').val(), lat, lng);
+        var index = top.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+        top.layer.close(index);
+    }
 </script>
 </body>
 </html>
