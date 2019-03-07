@@ -36,10 +36,10 @@
                         </div>
                     </div>
                     <div class="layui-inline">
-                        <button class="layui-btn layui-btn-sm" lay-submit><i class="layui-icon layui-icon-search"></i>查询</button>
-                        <button type="reset" class="layui-btn layui-btn-sm layui-btn-normal"><i class="layui-icon">
+                        <a class="layui-btn layui-btn-sm" lay-submit><i class="layui-icon layui-icon-search"></i>查询</a>
+                        <a class="layui-btn layui-btn-sm layui-btn-normal" data-type="add"><i class="layui-icon">
                             &#xe608;</i>新增
-                        </button>
+                        </a>
                     </div>
                 </div>
             </form>
@@ -96,6 +96,39 @@
                 $('.select-date').hide();
             }
         });
+
+        //按钮事件
+        var active = {
+            add: function(){
+                layer.open({
+                    type: 2
+                    , title: '选择工程'
+                    , content: ['../sales/layer-contracts-cash.html']
+                    , shadeClose: true
+                    , area: ['95%', '90%']
+                    , btn: ['确认', '关闭'] //按钮
+                    , yes: function (index, layero) {
+                        layer.close(index);
+                        layer.open({
+                            type: 2
+                            , title: '新增固定价格'
+                            , content: ['../sales/layer-new-price.html']
+                            , shadeClose: true
+                            , area: ['95%', '90%']
+                            , btn: ['确认', '关闭'] //按钮
+                        });
+                    }
+                    , maxmin: true
+                })
+            }
+        };
+
+        $('.layui-btn').on('click', function(event){
+            var type = $(this).data('type');
+            active[type] && active[type].call(this,$(this));
+        });
+
+
     })
 </script>
 <script type="text/html" id="barDemo">

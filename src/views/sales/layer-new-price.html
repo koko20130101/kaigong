@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增固定价格</title>
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+<div class="layui-fluid">
+    <form class="layui-form new-price" action="" lay-filter="component-form-group">
+        <div class="layui-form-item no-margin">
+            <div class="layui-inline">
+                <label class="layui-form-label">生效时间：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="endDate" id="UpdateTime" lay-verify="date"
+                           placeholder="年-月-日  时:分:秒"
+                           autocomplete="off" class="layui-input">
+                </div>
+                <div class="tips">
+                    (输入框内输入正数为升价，输入负数为降价，价格针对合同价格进行调整)
+                </div>
+            </div>
+            <div class="layui-inline">
+                <div class="layui-input-block">
+                    <a class="layui-btn layui-btn-sm layui-btn-normal updated-btn" id="test1">
+                        <i class="layui-icon">&#xe67c;</i>上传图片凭证
+                    </a>
+                    <div class="default-img">
+                        <img src="../../layuiadmin/images/noImg.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-card grid-demo">
+            <div class="layui-card-header">
+                混凝土
+            </div>
+            <div class="layui-card-body">
+                <table class="layui-hide" id="Concrete" lay-filter="concrete"></table>
+            </div>
+        </div>
+        <div class="layui-card grid-demo">
+            <div class="layui-card-header">
+                <input type="checkbox" name="" title="其它" lay-skin="primary" lay-filter="other">
+            </div>
+            <div class="layui-card-body" id="OtherBox">
+                <table class="layui-hide" id="Other_1" lay-filter="other-table"></table>
+                <hr>
+                <table class="layui-hide" id="Other_2" lay-filter="other-table"></table>
+                <hr>
+                <table class="layui-hide" id="Other_3" lay-filter="other-table"></table>
+                <hr>
+                <table class="layui-hide" id="Other_4" lay-filter="other-table"></table>
+                <hr>
+                <table class="layui-hide" id="Other_5" lay-filter="other-table"></table>
+                <hr>
+                <table class="layui-hide" id="Other_6" lay-filter="other-table"></table>
+                <hr>
+                <table class="layui-hide" id="Other_7" lay-filter="other-table"></table>
+                <table class="layui-hide" id="Other_8" lay-filter="other-table"></table>
+            </div>
+        </div>
+        <div class="layui-card grid-demo">
+            <div class="layui-card-header">
+                砂浆
+            </div>
+            <div class="layui-card-body">
+                <table class="layui-hide" id="Mortar" lay-filter="concrete"></table>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['element', 'index','form', 'table', 'laydate', 'upload'], function () {
+        var $ = layui.$
+                ,table = layui.table
+                , element = layui.element
+                , form = layui.form
+                , laydate = layui.laydate
+                , upload = layui.upload;
+
+        table.render({
+            elem: '#Concrete',
+            cols: [[
+                {field: 'strong', title: '强度等级',align: 'center'}
+                , {field: 'setPriceBefore', title: '调价前',align: 'center'}
+                , {field: 'setPrice', title: '调价',edit:true,align: 'center'}
+                , {field: 'setPriceAfter', title: '调价后',align: 'center'}
+                , {field: 'together', title: '统调',edit:true, align: 'center'}
+            ]],
+            data: [
+                {
+                    "strong": "C10",
+                    "setPriceBefore": "200",
+                    "setPrice": "",
+                    "setPriceAfter": "100",
+                    "together": ""
+                },{
+                    "strong": "C10",
+                    "setPriceBefore": "200",
+                    "setPrice": "",
+                    "setPriceAfter": "100",
+                    "together": ""
+                },{
+                    "strong": "C10",
+                    "setPriceBefore": "200",
+                    "setPrice": "",
+                    "setPriceAfter": "100",
+                    "together": ""
+                },{
+                    "strong": "C10",
+                    "setPriceBefore": "200",
+                    "setPrice": "",
+                    "setPriceAfter": "100",
+                    "together": ""
+                }
+            ]
+        });
+        table.render({
+            elem: '#Mortar',
+            cols: [[
+                {field: 'strong', title: '强度等级',align: 'center'}
+                , {field: 'setPriceBefore', title: '调价前',align: 'center'}
+                , {field: 'setPrice', title: '调价',edit:true,align: 'center'}
+                , {field: 'setPriceAfter', title: '调价后',align: 'center'}
+                , {field: 'together', title: '统调',edit:true, align: 'center'}
+            ]],
+            data: [
+                {
+                    "strong": "C10",
+                    "setPriceBefore": "200",
+                    "setPrice": "",
+                    "setPriceAfter": "100",
+                    "together": ""
+                },{
+                    "strong": "C10",
+                    "setPriceBefore": "200",
+                    "setPrice": "",
+                    "setPriceAfter": "100",
+                    "together": ""
+                },{
+                    "strong": "C10",
+                    "setPriceBefore": "200",
+                    "setPrice": "",
+                    "setPriceAfter": "100",
+                    "together": ""
+                },{
+                    "strong": "C10",
+                    "setPriceBefore": "200",
+                    "setPrice": "",
+                    "setPriceAfter": "100",
+                    "together": ""
+                }
+            ]
+        });
+        table.render({
+            elem: '#Other_1',
+            cols: [[
+                {field: 'slumps', title: '坍落度',align: 'center'}
+                , {field: 'setPriceBefore', title: '调价前',align: 'center'}
+                , {field: 'setPrice', title: '调价',edit:true,align: 'center'}
+                , {field: 'setPriceAfter', title: '调价后',align: 'center'}
+                , {field: 'together', title: '统调',edit:true, align: 'center'}
+            ]],
+            data: [
+                {
+                    "slumps": "<=70",
+                    "setPriceBefore": "200",
+                    "setPrice": "",
+                    "setPriceAfter": "100",
+                    "together": ""
+                }
+            ]
+        });
+        table.render({
+            elem: '#Other_2',
+            cols: [[
+                {field: 'fibre', title: '纤维',align: 'center'}
+                , {field: 'setPriceBefore', title: '调价前',align: 'center'}
+                , {field: 'setPrice', title: '调价',edit:true,align: 'center'}
+                , {field: 'setPriceAfter', title: '调价后',align: 'center'}
+                , {field: 'together', title: '统调',edit:true, align: 'center'}
+            ]],
+            data: [
+                {
+                    "fibre": "聚丙烯纤维",
+                    "setPriceBefore": "200",
+                    "setPrice": "",
+                    "setPriceAfter": "100",
+                    "together": ""
+                }
+            ]
+        });
+        table.render({
+            elem: '#Other_3',
+            cols: [[
+                {field: 'sweller', title: '微膨胀剂',align: 'center'}
+                , {field: 'setPriceBefore', title: '调价前',align: 'center'}
+                , {field: 'setPrice', title: '调价',edit:true,align: 'center'}
+                , {field: 'setPriceAfter', title: '调价后',align: 'center'}
+                , {field: 'together', title: '统调',edit:true, align: 'center'}
+            ]],
+            data: [
+                {
+                    "sweller": "10%",
+                    "setPriceBefore": "200",
+                    "setPrice": "",
+                    "setPriceAfter": "100",
+                    "together": ""
+                }
+            ]
+        });
+        table.render({
+            elem: '#Other_4',
+            cols: [[
+                {field: 'impervious', title: '抗渗',align: 'center'}
+                , {field: 'setPriceBefore', title: '调价前',align: 'center'}
+                , {field: 'setPrice', title: '调价',edit:true,align: 'center'}
+                , {field: 'setPriceAfter', title: '调价后',align: 'center'}
+                , {field: 'together', title: '统调',edit:true, align: 'center'}
+            ]],
+            data: [
+                {
+                    "impervious": "P10",
+                    "setPriceBefore": "200",
+                    "setPrice": "",
+                    "setPriceAfter": "100",
+                    "together": ""
+                }
+            ]
+        });
+        table.render({
+            elem: '#Other_5',
+            cols: [[
+                {field: 'foldingResistance', title: '抗折',align: 'center'}
+                , {field: 'setPriceBefore', title: '调价前',align: 'center'}
+                , {field: 'setPrice', title: '调价',edit:true,align: 'center'}
+                , {field: 'setPriceAfter', title: '调价后',align: 'center'}
+                , {field: 'together', title: '统调',edit:true, align: 'center'}
+            ]],
+            data: [
+                {
+                    "foldingResistance": "Z3.5",
+                    "setPriceBefore": "200",
+                    "setPrice": "",
+                    "setPriceAfter": "100",
+                    "together": ""
+                }
+            ]
+        });
+        table.render({
+            elem: '#Other_6',
+            cols: [[
+                {field: 'earlyStrength', title: '七天早强',align: 'center'}
+                , {field: 'setPriceBefore', title: '调价前',align: 'center'}
+                , {field: 'setPrice', title: '调价',edit:true,align: 'center'}
+                , {field: 'setPriceAfter', title: '调价后',align: 'center'}
+                , {field: 'together', title: '统调',edit:true, align: 'center'}
+            ]],
+            data: [
+                {
+                    "earlyStrength": "Z3.5",
+                    "setPriceBefore": "200",
+                    "setPrice": "",
+                    "setPriceAfter": "100",
+                    "together": ""
+                }
+            ]
+        });
+        table.render({
+            elem: '#Other_7',
+            cols: [[
+                {field: 'special', title: '特殊要求',align: 'center'}
+                , {field: 'setPriceBefore', title: '调价前',align: 'center'}
+                , {field: 'setPrice', title: '调价',edit:true,align: 'center'}
+                , {field: 'setPriceAfter', title: '调价后',align: 'center'}
+                , {field: 'together', title: '统调',edit:true, align: 'center'}
+            ]],
+            data: [
+                {
+                    "special": "p30",
+                    "setPriceBefore": "200",
+                    "setPrice": "",
+                    "setPriceAfter": "100",
+                    "together": ""
+                }
+            ]
+        });
+        table.render({
+            elem: '#Other_7',
+            cols: [[
+                {field: 'unloadType', title: '卸料方式',align: 'center'}
+                , {field: 'setPriceBefore', title: '调价前',align: 'center'}
+                , {field: 'setPrice', title: '调价',edit:true,align: 'center'}
+                , {field: 'setPriceAfter', title: '调价后',align: 'center'}
+                , {field: 'together', title: '统调',edit:true, align: 'center'}
+            ]],
+            data: [
+                {
+                    "unloadType": "地泵",
+                    "setPriceBefore": "200",
+                    "setPrice": "",
+                    "setPriceAfter": "100",
+                    "together": ""
+                }
+            ]
+        });
+
+        laydate.render({
+            elem: '#UpdateTime',
+            type: 'datetime'
+        });
+
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#test1'
+            , url: '/upload/'
+            , before: function (obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#test-upload-normal-img').attr('src', result); //图片链接（base64）
+                });
+            }
+            , done: function (res) {
+                //如果上传失败
+                if (res.code > 0) {
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+            }
+            , error: function () {
+                //演示失败状态，并实现重传
+                var demoText = $('#test-upload-demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function () {
+                    uploadInst.upload();
+                });
+            }
+        });
+
+        //表单：复选
+        form.on('checkbox(other)', function(data){
+            console.log(data.elem); //得到checkbox原始DOM对象
+            console.log(data.elem.checked); //是否被选中，true或者false
+            console.log(data.value); //复选框value值，也可以通过data.elem.value得到
+            console.log(data.othis); //得到美化后的DOM对象
+            if(data.elem.checked){
+                $('#OtherBox').show();
+            }else{
+                $('#OtherBox').hide();
+            }
+        });
+        $('#OtherBox').hide();
+    })
+</script>
+</body>
+</html>

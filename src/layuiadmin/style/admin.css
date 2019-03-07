@@ -646,6 +646,11 @@ html{background-color: #f2f2f2; color: #666;}
   color: #fff;
 }*/
 
+/*搜索*/
+.search-form .layui-form-item{
+  margin-bottom:4px;
+}
+
 
 .pb-select-left{
   width:425px;
@@ -764,6 +769,22 @@ html{background-color: #f2f2f2; color: #666;}
 /*库存监控*/
 .my-inventory .my-table-2{
   width:98%
+}
+
+/*固定价格调整弹窗*/
+.new-price .tips{
+  padding-left:45px;
+  padding-top:10px;
+}
+.new-price .updated-btn{
+  float:left;
+  margin-top:55px;
+  margin-right:10px;
+}
+.new-price .default-img{
+  float:left;
+  margin-top:0;
+  margin-bottom:4px;
 }
 
 /*调度中心*/
