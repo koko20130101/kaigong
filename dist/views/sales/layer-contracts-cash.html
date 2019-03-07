@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" class="layui-bg-white">
+<head>
+    <meta charset="UTF-8">
+    <title>选择工程</title>
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-tab layui-tab-brief no-margin-top" lay-filter="docDemoTabBrief">
+        <ul class="layui-tab-title" id="tabHeader">
+            <li class="layui-this">合同工程</li>
+            <li>现金单</li>
+        </ul>
+    </div>
+    <form class="layui-form" action="" lay-filter="component-form-group">
+
+        <div id="tabBody">
+            <div class="layui-tab-item layui-show">
+                <div class="layui-form-item no-margin">
+                    <div class="layui-inline">
+                        <input type="text" name="contractNumber" size="40" placeholder="请输入工程名称、客户名称进行查询"
+                               lay-verify="required" class="layui-input">
+                    </div>
+                    <div class="layui-inline">
+                        <button class="layui-btn layui-btn-sm" lay-submit><i class="layui-icon layui-icon-search"></i>查询
+                        </button>
+                    </div>
+                </div>
+                <table class="layui-hide" id="TableContract" lay-filter="test-table-totalRow"></table>
+            </div>
+            <div class="layui-tab-item">
+                <div class="layui-form-item no-margin">
+                    <div class="layui-inline">
+                        <input type="text" name="contractNumber" size="40" placeholder="请输入工程名称、客户名称进行查询"
+                               lay-verify="required" class="layui-input">
+                    </div>
+                    <div class="layui-inline">
+                        <a class="layui-btn layui-btn-sm" lay-submit><i class="layui-icon layui-icon-search"></i>查询
+                        </a>
+                    </div>
+                </div>
+                <table class="layui-hide" id="TableCash" lay-filter="test-table-totalRow"></table>
+            </div>
+        </div>
+    </form>
+
+
+</div>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['element', 'index', 'table', 'laydate'], function () {
+        var $ = layui.$
+                , table = layui.table
+                , element = layui.element
+                , laydate = layui.laydate;
+        table.render({
+            elem: '#TableContract',
+            cols: [[
+                {type: 'numbers'}
+                , {field: 'projectName', title: '工程名称', sort: true}
+                , {field: 'adjustmentTime', title: '客户名称'}
+                , {field: 'address', title: '送货地址'}
+            ]],
+            data: [
+                {
+                    "projectName": "测试合同工程3-7",
+                    "adjustmentTime": "马大姐",
+                    "address": "广东省中山市康乐大道2号"
+                },
+                {
+                    "projectName": "测试合同工程3-7",
+                    "adjustmentTime": "马大姐",
+                    "address": "广东省中山市康乐大道2号"
+                }
+            ]
+        });
+
+        table.render({
+            elem: '#TableCash',
+            cols: [[
+                { type: 'numbers'}
+                , {field: 'name', title: '姓名', sort: true}
+                , {field: 'ID', title: '身份证号码', sort: true}
+                , {field: 'tel', title: '联系电话'}
+            ]],
+            data: [
+                {
+                    "name": "何小",
+                    "ID": "431026566556565555",
+                    "tel": "15219407620"
+                },
+                {
+                    "name": "何小",
+                    "ID": "431026566556565555",
+                    "tel": "15219407620"
+                }
+            ]
+        });
+
+        laydate.render({
+            elem: '#Start-date'
+            , type: 'datetime'
+        });
+        laydate.render({
+            elem: '#End-date'
+            , type: 'datetime'
+        });
+
+        element.tab({
+            headerElem: '#tabHeader>li' //指定tab头元素项
+            , bodyElem: '#tabBody>.layui-tab-item' //指定tab主体元素项
+        });
+
+        //表格行选择
+        table.on('row(test-table-totalRow)', function (obj) {
+            obj.tr.addClass('current');
+            obj.tr.siblings().removeClass('current');
+        });
+    })
+</script>
+</body>
+</html>
