@@ -10,7 +10,7 @@
 <div class="layui-fluid">
     <div class="layui-card">
         <div class="layui-card-body">
-            <form class="layui-form" action="" lay-filter="component-form-group">
+            <form class="layui-form search-form" action="" lay-filter="component-form-group">
                 <div class="layui-form-item">
                     <div class="layui-inline">
                         <div class="layui-tab layui-tab-btn" lay-filter="docDemoTabBrief">
@@ -35,16 +35,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="layui-inline" style="width: 142px">
-                        <!--<label class="layui-form-label">结算方式</label>-->
+                    <div class="layui-inline w140">
                         <select name="quiz">
                             <option value="">请选择强度等级</option>
                             <option value="C10">C10</option>
                             <option value="C15">C15</option>
                         </select>
                     </div>
-                    <div class="layui-inline" style="width: 112px">
-                        <!--<label class="layui-form-label">结算方式</label>-->
+                    <div class="layui-inline w120">
                         <select name="quiz">
                             <option value="">请选择状态</option>
                             <option value="待生产">待生产</option>
@@ -66,7 +64,10 @@
                     </div>
                 </div>
             </form>
-            <table class="layui-hide" id="table-height"></table>
+            <table class="layui-hide" id="table-height" lay-filter="record-table"></table>
+            <script type="text/html" id="barDemo">
+                <a class="layui-btn layui-btn-xs" lay-event="detail">明细</a>
+            </script>
         </div>
     </div>
 </div>
@@ -80,6 +81,7 @@
         var $=layui.jquery;
         var table = layui.table
                 ,element = layui.element
+                ,layer = layui.layer
                 ,laydate = layui.laydate;
         table.render({
             elem: '#table-height',
@@ -142,10 +144,26 @@
                 $('.select-date').hide();
             }
         });
+        //监听工具条
+        table.on('tool(record-table)', function (obj) {
+            switch (obj.event) {
+                case 'detail':
+                    layer.open({
+                        type: 2
+                        , title: '生产记录明细'
+                        , content: ['../lab/layer-record-details.html']
+                        , shadeClose: true
+                        , area: ['95%', '90%']
+                        , btn: ['确定打印', '取消'] //按钮
+                        , maxmin: true
+                    });
+                    break;
+                default:
+                    break;
+            }
+        });
     })
 </script>
-<script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-xs" lay-event="edit">明细</a>
-</script>
+
 </body>
 </html>
