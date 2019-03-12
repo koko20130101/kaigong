@@ -5,6 +5,8 @@
     <title>地图中心</title>
     <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/font/iconfont.css" media="all">
+    <script src="../../layuiadmin/font/iconfont.js"></script>
 </head>
 <body>
 <div class="layui-fluid">
@@ -60,22 +62,22 @@
                 <table class="layui-hide" id="Trucks" lay-filter="orderExamine"></table>
                 <script type="text/html" id="StateDemo">
                     {{# if(d.state ==1){ }}
-                        <span class="layui-badge layui-bg-green"></span>
+                        <div class="layui-bg-green">{{ d.truckNumber }}</div>
                     {{# } }}
                     {{# if(d.state ==2){ }}
-                    <span class="layui-badge"></span>
+                    <div class="layui-bg-red">{{ d.truckNumber }}</div>
                     {{# } }}
                     {{# if(d.state ==3){ }}
-                    <span class="layui-badge layui-bg-blue"></span>
+                    <div class="layui-bg-blue">{{ d.truckNumber }}</div>
                     {{# } }}
                     {{# if(d.state ==4){ }}
-                    <span class="layui-badge layui-bg-cyan"></span>
+                    <div class="layui-bg-cyan">{{ d.truckNumber }}</div>
                     {{# } }}
                     {{# if(d.state ==5){ }}
-                    <span class="layui-badge layui-bg-gray"></span>
+                    <div class="layui-bg-gray">{{ d.truckNumber }}</div>
                     {{# } }}
                     {{# if(d.state ==6){ }}
-                    <span class="layui-badge layui-bg-orange"></span>
+                    <div class="layui-bg-orange">{{ d.truckNumber }}</div>
                     {{# } }}
                 </script>
             </div>
@@ -91,6 +93,22 @@
                             <button class="layui-btn layui-btn-normal" id="seacrch" onclick="doSearch();">搜索</button>
                         </div>
                         <div id="searchResultPanel"></div>
+                    </div>
+                </div>
+                <div class="tools">
+                    <div class="layui-btn-group">
+                        <a class="layui-btn layui-btn-primary layui-btn-sm" id="Traffic">
+                            <i class="layui-icon icon-close">
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-lukuang1"></use>
+                                </svg>
+                            </i>
+                            <i class="layui-icon icon-open" style="display: none">
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-lukuang"></use>
+                                </svg>
+                            </i>
+                            路况</a>
                     </div>
                 </div>
             </div>
@@ -117,13 +135,12 @@
             elem: '#Trucks',
             height: 'full-100',
             cols: [[
-                {field: 'truckNumber', title: '车号', align: 'center', width: 63}
+                {field: 'truckNumber', title: '车号', align: 'center', width: 63,templet: '#StateDemo'}
                 , {field: 'plateNumber', title: '车牌', align: 'center'}
-                , {field: 'state', title: '状态', align: 'center', width: 60,templet: '#StateDemo'}
             ]],
             data: [
                 {
-                    "truckNumber": "2322",
+                    "truckNumber": 2322,
                     "plateNumber": "粤T38786",
                     "state": 1
                 }, {
@@ -148,6 +165,20 @@
                     "state": 6
                 }
             ]
+        });
+
+        $('#Traffic').on('click', function () {
+            var $this = $(this);
+
+            if($this.hasClass('opened')){
+                $this.find('.icon-open').hide();
+                $this.find('.icon-close').show();
+                $this.removeClass('opened');
+            }else{
+                $this.find('.icon-open').show();
+                $this.find('.icon-close').hide();
+                $this.addClass('opened');
+            }
         });
     })
 </script>
