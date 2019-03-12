@@ -178,7 +178,7 @@ layui.define('layer', function(exports){
                 };
 
                 //如果有选中值，则将输入框纠正为该值。否则清空输入框
-                input.val(initValue || '');
+                //input.val(initValue || '');
               }
             });
           }
