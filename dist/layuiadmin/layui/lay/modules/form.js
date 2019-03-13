@@ -164,13 +164,12 @@ layui.define('layer', function(exports){
             nearElem = null;
             
             if(choose) return;
-            
             notOption(input.val(), function(none){
               var selectedIndex = select[0].selectedIndex;
               
               //未查询到相关值
               if(none){
-                initValue = $(select[0].options[selectedIndex]).html(); //重新获得初始选中值
+                //initValue = $(select[0].options[selectedIndex]).html(); //重新获得初始选中值
                 
                 //如果是第一项，且文本值等于 placeholder，则清空初始值
                 if(selectedIndex === 0 && initValue === input.attr('placeholder')){
@@ -178,7 +177,7 @@ layui.define('layer', function(exports){
                 };
 
                 //如果有选中值，则将输入框纠正为该值。否则清空输入框
-                input.val(initValue || '');
+                //input.val(initValue || '');
               }
             });
           }
@@ -311,8 +310,8 @@ layui.define('layer', function(exports){
           //搜索匹配
           var search = function(e){
             var value = this.value, keyCode = e.keyCode;
-            
-            if(keyCode === 9 || keyCode === 13 
+
+            if(keyCode === 9 || keyCode === 13
               || keyCode === 37 || keyCode === 38 
               || keyCode === 39 || keyCode === 40
             ){
@@ -320,6 +319,7 @@ layui.define('layer', function(exports){
             }
             
             notOption(value, function(none){
+
               if(none){
                 dl.find('.'+NONE)[0] || dl.append('<p class="'+ NONE +'">无匹配项</p>');
               } else {
@@ -337,19 +337,25 @@ layui.define('layer', function(exports){
           if(isSearch){
             input.on('keyup', search).on('blur', function(e){
               var selectedIndex = select[0].selectedIndex;
-              
+
               thatInput = input; //当前的 select 中的 input 元素
               //initValue = $(select[0].options[selectedIndex]).html(); //重新获得初始选中值
-              
+
               //如果是第一项，且文本值等于 placeholder，则清空初始值
               if(selectedIndex === 0 && initValue === input.attr('placeholder')){
                 initValue = '';
               };
-              
+
               setTimeout(function(){
                 notOption(input.val(), function(none){
                   //如果没有匹配的项，则初始化值
                   //initValue || input.val(''); //none && !initValue
+                  if(none){
+                    //把第一项option的值设为input中的值
+                    select[0].options[0].value = input.val();
+                    //设置select的选中项为第一项
+                    select[0].selectedIndex = 0;
+                  }
                 }, 'blur');
               }, 200);
             });

@@ -26,10 +26,10 @@
                     <div class="layui-inline">
                         <label class="layui-form-label"><span class="red">*</span>客户：</label>
                         <div class="layui-input-inline">
-                            <select name="" lay-search="">
+                            <select name="customer" lay-search="">
                                 <option value="">请选择或输入客户名称</option>
                                 <option value="客户1">客户1</option>
-                                <option value="客户3">客户2</option>
+                                <option value="客户2">客户2</option>
                                 <option value="客户3">客户3</option>
                             </select>
                         </div>
@@ -199,7 +199,7 @@
                             <label class="layui-form-label">强度等级</label>
                             <div class="layui-input-block">
                                 <select name="city" xm-select="select1">
-                                    <option value="10">C10</option>
+                                    <option value="10">强度等级在</option>
                                     <option value="20">C20</option>
                                 </select>
                             </div>
@@ -347,10 +347,10 @@
         base: '../../layuiadmin/' //静态资源所在路径
     }).extend({
         index: 'lib/index' //主入口模块
-    }).use(['element', 'index', 'table', 'laydate', 'upload','formSelects'], function () {
+    }).use(['form', 'index', 'table', 'laydate', 'upload','formSelects'], function () {
         var $ = layui.$
                 ,table = layui.table
-                , element = layui.element
+                , form = layui.form
                 , layer = layui.layer
                 , laydate = layui.laydate
                 , formSelects= layui.formSelects
