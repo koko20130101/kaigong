@@ -1264,12 +1264,12 @@ html{background-color: #f2f2f2; color: #666;}
 .truck-list .layui-badge{
   display:inline;
 }
-.truck-list .layui-table-cell{
-  padding:0;
+.truck-list .layui-table-cell > div{
+  width:28px;
+  height:28px;
+  border-radius:14px;
 }
-.truck-list .layui-table-view .layui-table td{
-  padding:0;
-}
+
 .map-box{
   position: absolute;
   top:10px;
@@ -1321,11 +1321,11 @@ html{background-color: #f2f2f2; color: #666;}
 
 /*合同单管理*/
 .add-order .grade .layui-form-label{
-  width: 30px;
+  width: auto;
   padding-left:0;
 }
 .add-order .grade .layui-input-inline{
-  width:88px;
+  width:50px;
 }
 .add-order .grade-selected{
   min-height: 0;
