@@ -160,6 +160,7 @@ html{background-color: #f2f2f2; color: #666;}
 .layui-side-menu .layui-nav .layui-nav-child .layui-nav-child{background: none!important;}
 .layui-side-menu .layui-nav .layui-nav-child .layui-nav-child a{padding-left: 60px}
 .layui-side-menu .layui-nav .layui-nav-more{right: 15px;}
+.layui-side-menu .layui-nav .layui-badge-dot{width:18px;height:18px;line-height:18px;text-align: center;right:30px;}
 
 /* 侧边菜单 - 平板移动设备 */
 @media screen and (max-width: 992px) {
