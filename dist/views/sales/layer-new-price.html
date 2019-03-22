@@ -36,6 +36,17 @@
         <div class="layui-card grid-demo">
             <div class="layui-card-header">
                 混凝土
+                <div class="layui-form-item search-title">
+                    <div class="layui-inline">
+                       统调:
+                    </div>
+                    <div class="layui-inline">
+                        <input type="text" name="contractNumber" size="18" placeholder=""
+                               lay-verify="required" value=""
+                               class="layui-input">
+                    </div>
+
+                </div>
             </div>
             <div class="layui-card-body">
                 <table class="layui-hide" id="Concrete" lay-filter="concrete"></table>
