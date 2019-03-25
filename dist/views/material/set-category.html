@@ -14,6 +14,7 @@
                 <div class="layui-card-body">
                     <table class="layui-hidden" id="treeTable" lay-filter="treeTable"></table>
                     <script type="text/html" id="barDemo">
+                        <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="edit">编辑</a>
                         {{# if(d.id.length == 1){ }}
                             <a class="layui-btn layui-btn-xs" lay-event="add">添加</a>
                         {{# }else{ }}
@@ -58,11 +59,11 @@
             data: [
                 {
                     "materialOrder": "S001",
-                    "materialName": "中砂",
+                    "materialName": "中砂"
                 },
                 {
                     "materialOrder": "S001",
-                    "materialName": "中砂",
+                    "materialName": "中砂"
                 }
             ]
         });
@@ -87,7 +88,7 @@
             , limit: 100    //每页条数
             , isPage: false
             , cols: [[
-                {field: 'name', title: '材料种类',edit:'text'}
+                {field: 'name', title: '材料种类'}
                 ,{title:'操作',align:'center',width:140,toolbar: '#barDemo'}
             ]]
             , data: [
@@ -112,7 +113,7 @@
                 return res;
             }
             , onClickRow: function (index, o,tr) {
-                console.log(index, o, "单击！");
+                //console.log(index, o, "单击！");
                 tr.addClass('current').siblings().removeClass('current');
             }
             , onDblClickRow: function (index, o) {
@@ -131,6 +132,8 @@
                 add(obj);
             }else if(obj.event === 'del'){  //删除行
                 del(obj);
+            }else if(obj.event ==='edit'){
+                edit(obj);
             }
         });
 
@@ -146,6 +149,10 @@
                     layer.close(index)
                 }
             )
+        }
+
+        function edit(obj) {
+            obj.edit();
         }
 
         //添加操作
