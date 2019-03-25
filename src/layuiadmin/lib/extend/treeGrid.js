@@ -2645,6 +2645,7 @@ layui.config({
             var othis = $(this)
                 ,index = othis.parents('tr').eq(0).data('index')
                 ,tr = that.layBody.find('tr[data-index="'+ index +'"]')
+                ,td = tr.find('td[data-field="name"]')
                 ,ELEM_CLICK = 'layui-table-click'
                 ,list = table.getDataList(that.key)
                 ,data = table.getDataList(that.key)[index];
@@ -2654,6 +2655,12 @@ layui.config({
                 ,tr: tr
                 ,del: function(){
                     table.delRow(options.id,data);
+                }
+                ,edit:function () {
+                    var input = $('<input class="layui-input '+ ELEM_EDIT +'">');
+                    input[0].value = $.trim(td.find('p').text());//  othis.data('content') || elemCell.text();
+                    td.find('.'+ELEM_EDIT)[0] || td.append(input);
+                    input.focus();
                 }
                 ,update: function(fields){
                     fields = fields || {};
