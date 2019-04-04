@@ -1331,6 +1331,13 @@ html{background-color: #f2f2f2; color: #666;}
   min-height: 0;
 }
 
+/*批量换仓*/
+/*.batch-form .layui-form-label{
+  padding:9px 9px 9px 0 ;
+}
+.batch-form .layui-input-inline{
+  width:90px;
+}*/
 
 /**/
 .my-select{
@@ -1420,6 +1427,12 @@ html{background-color: #f2f2f2; color: #666;}
 }
 .padding-top{
   padding-top:10px;
+}
+.w40{
+  width:40px;
+}
+.w50{
+  width:50px;
 }
 .w60{
   width:60px;
