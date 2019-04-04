@@ -51,10 +51,10 @@
                     <div class="layui-inline">
                         <button class="layui-btn layui-btn-sm" lay-submit><i class="layui-icon layui-icon-search"></i>查询
                         </button>
-                        <button type="reset" class="layui-btn layui-btn-sm layui-btn-normal"><i class="layui-icon">&#xe656</i>批量调整
-                        </button>
-                        <button type="reset" class="layui-btn layui-btn-sm layui-btn-normal"><i class="layui-icon">&#xe656</i>批量换仓
-                        </button>
+                        <a  class="layui-btn layui-btn-sm layui-btn-normal" data-type="batchSet"><i class="layui-icon">&#xe656</i>批量调整
+                        </a>
+                        <a class="layui-btn layui-btn-sm layui-btn-normal" data-type="batchChange"><i class="layui-icon">&#xe656</i>批量换仓
+                        </a>
                     </div>
                 </div>
             </form>
@@ -316,6 +316,35 @@
                 default:
                     break;
             }
+        });
+
+        //按钮事件
+        var active = {
+            batchSet: function(){
+                layer.open({
+                    type: 2
+                    ,title:'批量调整'
+                    ,content: ['../lab/layer-batch-set.html']
+                    ,shadeClose: true
+                    ,area: ['100%', '100%']
+                    ,maxmin: true
+                });
+            },
+            batchChange:function () {
+                layer.open({
+                    type: 2
+                    ,title:'批量换仓'
+                    ,content: ['../lab/layer-batch-change.html']
+                    ,shadeClose: true
+                    ,area: ['100%', '100%']
+                    ,maxmin: true
+                });
+            }
+        };
+
+        $('.layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] && active[type].call(this);
         });
     })
 </script>
