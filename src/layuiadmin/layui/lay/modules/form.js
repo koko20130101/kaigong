@@ -125,7 +125,7 @@ layui.define('layer', function(exports){
         }
         
         //各种事件
-        ,events = function(reElem, disabled, isSearch){
+        ,events = function(reElem, disabled, isSearch,searchType){
           var select = $(this)
           ,title = reElem.find('.' + TITLE)
           ,input = title.find('input')
@@ -169,15 +169,21 @@ layui.define('layer', function(exports){
               
               //未查询到相关值
               if(none){
-                //initValue = $(select[0].options[selectedIndex]).html(); //重新获得初始选中值
-                
+                //增加了一个searchType参数
+                if(searchType==''){
+                  initValue = $(select[0].options[selectedIndex]).html(); //重新获得初始选中值
+
+                }
+
                 //如果是第一项，且文本值等于 placeholder，则清空初始值
                 if(selectedIndex === 0 && initValue === input.attr('placeholder')){
                   initValue = '';
                 };
 
                 //如果有选中值，则将输入框纠正为该值。否则清空输入框
-                //input.val(initValue || '');
+                if(searchType==''){
+                  input.val(initValue || '');
+                }
               }
             });
           }
@@ -339,7 +345,11 @@ layui.define('layer', function(exports){
               var selectedIndex = select[0].selectedIndex;
 
               thatInput = input; //当前的 select 中的 input 元素
-              //initValue = $(select[0].options[selectedIndex]).html(); //重新获得初始选中值
+              if(searchType == ''){
+                initValue = $(select[0].options[selectedIndex]).html(); //重新获得初始选中值
+              }else if(searchType == 'canInput'){
+                initValue = input.val();
+              }
 
               //如果是第一项，且文本值等于 placeholder，则清空初始值
               if(selectedIndex === 0 && initValue === input.attr('placeholder')){
@@ -349,8 +359,13 @@ layui.define('layer', function(exports){
               setTimeout(function(){
                 notOption(input.val(), function(none){
                   //如果没有匹配的项，则初始化值
-                  //initValue || input.val(''); //none && !initValue
-                  if(none){
+                  if(searchType ==''){
+                    initValue || input.val(''); //none && !initValue
+                  }else if(searchType == 'canInput'){
+                    initValue = input.val();
+                  }
+
+                  if(none && searchType == 'canInput'){
                     //把第一项option的值设为input中的值
                     select[0].options[0].value = input.val();
                     //设置select的选中项为第一项
@@ -405,9 +420,11 @@ layui.define('layer', function(exports){
           if(typeof othis.attr('lay-ignore') === 'string') return othis.show();
           
           var isSearch = typeof othis.attr('lay-search') === 'string'
+              ,searchType = othis.attr('lay-search')
           ,placeholder = optionsFirst ? (
             optionsFirst.value ? TIPS : (optionsFirst.innerHTML || TIPS)
           ) : TIPS;
+
 
           //替代元素
           var reElem = $(['<div class="'+ (isSearch ? '' : 'layui-unselect ') + CLASS 
@@ -439,7 +456,7 @@ layui.define('layer', function(exports){
           
           hasRender[0] && hasRender.remove(); //如果已经渲染，则Rerender
           othis.after(reElem);          
-          events.call(this, reElem, disabled, isSearch);
+          events.call(this, reElem, disabled, isSearch,searchType);
         });
       }
       
