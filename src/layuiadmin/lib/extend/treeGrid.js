@@ -2610,7 +2610,7 @@ layui.config({
                                 }
                             });
                             if(temis){
-                                that.setCheckData(o[table.config.indexName], checked);
+                                //that.setCheckData(o[table.config.indexName], checked);
                             }
 
                             var temuo=that.treeFindUpData(o);
