@@ -57,6 +57,14 @@
                         <dd layadmin-event="logout" style="text-align: center;"><a>退出</a></dd>
                     </dl>
                 </li>
+                <li class="layui-nav-item" style="margin-left:20px;">
+                    <a href="javascript:;" style="padding-left:6px;">
+                        <cite id="Organization">集团总部</cite>
+                    </a>
+                    <dl class="layui-nav-child" style="padding:0;">
+                        <table class="layui-hidden" id="treeTable" lay-filter="treeTable"></table>
+                    </dl>
+                </li>
 
             </ul>
         </div>
@@ -294,7 +302,66 @@
         base: '../layuiadmin/' //静态资源所在路径
     }).extend({
         index: 'lib/index' //主入口模块
-    }).use('index');
+    }).use(['index', 'treeGrid'], function () {
+        var $ = layui.$;
+        var treeGrid = layui.treeGrid;
+        //树表格
+        treeGrid.render({
+            id: 'treeTable'
+            , elem: '#treeTable'
+            //,url:'./json/treeData.json'
+            , cellMinWidth: 200
+            , idField: 'id'//必須字段
+            , treeId: 'id'//树形id字段名称
+            , treeUpId: 'pId'//树形父id字段名称
+            , treeShowName: 'name'//以树形式显示的字段
+            , heightRemove: [".dHead", 10]//不计算的高度,表格设定的是固定高度，此项不生效
+            , height: '100%'
+            , isFilter: false
+            , iconOpen: false//是否显示图标【默认显示】
+            , isOpenDefault: true//节点默认是展开还是折叠【默认展开】
+            , loading: true
+            , method: 'get'
+            , limit: 100    //每页条数
+            , isPage: false
+            , cols: [[
+                {field: 'name', title: '组织架构'}
+            ]]
+            , data: [
+                {"id": "1", "pId": null, "name": "集团总部"},
+
+                {"id": "10", "pId": "1", "name": "华南区域"},
+                {"id": "11", "pId": "1", "name": "华北区域"},
+                {"id": "12", "pId": "1", "name": "华中区域"},
+                {"id": "13", "pId": "1", "name": "华东区域"},
+
+                {"id": "100", "pId": "10", "name": "广东"},
+                {"id": "1000", "pId": "100", "name": "广州"},
+                {"id": "10000", "pId": "1000", "name": "番禺超力站"},
+                {"id": "10000", "pId": "1000", "name": "石井超力站"},
+                {"id": "10000", "pId": "1000", "name": "花都超力站"},
+                {"id": "10000", "pId": "1000", "name": "天河汇彩站"}
+
+            ]
+            , parseData: function (res) {//数据加载后回调
+                return res;
+            }
+            , onClickRow: function (index, o, tr) {
+                //console.log(index, o, "单击！");
+                tr.addClass('current').siblings().removeClass('current');
+                $("#Organization").html(o['name']);
+            }
+            , onDblClickRow: function (index, o) {
+                console.log(index, o, "双击");
+            }
+            , onCheck: function (obj, checked, isAll) {//复选事件
+                console.log(obj, checked, isAll);
+            }
+            , onRadio: function (obj) {//单选事件
+                console.log(obj);
+            }
+        });
+    });
 </script>
 </body>
 </html>
